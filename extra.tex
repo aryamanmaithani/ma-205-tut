@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools}
+\usepackage{thmtools}
+\usepackage[utf8]{inputenc}
+\usepackage[inline]{enumitem}
+\usepackage[colorlinks=true]{hyperref}
+\setlength\parindent{0pt}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\numberwithin{thm}{section}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{ex}{Example}
+
+
+\let\emptyset\varnothing
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\hint}[1]{\textbf{HIDDEN:} {\color[rgb]{0.95, 0.95, 0.95}#1}}
+
+\pagestyle{plain}
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\sffamily\Large\filcenter\bfseries}{\S\thesection.}{0.25cm}{\Large}
+\titleformat{\subsection}[block]{\large\bfseries\sffamily}{\S\S\thesubsection.}{0.2cm}{\large}
+
+
+\usepackage[a4paper]{geometry}
+\usepackage{lipsum}
+
+\usepackage{cleveref}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{defn}{Definition}{Definitions}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{equation}{}{}
+
+\usepackage{mdframed}
+\newenvironment{blockquote}
+{\begin{mdframed}[skipabove=0pt, skipbelow=0pt, innertopmargin=4pt, innerbottommargin=4pt, bottomline=false,topline=false,rightline=false, linewidth=2pt]}
+{\end{mdframed}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily{\S\textbf{\nouppercase{\leftmark}}}}
+\fancyhead[R]{\sffamily{\thepage}}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{MA 205: $\mathbb{C}$omplex Analysis\\\large{Extra questions}}
+\author{Aryaman Maithani\\\url{https://aryamanmaithani.github.io/tuts/ma-205}}
+\date{Autumn Semester 2020-21}
+
+\begin{document}
+\maketitle
+\setcounter{section}{-1}
+\tableofcontents
+\newpage\section{Notations} \label{sec:notations}
+\begin{enumerate}
+	\item $\mathbb{N} = \{1, 2, 3, \ldots\},$ the set of positive integers.
+	\item $\mathbb{Z}$ is the set of integers.
+	\item $\mathbb{Q}$ is the set of rational numbers.
+	\item $\mathbb{R}$ is the set of real numbers.
+	% \item Whenever I refer to $\mathbb{R}$ or $\mathbb{R}^n$ or any of its subsets as a metric space, I shall always assume the standard metric unless I explicitly state so otherwise.
+	% \item $S^1 = \{\mathbf{x} \in \mathbb{R}^2 \mid \|x\| = 1\} \subset \mathbb{R}^2.$ 
+	% \item $\mathbb{S}_{\ge 0} = \{s \in \mathbb{S} \mid s \ge 0\}.$ (So, that defines $\mathbb{Z}_{\ge 0}, \mathbb{Q}_{\ge 0}, \mathbb{R}_{\ge 0}.$)
+	% \item $\mathbb{S}^+ = \mathbb{S}_{> 0} = \{s \in \mathbb{S} \mid s > 0\}.$
+	\item $A \subset B$ is read as ``$A$ is a subset of $B.$'' In particular, note that $A \subset A$ is true for any set $A.$
+	\item $A \subsetneq B$ is read ``$A$ is a \emph{proper} subset of $B.$''
+	\item $\supset$ and $\supsetneq$ are defined similarly.
+	% \item Given a set $S,$ the set $\mathcal{P}(S)$ is the \emph{power set} of $S,$ i.e., the set of all subsets of $\mathcal{P}(S).$
+	\item Given a function $f:X \to Y,$ $A \subset X,$ $B \subset Y,$ we define
+	\begin{align*} 
+		f(A) &= \{y \in Y \mid y = f(a) \text{ for some } a \in A\} \subset Y,\\
+		f^{-1}(B) &= \{x \in X \mid f(x) \in B\} \subset X.
+	\end{align*}
+	(Note that this $f^{-1}$ is different from the inverse of a function. In particular, this is always defined, even if $f$ is not bijective. However, the $f$ and $f^{-1}$ above need not be ``inverses.'')
+	% \item \label{funcrestrict} If $f:X \to Y$ is a function and $A \subset X,$ then $f|_A$ is a function
+	% \begin{equation*} 
+	% 	f|_A : A \to Y
+	% \end{equation*}
+	% defined as
+	% \begin{equation*} 
+	% 	f|_A(a) = f(a), \quad a \in A.
+	% \end{equation*}
+	% \item Since Rudin follows a non-usual definition for ``countable,'' I shall use the following, which makes it always clear:
+	% \begin{enumerate}
+	% 	\item At most countable: A set $S$ is at most countable if there exists an injection $i : S \to \mathbb{N}.$
+	% 	\item Countably infinite: A set $S$ is countably infinite if it is at most countable and infinite.
+	% 	\item Uncountable: A set $S$ is uncountable if it not at most countable.
+	% \end{enumerate}
+	% In particular, I will not use the term ``countable'' just by itself since Rudin uses it to mean ``countably infinite'' but usually people mean ``at most countable.''
+	% %
+	% \item Given a set $I,$ $\{P_\alpha\}_{\alpha \in I}$ is a shorthand for writing a set of the form $\{P_\alpha \mid \alpha \in I\}.$ ($P_\alpha$ is defined given the context.)
+\end{enumerate}
+\newpage\section{Topology}
+\begin{enumerate}
+	\item Is the interval $(0, 1)$ open as a subset of $\mathbb{C}?$\\
+	\hint{No}
+	%
+	\item Is the interval $(0, 1)$ closed as a subset of $\mathbb{C}?$\\
+	\hint{No}
+	%
+	\item Consider the following four properties that a subset of $\mathbb{C}$ can have:
+	\begin{enumerate}
+		\item Open
+		\item Closed
+		\item Bounded
+		\item Path connected
+	\end{enumerate}
+	Thus, we can classify all the subsets of $\mathbb{C}$ into $2^4$ classes on the basis of what properties they have (and what they don't).\\
+	Give an example of each or a proof that some certain class cannot have anything.\\
+	You may assume that $\emptyset$ and $\mathbb{C}$ are the only subsets of $\mathbb{C}$ which are both open and closed.
+\end{enumerate}
+\newpage\section{Cauchy Riemann Equations}
+\begin{enumerate}
+	\item Consider the function $f:\mathbb{C} \to \mathbb{C}$ defined as
+	\begin{equation*} 
+		f(z) = \bar{z}.
+	\end{equation*}
+	Show that $f$ is continuous at each point.\\
+	Show that $f$ is differentiable at no point.\\
+	(This has given us a very easy example of a function which is continuous everywhere but differentiable nowhere. On the contrary, one has to put a lot more effort to construct an example in the case of real analysis.)
+	%
+	\item Show that the function $f:\mathbb{R}^2\to\mathbb{R}^2$ defined as
+	\begin{equation*} 
+		f(x, y) = (x, -y)
+	\end{equation*}
+	is differentiable in the sense that you saw in MA 105. (That is, its total derivative exists at every point.)\\
+	Compare this with the previous question.
+	%
+	\item Let $\Omega$ be a region and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
+	Suppose
+	\begin{equation*} 
+		f(z) \in \mathbb{R} \quad \text{for all } z \in \Omega.
+	\end{equation*}
+	Show that $f$ is constant. (That is, if a complex differentiable function takes only real values, then it must be constant on path-connected sets.)
+	%
+	\item Let $\Omega$ be a region and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
+	Suppose that $|f|$ is constant. Show that $f$ is constant.
+\end{enumerate} 
+\end{document}
