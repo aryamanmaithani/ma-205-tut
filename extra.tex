@@ -79,6 +79,8 @@
 		f^{-1}(B) &= \{x \in X \mid f(x) \in B\} \subset X.
 	\end{align*}
 	(Note that this $f^{-1}$ is different from the inverse of a function. In particular, this is always defined, even if $f$ is not bijective. However, the $f$ and $f^{-1}$ above need not be ``inverses.'')
+	\item A \emph{domain}, as a subset of $\mathbb{C}$ will always refer to a set which is open and path connected.\\
+	(Note that this is different from domain of a function.)
 	% \item \label{funcrestrict} If $f:X \to Y$ is a function and $A \subset X,$ then $f|_A$ is a function
 	% \begin{equation*} 
 	% 	f|_A : A \to Y
@@ -133,14 +135,19 @@
 	is differentiable in the sense that you saw in MA 105. (That is, its total derivative exists at every point.)\\
 	Compare this with the previous question.
 	%
-	\item Let $\Omega$ be a region and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
+	\item Let $\Omega$ be open (and not necessarily path-connected). \\
+	Let $f:\Omega \to \mathbb{C}$ be holomorphic such that $f'(z) = 0$ for all $z \in \Omega.$\\
+	Show that it is \emph{not} necessary that $f$ is constant.\\~\\
+	Show that if $\Omega$ is also assumed to be path-connected (that is, $\Omega$ is a domain), then it \emph{is} necessary that $f$ is constant.
+	%
+	\item Let $\Omega$ be a domain and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
 	Suppose
 	\begin{equation*} 
 		f(z) \in \mathbb{R} \quad \text{for all } z \in \Omega.
 	\end{equation*}
 	Show that $f$ is constant. (That is, if a complex differentiable function takes only real values, then it must be constant on path-connected sets.)
 	%
-	\item Let $\Omega$ be a region and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
+	\item Let $\Omega$ be a domain and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
 	Suppose that $|f|$ is constant. Show that $f$ is constant.
 \end{enumerate} 
 \end{document}
