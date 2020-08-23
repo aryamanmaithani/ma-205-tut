@@ -23,12 +23,10 @@
 \let\emptyset\varnothing
 
 \pagestyle{plain}
-\pagenumbering{gobble}
 
 \usepackage{titlesec}
 \titleformat{\section}[block]{\sffamily\Large\filcenter\bfseries}{\S\thesection.}{0.25cm}{\Large}
 \titleformat{\subsection}[block]{\large\bfseries\sffamily}{\S\S\thesubsection.}{0.2cm}{\large}
-
 
 \usepackage[a4paper]{geometry}
 \usepackage{lipsum}
@@ -46,6 +44,13 @@
 {\begin{mdframed}[skipabove=0pt, skipbelow=0pt, innertopmargin=4pt, innerbottommargin=4pt, bottomline=false,topline=false,rightline=false, linewidth=2pt]}
 {\end{mdframed}}
 \newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily{\S\textbf{\nouppercase{\leftmark}}}}
+\fancyhead[R]{\sffamily{\thepage}}
+
 
 \renewcommand{\familydefault}{\sfdefault}
 
