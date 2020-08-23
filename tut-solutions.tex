@@ -1,0 +1,345 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools,mathrsfs}
+\usepackage{thmtools}
+\usepackage[utf8]{inputenc}
+\usepackage[inline]{enumitem}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{tikz-cd}
+\usepackage{witharrows}
+\setlength\parindent{0pt}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\numberwithin{thm}{section}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{ex}{Example}
+
+
+\let\emptyset\varnothing
+
+\pagestyle{plain}
+\pagenumbering{gobble}
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\sffamily\Large\filcenter\bfseries}{\S\thesection.}{0.25cm}{\Large}
+\titleformat{\subsection}[block]{\large\bfseries\sffamily}{\S\S\thesubsection.}{0.2cm}{\large}
+
+
+\usepackage[a4paper]{geometry}
+\usepackage{lipsum}
+
+\usepackage{cleveref}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{defn}{Definition}{Definitions}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{equation}{}{}
+
+\usepackage{mdframed}
+\newenvironment{blockquote}
+{\begin{mdframed}[skipabove=0pt, skipbelow=0pt, innertopmargin=4pt, innerbottommargin=4pt, bottomline=false,topline=false,rightline=false, linewidth=2pt]}
+{\end{mdframed}}
+\newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{MA 205: Complex Analysis\\\large{Tutorial Solutions}}
+\author{Aryaman Maithani\\\url{https://aryamanmaithani.github.io/tuts/ma-205}}
+\date{Autumn Semester 2020-21}
+
+\begin{document}
+\maketitle
+\setcounter{section}{-1}
+\section{Notations}
+\begin{enumerate}
+	\item Given $z \in \mathbb{C},$ $\Re z$ and $\Im z$ will denote the real and imaginary parts of $z,$ respectively.
+	\item Given $z \in \mathbb{C},$ $\bar{z}$ will denote the complex conjugate of $z.$
+	\item Given $z \in \mathbb{C},$ $\left|z\right|$ will denote the modulus of $z,$ defined as $\sqrt{z\bar{z}}$ or $\sqrt{\left(\Re z\right)^2 + \left(\Im z\right)^2}.$
+\end{enumerate}
+\newpage\section{Tutorial 1}
+\begin{center}
+	25th August, 2020
+\end{center}
+\textbf{Notation:} The set $\mathbb{C}[x]$ is the set of all polynomials (with indeterminate $x$) with complex coefficients. Similarly, $\mathbb{R}[x]$ is defined.
+\begin{enumerate}
+	\item  Show that complex polynomial of degree $n$ has exactly $n$ roots. (Assuming fundamental theorem of algebra.)\\
+	Remark (my own): The above is counting the roots \emph{with} multiplicity. That is, if $f(z) = (z - \iota)^2(z - 2),$ then $\iota$ is counted twice and $2$ once.
+	\begin{soln}
+		Let $f(x) \in \mathbb{C}[x]$ be a polynomial of degree $n.$
+		We prove this via induction on $n.$\\
+		$n = 1.$ Then, $f(x) = a_0 + a_1x$ for some $a_0, a_1 \in \mathbb{C}$ and $a_1 \neq 0.$\\
+		Note that
+		\begin{align*} 
+			f(x) &= 0\\
+			\iff a_0 + a_1x &= 0\\
+			\iff a_1x &= -a_0\\
+			\iff x &= -\dfrac{a_0}{a_1}.
+		\end{align*}
+		Thus, $f(x)$ has exactly $1$ root.\\~\\
+		Let us assume that whenever $g(x) \in \mathbb{C}[x]$ is a polynomial of degree $n,$ then $g(x)$ has exactly $n$ roots. (Counted with multiplicity.)\\
+		Let $f(x) \in \mathbb{C}[x]$ be a polynomial of degree $n + 1.$ By FTA, there exists a root $x_0 \in \mathbb{C}.$ Thus, we can write
+		\begin{equation*} 
+			f(x) = (x - x_0)g(x)
+		\end{equation*}
+		for some polynomial $g(x) \in \mathbb{C}[x]$ of degree $n.$ Moreover, note that 
+		\begin{equation*} 
+			f(x) = 0 \iff x = x_0 \text{ or } g(x) = 0.
+		\end{equation*}
+		By induction, the latter is possible for exactly $n$ values of $x.$ Thus, in total, $f(x)$ has $n + 1$ roots. (Both counts are with multiplicity.)
+	\end{soln}
+	%
+	%
+	%
+	\item Show that a real polynomial that is irreducible has degree at most two. i.e., if
+	\begin{equation*} 
+		f(x) = a_0 + a_1x + \cdots + a_nx^n, \quad a_i \in \mathbb{R}
+	\end{equation*}
+	then there are non-constant real polynomials $g$ and $h$ such that $f(x) = g(x)h(x)$ if $n \ge 3.$\\
+	Remark (my own): $a_n \neq 0,$ of course.
+	\begin{soln}
+		Let $f(x) \in \mathbb{R}[x]$ with degree $\ge 3$ as above.\\
+		If $f(x)$ has a real root, then we are done by factoring as in the earlier question.\\~\\
+		Thus, let us assume that $f(x) = 0$ has no real solution.\\
+		We may view $f(x) \in \mathbb{C}[x].$ Now, using FTA, we know that $f(x)$ has a complex root $x_0 \in \mathbb{C}.$ By assumption, we must have $x_0 \notin \mathbb{R}$ or that $x_0 \neq \overline{x_0}.$ \\
+		\begin{blockquote}
+			\textbf{Claim.} $f(\overline{x_0}) = 0.$
+			\begin{proof} 
+				Note that
+
+				\[\begin{WithArrows}[displaystyle]
+			    f(\overline{x_0}) &= a_0 + a_1\overline{x_0} + \cdots + a_n(\overline{x_0})^n \Arrow{$\because \overline{z^n} = \bar{z}^n$}\\
+					&= a_0 + a_1\overline{x_0} + \cdots + a_n\overline{x_0^n} \Arrow{$\because a_i \in \mathbb{R}$ and so, $a_i = \overline{a_i}$}\\
+					&= \overline{a_0} + \overline{a_1}\;\overline{x_0} + \cdots + \overline{a_n}\overline{x_0^n} \Arrow{$\overline{z_1z_2 + z_3} = \overline{z_1}\;\overline{z_2} + \overline{z_3}$}\\
+					&= \overline{f(x_0)}\\
+					&= \bar{0}\\
+					&= 0
+			  \end{WithArrows}\]
+			\end{proof}
+		\end{blockquote}
+		Define $g(x) = (x - x_0)(x - \overline{x_0}).$ A priori, this is a polynomial in $\mathbb{C}[x].$ However, upon multiplication, we see that the polynomial is actually an element of $\mathbb{R}[x].$ Indeed, we have
+		\begin{equation*} 
+			(x - x_0)(x - \overline{x_0}) = (x^2 - (2\Re x_0)x + |x_0|^2) \in \mathbb{R}[x].	
+		\end{equation*}
+		By our claim, we see that $g(x)$ divides $f(x)$ in $\mathbb{C}[x].$ (Since $x_0$ and $\overline{x_0}$ are distinct, the polynomials $x - x_0$ and $x - \overline{x_0}$ are ``coprime'' and thus, if they individually divide $f(x),$ then their product must too.) \\
+		Thus,
+		\begin{equation*} 
+			f(x) = g(x)h(x)
+		\end{equation*}
+		for some $h(x) \in \mathbb{C}[x].$ However, since $f(x)$ and $g(x)$ are both real polynomials, so is $h(x).$ \hfill (Why?)\\
+		Thus, we get that
+		\begin{equation*} 
+			f(x) = g(x)h(x)
+		\end{equation*}
+		for real polynomials $g(x)$ and $h(x).$ Moreover, note that $\deg g(x) = 2$ and $\deg h(x) = n - 2 \ge 1.$ Thus, both are non-constant.
+	\end{soln}
+	%\\
+	%\\
+	%
+	\item Show that if $U$ is a path connected open set in $\mathbb{C},$ so is $U$ minus any finite set.
+	%
+	\begin{soln}
+		We will first prove the following claim:
+		\begin{blockquote}
+			\textbf{Claim:} Let $U \subset \mathbb{C}$ be open and $w \in U.$ Then, $U \setminus \{w\}$ is open.
+			\begin{proof} 
+				Let $z_0 \in U\setminus\{w\}$ be arbitrary. Since $U$ was open, there exists $\delta_1 > 0$ such that
+				\begin{equation*} 
+					B_{\delta_1}(z_0) \subset U.
+				\end{equation*}
+				Since $z_0 \neq w,$ we have that $\delta_2 \vcentcolon= |z_0 - w| > 0.$\\
+				Choose $\delta := \min\{\delta_1, \delta_2\}.$ Clearly, $\delta > 0.$ Moreover, we have
+				\begin{equation*} 
+					w \notin B_{\delta_2}(z_0) \supset B_{\delta}(z_0)
+				\end{equation*}
+				and thus, $w \notin B_{\delta}(z_0).$ Also,
+				\begin{equation*} 
+					B_{\delta}(z_0) \subset B_{\delta_1}(z_0) \subset U.
+				\end{equation*}
+				Thus, we get that
+				\begin{equation*} 
+					B_{\delta}(z_0) \subset U \setminus \{w\},
+				\end{equation*}
+				proving that $U\setminus\{w\}$ is open.
+			\end{proof}
+		\end{blockquote}
+		By the above proof, we see that removing one point from an open set keeps it open. Thus, if we show that removing one point from an open path-connected set leaves it path-connected, then we are done since we can induct to get any other \textbf{finite}\footnote{Finiteness is important. Induction cannot prove this result for a countably infinite set.} set.\\~\\
+		Thus, we now show that if $U$ is open and path-connected, so is $U\setminus\{w\}.$ (Where $w \in U$ is any arbitrary element.)\\~\\
+		Let $z_0, z_1 \in U\setminus\{w\}.$ We wish to show that there is a path in $U\setminus\{w\}$ connecting $z_0$ to $z_1.$\\
+		Since $U$ was path-connected to begin with, there exists a path $\sigma:[0, 1] \to U$ such that
+		\begin{equation*} 
+			\sigma(0) = z_0, \quad \sigma(1) = z_1.
+		\end{equation*}
+		If $\sigma(x) \neq w$ for any $x \in [0, 1],$ then we are done since $\sigma$ is a path in $U\setminus\{w\}$ as well.\\
+		Suppose that this is not the case.\\
+		Then, we choose a $\delta > 0$ such that the \emph{closed} ball
+		\begin{equation*} 
+			B \vcentcolon= \{z \in \mathbb{C} : |z - w| \le \delta\}
+		\end{equation*}
+		has the following properties:
+		\begin{enumerate}
+			\item $z_0 \notin B,$
+			\item $z_1 \notin B,$
+			\item $B \subset U.$
+		\end{enumerate}
+		(Why must such a $\delta$ exist? There exists a $\delta_1$ for which we get the first two properties since $z_0$ and $z_1$ are distinct from $w.$ For the last property, let $\delta_2$ be any such that $B_{\delta_2}(w) \subset U,$ which exists since $U$ is open. Then, consider $\delta_2/2.$ The \emph{closed} ball of this radius must again be completely within $U.$ Take the minimum of $\delta_1$ and $\delta_2/2$.)\\~\\
+		Note that
+		\begin{equation*} 
+			\sigma^{-1}(B) = \{x \in [0, 1] : \sigma(x) \in B\}
+		\end{equation*}
+		is nonempty since $w \in \sigma^{-1}(B).$ Moreover, it must be closed. (Why?)\\
+		Since it is a subset of $[0, 1],$ it is clearly bounded. Define
+		\begin{equation*} 
+			s \vcentcolon= \inf \sigma^{-1}(B), \quad t \vcentcolon= \sup\sigma^{-1}(B).
+		\end{equation*}
+		Since the set is closed, both $s$ and $t$ are elements of $\sigma^{-1}(B).$ Note that $\sigma(0) \notin B$ and $\sigma(1) \notin B$ and thus,
+		\begin{equation*} 
+			0 < s < t < 1.
+		\end{equation*}
+		(Why is the inequality $s < t$ strict?)\\
+		Note that $\sigma(s)$ and $\sigma(t)$ must lie on the circumference of $B.$ (Why?) (This also shows why $s < t.$)\\
+		Now consider the path $\sigma':[0, 1] \to U$ defined as follows:
+		\begin{equation*} 
+			\sigma'(x) = \begin{cases}
+				\sigma(x) & \text{if } x \in [0, s] \cup [t, 1]\\
+				\gamma(x) & \text{if } x \in [s, t],
+			\end{cases}
+		\end{equation*}	
+		where $\gamma:[s, t] \to B$ is the path which is the arc joining $\sigma(s)$ to $\sigma(t).$ (Note that $\sigma(s) = \sigma(t)$ is possible in which case, it's the constant path.)\\
+		Clearly, $\sigma'$ avoids $w$ and is continuous. \hfill (Why?)\\~\\
+		Moreover, $\sigma'(0) = \sigma(0) = z_0$ and $\sigma'(1) = \sigma(1) = z_1$ and thus, $\sigma'$ is a path from $z_0$ to $z_1$ in $U \setminus \{w\},$ showing that $U\setminus\{w\}$ is path-connected.
+	\end{soln}
+	%\\
+	%\\
+	%\\
+	%
+	\item Check for real differentiability and holomorphicity:
+	\begin{enumerate}
+		\item $f(z) = c,$
+		\item $f(z) = z,$
+		\item $f(z) = z^n,$ $n \in \mathbb{Z},$
+		\item $f(z) = \Re z,$
+		\item $f(z) = \left|z\right|,$
+		\item $f(z) = \left|z\right|^2,$
+		\item $f(z) = \bar{z},$
+		\item $f(z) = \begin{cases}
+		\dfrac{z}{\bar{z}} & \text{if } z \neq 0,\\
+		0 & \text{if } z = 0.
+		\end{cases}$
+	\end{enumerate}
+	%
+	\begin{soln}
+		Not going to do all.
+		\begin{enumerate}
+			\item Real differentiable and holomorphic, both.
+			\item Real differentiable and holomorphic, both.
+			\item Real differentiable and holomorphic, both. Let us see why.\\
+			As we know, holomorphicity implies real differentiability, so we only check that $f$ is holomorphic on $\mathbb{C}.$\\
+			Let $z_0 \in \mathbb{C}$ be arbitrary. We show that the limit
+			\begin{equation*} 
+				\lim_{z\to z_0}\dfrac{f(z) - f(z_0)}{z - z_0}
+			\end{equation*}
+			exists.\\
+			This is clear because for $z_0 \neq z,$ we have
+			\begin{equation*} 
+				\dfrac{z^n - z_0^n}{z - z_0} = \sum_{k=0}^{n-1}z^kz_0^{n - 1 - k}.
+			\end{equation*}
+			The limit $z \longrightarrow z_0$ of the RHS clearly exists.
+			\item Real differentiable but not holomorphic. Note that $f$ can be written as
+			\begin{equation*} 
+				f(x + \iota y) = x + 0\iota.
+			\end{equation*}
+			Thus, $u(x, y) = x$ and $v(x, y) = 0.$\\
+			This is clearly real differentiable everywhere since all the partial derivatives exist everywhere and are continuous.\\
+			However, we show that $f$ is not complex differentiable at any point. Thus, it is not holomorphic.\\
+			This is easy because one sees that $u_x(x_0, y_0) = 1$ and $v_y(x_0, y_0) = 0$ for all $(x_0, y_0) \in \mathbb{R}^2$ and thus, the CR equations don't hold.
+			\item $|z|$ is real differentiable everywhere except $0$ and complex differentiable nowhere. Breaking the function as earlier, we have
+			\begin{equation*} 
+				u(x, y) = \sqrt{x^2 + y^2}, \quad v(x, y) = 0.
+			\end{equation*}
+			On $\mathbb{R}^2\setminus\{(0, 0)\},$ all partial derivatives exist and are continuous. At $(0, 0),$ $u_x$ and $u_y$ fail to exist.\\~\\
+			This clearly shows that $f$ is not complex differentiable at $0 \in \mathbb{C}$ since it is not even real differentiable there.\\
+			However, we see that $v_y = 0 = v_x$ everywhere else but at least one of $u_x$ or $u_y$ is nonzero on $\mathbb{R}^2\setminus\{(0, 0)\}$ and thus, the CR equations prevent $f$ from being complex differentiable anywhere else.
+			%
+			\item Real differentiable everywhere.\\
+			Complex differentiable precisely at $0.$\\
+			Holomorphic nowhere.\\~\\
+			Same steps as above.
+			%
+			\item Real differentiable everywhere. Complex differentiable nowhere. Use CR equations again.
+			%
+			\item 
+			$f$ is real differentiable precisely on $\mathbb{R}^2\setminus\{(0, 0)\}.$\\
+			However, it is not complex differentiable anywhere.\\~\\
+			Breaking as earlier, we get
+			\begin{equation*} 
+				u(x, y) = \dfrac{x^2 - y^2}{x^2 + y^2}, \quad v(x, y) = \dfrac{2xy}{x^2 + y^2},
+			\end{equation*}
+			for $(x, y) \in \mathbb{R}^2\setminus\{(0, 0)\}$ and
+			\begin{equation*} 
+				u(0, 0) = 0 = v(0, 0).
+			\end{equation*}
+			Note that $u$ and $v$ aren't even continuous at $(0, 0).$ Thus, neither if $f.$ Hence, $f$ is neither real nor complex differentiable at $(0, 0).$ \\
+			However, at all other points, all partial derivatives exist and are continuous. Thus, $f$ is real differentiable at all those points. However, computing $u_x, u_y, v_x, v_y$ explicitly shows that the CR equations are not satisfied anywhere. Thus, $f$ is not complex differentiable anywhere. \qedhere
+		\end{enumerate}
+	\end{soln}
+	%
+	%
+	%
+	\item  Show that the CR equations take the form
+	\begin{equation*} 
+		u_r = \dfrac{1}{r}v_\theta, \quad v_r = -\dfrac{1}{r}u_\theta
+	\end{equation*}
+	in polar coordinates.
+	%\\
+	\begin{soln}
+		We shall follow the same idea as in the slides. We first write
+		\begin{equation*} 
+			f(r, \theta) = f(re^{\iota\theta}) = u(r, \theta) + \iota v(r, \theta).
+		\end{equation*}
+		Suppose that $f$ is differentiable at $z_0 = r_0e^{\iota\theta_0} \neq 0.$ (Note that it wouldn't make sense to talk at $0$ since there's a $r^{-1}$ factor in the question anyway.)\\
+		Thus, we know that the limit
+		\begin{equation*} 
+			\lim_{z\to z_0}\dfrac{f(z) - f(z_0)}{z - z_0}
+		\end{equation*}
+		exists. We shall calculate it in two ways:
+		\begin{enumerate}
+			\item Fix $\theta = \theta_0$ and let $r \to r_0.$ Then, we get
+			\begin{align*} 
+				f'(z_0) &= \lim_{r\to r_0}\left\{\dfrac{u(r, \theta_0) - u(r_0, \theta_0)}{e^{\iota\theta_0}(r - r_0)} + \iota\dfrac{v(r, \theta_0) - v(r_0, \theta_0)}{e^{\iota\theta_0}(r - r_0)}\right\}\\~\\
+				&= e^{-\iota\theta_0}\lim_{r\to r_0}\left\{\dfrac{u(r, \theta_0) - u(r_0, \theta_0)}{r - r_0} + \iota\dfrac{v(r, \theta_0) - v(r_0, \theta_0)}{r - r_0}\right\}\\~\\
+				&= e^{-\iota\theta_0}\left(u_r(r_0, \theta_0) + \iota v_r(r_0, \theta_0)\right). & (*)
+			\end{align*}
+
+		\item Fix $r = r_0$ and let $\theta \to \theta_0.$ Then, we get
+		\begin{align*} 
+			f'(z_0) &= \lim_{\theta\to \theta_0}\left\{\dfrac{u(r_0, \theta) - u(r_0, \theta_0)}{r_0(e^{\iota\theta} - e^{\iota\theta_0})} + \iota\dfrac{v(r_0, \theta) - v(r_0, \theta_0)}{r_0(e^{\iota\theta} - e^{\iota\theta_0})}\right\}\\~\\
+			&= \dfrac{1}{r_0}\lim_{\theta\to \theta_0}\left\{\dfrac{u(r_0, \theta) - u(r_0, \theta_0)}{e^{\iota\theta} - e^{\iota\theta_0}} + \iota\dfrac{v(r_0, \theta) - v(r_0, \theta_0)}{e^{\iota\theta} - e^{\iota\theta_0}}\right\} & (**)
+		\end{align*}
+		We concentrate on the first term of the limit. Note that
+		\begin{align*} 
+			&\lim_{\theta\to \theta_0}\dfrac{u(r_0, \theta) - u(r_0, \theta_0)}{e^{\iota\theta} - e^{\iota\theta_0}}\\~\\
+			=& \lim_{\theta\to \theta_0}\dfrac{u(r_0, \theta) - u(r_0, \theta_0)}{\theta - \theta_0}\dfrac{\theta - \theta_0}{e^{\iota\theta} - e^{\iota\theta_0}}.
+		\end{align*}
+		In the product, the first term is clearly $u_\theta(r_0, \theta_0),$ after taking the limit. The second term can be calculated to be
+		\begin{equation*} 
+			\dfrac{1}{\iota e^{\iota\theta_0}}.
+		\end{equation*}
+		(How? Write $e^{\iota\theta}$ in terms of $\cos$ and $\sin$ and differentiate those and put it back.)\\
+		Of course, a similar argument goes through for the $v$ term as well.\\
+		Thus, we get that $(**)$ transforms to
+		\begin{equation*} 
+			f'(z_0) = \dfrac{e^{-\iota\theta_0}}{r_0}\left(\iota u_\theta(r_0, \theta_0) + v_\theta(r_0, \theta_0)\right).
+		\end{equation*}
+		\end{enumerate}
+		Equating the above with $(*),$ cancelling $e^{-\iota\theta_0},$ and comparing the real and imaginary parts, we get
+		\begin{equation*} 
+			u_r(r_0, \theta_0) = \dfrac{1}{r_0}v_\theta(r_0, \theta_0), \quad v_r(r_0, \theta_0) = -\dfrac{1}{r_0}u_\theta(r_0, \theta_0),
+		\end{equation*}
+		as desired.
+	\end{soln}
+\end{enumerate}
+\end{document}
