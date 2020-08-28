@@ -46,6 +46,7 @@
 \newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
 
 \usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily{\S\textbf{\nouppercase{\leftmark}}}}
@@ -357,6 +358,276 @@
 			u_r(r_0, \theta_0) = \dfrac{1}{r_0}v_\theta(r_0, \theta_0), \quad v_r(r_0, \theta_0) = -\dfrac{1}{r_0}u_\theta(r_0, \theta_0),
 		\end{equation*}
 		as desired.
+	\end{soln}
+\end{enumerate}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+
+\newpage\section{Tutorial 2}
+\begin{center}
+	1st September, 2020
+\end{center}
+\begin{enumerate}
+	\item  If $u(X,Y)$ and $v(X,Y)$ are harmonic conjugates of each other, show that they are constant functions.\\
+	Remark (my own): This is true iff $u$ and $v$ are defined on domains, that is, open and path-connected sets.
+	\begin{soln}
+		Since $v$ is a harmonic conjugate of $u,$ we get that
+		\begin{equation*} 
+			u_X = v_Y, \quad u_Y = -v_X.
+		\end{equation*}
+		On the other hand, since $u$ is a harmonic conjugate of $v,$ we get that
+		\begin{equation*} 
+			v_X = u_Y, \quad v_Y = -u_X.
+		\end{equation*}
+		(Note that the equalities mean that they're true for every $(X_0, Y_0)$ in the domain.)\\
+		Thus, we get that
+		\begin{equation*} 
+			u_X = u_Y = v_X = v_Y \equiv 0,
+		\end{equation*}
+		identically. \\
+		Since the domain is connected, this implies that $u$ and $v$ are constant.
+	\end{soln}
+	%
+	\item Show that $u = XY - 3X^2Y - Y^3$ is harmonic and find its harmonic conjugate.
+	\begin{soln} \phantom{hi}\\	
+		\textbf{Smart way:} If we can show that the above function is the real (or imaginary) part of a holomorphic function $f,$ then we have shown that $u$ is harmonic.\\
+		Writing $Z = X + iY,$ it is not too tough to see that the above is the \textbf{imaginary} part of $\frac{1}{2}Z^2 + Z^3.$ Since
+		\begin{equation*} 
+			f(Z) = \dfrac{1}{2}Z^2 + Z^3
+		\end{equation*}
+		is holomorphic on $\mathbb{C},$ this gives us that $u$ is harmonic.\\
+		This also shows \emph{a} harmonic conjugate of $u$ is 
+		\begin{equation*} 
+			v(X, Y) = -\Re f(Z) = \dfrac{1}{2}(Y^2 - X^2) + 3XY^2 - X^3.
+		\end{equation*}
+		(Note the negative sign! If we had gotten $u$ as the \emph{real} part of a holomorphic function, then for finding harmonic conjugate, we would've simply taken the imaginary part \emph{without} the negative sign.)
+
+		\dotfill
+
+		\textbf{Laborious way:} This is the way to do it if observing is difficult.\\
+		First, we show that $u$ is harmonic by manual calculation. Note that
+		\begin{equation*} 
+			u_{XX}(X_0, Y_0) = 6Y_0 \text{ and } u_{YY}(X_0, Y_0) = -6Y_0.
+		\end{equation*} 
+		Thus, $u_{XX} + u_{YY} \equiv 0$ and $u$ is indeed harmonic.\\~\\
+		To find its harmonic conjugate, we perform the procedure as given in slides.\\
+		Note that $u_X = v_Y.$ Here, we get $u_X = Y + 6XY = v_Y.$\\
+		Integrating with respect to $Y$ gives us
+		\begin{equation*} 
+			v = \dfrac{1}{2}Y^2 + 3XY^2 + g(X)
+		\end{equation*}
+		for some function $g.$ Then, we need $v_X = -u_Y.$ Computing each individually, we get
+		\begin{equation*} 
+			3Y^2 + g'(X) = -X - 3X^2 + 3Y^2.
+		\end{equation*}
+		Thus, up to a constant, we get
+		\begin{equation*} 
+			g(X) = -\dfrac{1}{2}X^2 - X^3.
+		\end{equation*}
+		Finally, this gives
+		\begin{equation*} 
+			v = \dfrac{1}{2}Y^2 + 3XY^2 - \dfrac{1}{2}X^2 - X^3.
+		\end{equation*}
+	\end{soln}
+	%\\
+	%\\
+	\item Find the radius of convergence of the following power series:
+	\begin{enumerate}
+		\item $\displaystyle\sum_{n=0}^{\infty}nz^n,$
+		\item $\displaystyle\sum_{p \text{ prime}} z^p,$
+		\item $\displaystyle\sum_{n=1}^{\infty}\dfrac{n!}{n^n}z^n.$
+	\end{enumerate}
+	\begin{soln}
+		We shall be using the root test in the first two cases and ratio test in the third. \\
+		One thing to recall is that \emph{if} the limit $\displaystyle\lim_{n\to \infty}a_n$ exists, \emph{then} $\displaystyle\limsup_{n\to\infty}a_n$ is equal to that limit. This will be helpful in the first and third parts since the limits will themselves exist.\\
+		Moreover, we recall that if
+		\begin{equation*} 
+			\alpha = \limsup_{n\to\infty}\sqrt[n]{|a_n|},
+		\end{equation*}
+		then the radius of convergence $R$ is given by
+		\begin{equation*} 
+			R = \alpha^{-1}.
+		\end{equation*}
+		(The case $\alpha = 0$ corresponds to $R = \infty$ and vice-versa.)\\
+		Similar analysis holds for
+		\begin{equation*} 
+			\alpha = \lim_{n \to \infty}\left|\dfrac{a_{i+1}}{a_i}\right|.
+		\end{equation*}
+		(Here, however, note that I need the existence of $\alpha.$ In the case of $\limsup,$ that was always guaranteed.)
+		\begin{enumerate}
+			\item Note that we have
+			\begin{equation*} 
+				\lim_{n\to \infty}\sqrt[n]{n} = 1.
+			\end{equation*}
+			(MA 105 Tutorial Sheet 1, Question 2 (iv))\\~\\
+			Thus, we also have
+			\begin{equation*} 
+				\alpha = \limsup_{n\to\infty}\sqrt[n]{n} = 1
+			\end{equation*}
+			and thus,
+			\begin{equation*} 
+				R = \alpha^{-1} = \boxed{1.}
+			\end{equation*}
+			\item Note that first we can rewrite the series in the form
+			\begin{equation*} 
+				\sum_{n=1}^{\infty}a_nz^n,
+			\end{equation*}	
+			where
+			\begin{equation*} 
+				a_n \vcentcolon= \begin{cases}
+					0 & n \text{ is not a prime,}\\
+					1 & n \text{ is a prime.}
+				\end{cases}
+			\end{equation*}
+			For this, we clearly have
+			\begin{equation*} 
+				\limsup_{n\to\infty}\sqrt[n]{|a_n|} = \lim_{n\to \infty}1 = 1.
+			\end{equation*}
+			(To see this, note that there are infinitely many primes and thus, given any $n,$ there exists $m \ge n$ such that $a_m = 1.$)\\
+			Thus, as before, the radius of convergence is $1.$
+			\item Here, we have
+			\begin{equation*} 
+				a_n = \dfrac{n!}{n^n}.
+			\end{equation*}
+			Thus, we get
+			\begin{align*} 
+				\alpha = \lim_{n\to \infty}\left|\dfrac{a_{n+1}}{a_n}\right| &= \lim_{n\to \infty}(n + 1)\dfrac{n^n}{(n + 1)^{n + 1}}\\
+				&= \lim_{n\to \infty}\left(1 + \dfrac{1}{n}\right)^{-n}\\
+				&= e^{-1}.
+			\end{align*}
+			Thus, the limit actually exists and we get
+			\begin{equation*} 
+				R = \alpha^{-1} = \boxed{e.} \qedhere
+			\end{equation*}
+		\end{enumerate}
+	\end{soln}
+	%\\
+	%\\
+	%
+	\item Show that $L > 1$ in the ratio test (Lecture 3 slides) does not necessarily imply that the series is divergent.
+	\begin{soln}
+		Consider the sequence
+		\begin{equation*} 
+			\dfrac{1}{1^3},\;\dfrac{1}{1^2},\;\dfrac{1}{2^3},\;\dfrac{1}{2^2},\;\ldots,\;\dfrac{1}{n^3},\;\dfrac{1}{n^2},\;\ldots.
+		\end{equation*}
+		That is, let $(a_n)$ be the sequence defined by
+		\begin{equation*} 
+			a_{2n} = \dfrac{1}{n^2}, \quad a_{2n - 1} = \dfrac{1}{n^3}.
+		\end{equation*}
+		Note that $\sum a_n$ converges, since $\sum n^{-2}$ and $\sum n^{-3}$ converge. (This can be checked via the integral test.)\\
+		On the other hand, note that that 
+		\begin{equation*} 
+			L = \limsup_{n \to \infty}\left|\dfrac{a_{n + 1}}{a_n}\right| \ge \limsup_{n \to \infty}\left|\dfrac{a_{2n}}{a_{2n - 1}}\right| = \limsup_{n \to \infty} n = \infty.
+		\end{equation*}
+		Thus, $L = \infty,$ clearly $> 1.$\\
+		(So, not only did we show that $L > 1$ doesn't imply convergence but even that $L = \infty$ is not good enough.)
+	\end{soln}
+	%
+	%
+	%
+	\item Construct a infinitely differentiable function $f:\mathbb{R}\to\mathbb{R}$ which is non-zero but vanishes outside a bounded set. Show that there are no holomorphic functions which satisfy this property.
+	%
+	\begin{soln}
+		Recall the function $g:\mathbb{R}\to\mathbb{R}$ from the lectures given as
+		\begin{equation*} 
+			g(x) \vcentcolon= \begin{cases}
+				0 & x \le 0,\\
+				e^{-1/x} & x > 0.
+			\end{cases}
+		\end{equation*}
+		As we saw, this is an infinitely differentiable function. Now, consider $f:\mathbb{R} \to \mathbb{R}$ defined as
+		\begin{equation*} 
+			f(x) \vcentcolon= g(x)g(1 - x).
+		\end{equation*}
+		Clearly, $f$ is infinitely differentiable, being the product of two such functions. Moreover, $f(x) = 0$ if $x \le 0$ or $x \ge 1.$ In other words, $f$ is $0$ outside the bounded set
+		\begin{equation*} 
+			(0, 1).
+		\end{equation*}
+		However, $f$ is non-zero since
+		\begin{equation*} 
+			f\left(\dfrac{1}{2}\right) = \left(g\left(\dfrac{1}{2}\right)\right)^2 = e^{-4} \neq 0.
+		\end{equation*}
+		On the other hand, let $f:\mathbb{C}\to\mathbb{C}$ be a holomorphic function which is zero outside some bounded set $K.$ We show that $g$ is zero everywhere. \\
+		Since $K$ is bounded, there exists $M > 0$ such that
+		\begin{equation*} 
+			|z| \le M \quad \text{ for all } z \in K.
+		\end{equation*}
+		Thus, choosing the point $z_0 = M + 43,$ we see that $f$ is zero in the neighbourhood of $z_0$ of radius $42.$ \hfill (Why?)\\
+		However, since $\mathbb{C}$ is path-connected, this implies that $f$ is zero \emph{everywhere}, as desired.
+	\end{soln}
+	%\\
+	%\\
+	%
+	\item Show that $\exp:\mathbb{C}\to\mathbb{C}^\times$ is onto.
+	\begin{soln}
+		Let $z_0 \in \mathbb{C}^\times.$ We show that $\exp(z) = z_0$ for some $z \in \mathbb{C}.$ \\
+		Note that $r = |z_0| \neq 0.$\\
+		Then,
+		\begin{equation*} 
+			w = \dfrac{z_0}{r}
+		\end{equation*}
+		has modulus $1.$ In other words,
+		\begin{equation*} 
+			w = x_0 + \iota y_0
+		\end{equation*}
+		for some $(x_0, y_0) \in \mathbb{R}^2$ such that $x_0^2 + y_0^2 = 1.$\\
+		Thus, $x_0 = \cos\theta$ and $y_0 = \sin\theta$ for some $\theta \in [0, 2\pi).$\\~\\
+		Define $z = \log(r) + \iota\theta.$ Note that this $\log$ is the real-valued $\log.$ Thus, we get
+		\begin{align*} 
+			\exp(z) = \exp(\log(r) + \exp(\iota\theta)) &= \exp(\log(r))\cdot\exp(\iota\theta)\\
+			&= r\cdot(\cos\theta + \iota\sin\theta)\\
+			&= rw = z_0.
+		\end{align*}
+		Thus, $\exp$ is surjective.
+	\end{soln}
+
+	%\\
+	%\\
+	%\\
+	\item Show that $\sin, \cos: \mathbb{C}\to\mathbb{C}$ are surjective. (In particular, note the difference with real sine and cosine which were bounded by $1$).
+	%
+	\begin{soln}
+		We show this for $\cos.$ The method works the same for $\sin.$\\
+		Recall that
+		\begin{equation*} 
+			\cos(z) = \dfrac{1}{2}\left(e^{\iota z} + e^{-\iota z}\right).
+		\end{equation*}
+		Let $z_0 \in \mathbb{C}.$ We show that $\cos(z) = z_0$ for some $z \in \mathbb{C}.$\\
+		Consider the quadratic equation
+		\begin{equation*} 
+			\dfrac{1}{2}\left(t + \dfrac{1}{t}\right) = z_0. \quad (*)
+		\end{equation*}
+		Rearranging this gives
+		\begin{equation*} 
+			t^2 - 2z_0t + 1 = 0.
+		\end{equation*}
+		Note that the above has complex solutions $t_1$ and $t_2.$ (Since every complex number has a square root in $\mathbb{C}$!)\\
+		Moreover, note that $t_1 \neq 0.$ Thus, by the previous part, there exists $z \in \mathbb{C}$ such that $e^z = t_1.$\\
+		Plugging $t_1 = e^z$ in $(*)$ shows that
+		\begin{equation*} 
+			\cos(z) = z_0,
+		\end{equation*}
+		as desired.	
+	\end{soln}
+	%
+	%
+	\item Show that for any complex number $z,$ $\sin^2(z) + \cos^2(z) = 1.$
+	\begin{soln}
+		Recall the definitions
+		\begin{equation*} 
+			\iota\sin(z) = \dfrac{1}{2}\left(e^{\iota z} - e^{-\iota z}\right), \quad \cos(z) = \dfrac{1}{2}\left(e^{\iota z} + e^{-\iota z}\right).
+		\end{equation*}
+		Squaring and subtracting gives
+		\begin{equation*} 
+			(\cos(z))^2 - (\iota\sin(z))^2 = \dfrac{1}{4}(4e^{\iota z}e^{-\iota z}) = 1
+		\end{equation*}
+		or
+		\begin{equation*} 
+			\sin^2(z) + \cos^(z) = 1. \qedhere
+		\end{equation*}
 	\end{soln}
 \end{enumerate}
 \end{document}
