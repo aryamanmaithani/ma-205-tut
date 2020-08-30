@@ -67,12 +67,19 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+\newpage
 \setcounter{section}{-1}
 \section{Notations}
 \begin{enumerate}
 	\item Given $z \in \mathbb{C},$ $\Re z$ and $\Im z$ will denote the real and imaginary parts of $z,$ respectively.
 	\item Given $z \in \mathbb{C},$ $\bar{z}$ will denote the complex conjugate of $z.$
 	\item Given $z \in \mathbb{C},$ $\left|z\right|$ will denote the modulus of $z,$ defined as $\sqrt{z\bar{z}}$ or $\sqrt{\left(\Re z\right)^2 + \left(\Im z\right)^2}.$
+	\item Given $z_0 \in \mathbb{C}$ and $\delta > 0,$
+	\begin{equation*} 
+		B_\delta(z_0) \vcentcolon= \{z \in \mathbb{C} : |z - z_0| < \delta\}.
+	\end{equation*}
+	\item $\mathbb{C}^\times \vcentcolon= \mathbb{C}\setminus\{0\},$ the set of nonzero complex numbers.
 \end{enumerate}
 \newpage\section{Tutorial 1}
 \begin{center}
@@ -556,8 +563,26 @@
 			|z| \le M \quad \text{ for all } z \in K.
 		\end{equation*}
 		Thus, choosing the point $z_0 = M + 43,$ we see that $f$ is zero in the neighbourhood of $z_0$ of radius $42.$ \hfill (Why?)\\
-		However, since $\mathbb{C}$ is path-connected, this implies that $f$ is zero \emph{everywhere}, as desired.
+		However, since $\mathbb{C}$ is (open and) path-connected, this implies that $f$ is zero \emph{everywhere}, as desired.
 	\end{soln}
+		
+		\hrulefill
+		
+		Some more elaboration on the last part: In the lectures, we had seen the result that if $\Omega$ is a domain and $f:\Omega \to \mathbb{C}$ is analytic, then $f$ has the following property:
+
+		\begin{mdframed}
+			Either $f$ is identically zero or the zeroes of $f$ form a discrete set.
+		\end{mdframed}
+
+		Since any open disc is not discrete, we get that
+
+		\begin{mdframed}
+			\begin{equation*} 
+				f \text{ is zero on a neighbourhood } \implies f \text{ is zero everywhere on }\Omega.
+			\end{equation*}
+		\end{mdframed}
+
+		However, note that we had proved the result for analytic functions. As we shall see later in the course, holomorphic functions are indeed analytic.
 	%\\
 	%\\
 	%
