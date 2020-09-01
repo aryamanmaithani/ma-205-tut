@@ -51,6 +51,7 @@
 \fancyhf{}
 \fancyhead[L]{\sffamily{\S\textbf{\nouppercase{\leftmark}}}}
 \fancyhead[R]{\sffamily{\thepage}}
+\definecolor{myupdatecolor}{RGB}{0, 0, 255}
 
 % \usepackage{xcolor}
 % \definecolor{mybgcolor}{RGB}{50, 50, 50} %46, 51, 63
@@ -58,6 +59,7 @@
 % \pagecolor{mybgcolor}
 % \color{white}
 % \mdfsetup{backgroundcolor=mybgcolor, fontcolor=white}
+% \definecolor{myupdatecolor}{RGB}{0, 255, 0}
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -436,7 +438,7 @@
 		\end{equation*}
 		Finally, this gives
 		\begin{equation*} 
-			v = \dfrac{1}{2}Y^2 + 3XY^2 - \dfrac{1}{2}X^2 - X^3.
+			v = \dfrac{1}{2}Y^2 + 3XY^2 - \dfrac{1}{2}X^2 - X^3. \qedhere
 		\end{equation*}
 	\end{soln}
 	%\\
@@ -530,7 +532,7 @@
 			L = \limsup_{n \to \infty}\left|\dfrac{a_{n + 1}}{a_n}\right| \ge \limsup_{n \to \infty}\left|\dfrac{a_{2n}}{a_{2n - 1}}\right| = \limsup_{n \to \infty} n = \infty.
 		\end{equation*}
 		Thus, $L = \infty,$ clearly $> 1.$\\
-		(So, not only did we show that $L > 1$ doesn't imply {\color{blue}divergence} but also that even $L = \infty$ is not good enough to conclude divergence.)
+		(So, not only did we show that $L > 1$ doesn't imply {\color{myupdatecolor}divergence} but also that even $L = \infty$ is not good enough to conclude divergence.)
 	\end{soln}
 	%
 	%
@@ -602,7 +604,7 @@
 		Thus, $x_0 = \cos\theta$ and $y_0 = \sin\theta$ for some $\theta \in [0, 2\pi).$\\~\\
 		Define $z = \log(r) + \iota\theta.$ Note that this $\log$ is the real-valued $\log.$ Thus, we get
 		\begin{align*} 
-			\exp(z) = \exp(\log(r) + \exp(\iota\theta)) &= \exp(\log(r))\cdot\exp(\iota\theta)\\
+			\exp(z) = \exp(\log(r) + \iota\theta) &= \exp(\log(r))\cdot\exp(\iota\theta)\\
 			&= r\cdot(\cos\theta + \iota\sin\theta)\\
 			&= rw = z_0.
 		\end{align*}
@@ -630,12 +632,12 @@
 			t^2 - 2z_0t + 1 = 0.
 		\end{equation*}
 		Note that the above has complex solutions $t_1$ and $t_2.$ (Since every complex number has a square root in $\mathbb{C}$!)\\
-		Moreover, note that $t_1 \neq 0.$ Thus, by the previous part, there exists $z \in \mathbb{C}$ such that $e^z = t_1.$\\
-		Plugging $t_1 = e^z$ in $(*)$ shows that
-		\begin{equation*} 
-			\cos(z) = z_0,
-		\end{equation*}
-		as desired.	
+		Moreover, note that $t_1 \neq 0.$ Thus, by the previous part, there exists $z \in \mathbb{C}$ such that $e^z = t_1.$ {\color{myupdatecolor}Considering $z' = z/\iota,$ we get that $e^z = e^{\iota z'} = t_1.$ \\
+				Plugging $t_1 = e^{\iota z'}$ in $(*)$ shows that
+				\begin{equation*} 
+					\cos(z') = z_0,
+				\end{equation*}
+				as desired.	}
 	\end{soln}
 	%
 	%
@@ -651,8 +653,16 @@
 		\end{equation*}
 		or
 		\begin{equation*} 
-			\sin^2(z) + \cos^2(z) = 1. \qedhere
+			\sin^2(z) + \cos^2(z) = 1.
 		\end{equation*}
+
+		\dotfill
+
+		{\color{myupdatecolor}\textbf{Smarter way:} Consider the function $f:\mathbb{C}\to\mathbb{C}$ defined as 
+				\begin{equation*} 
+					f(z) = \cos^2z + \sin^2z - 1.
+				\end{equation*}
+				This is analytic and vanishes on $\mathbb{R}.$ Since $\mathbb{R}$ is not discrete, it must vanish everywhere.}
 	\end{soln}
 \end{enumerate}
 \end{document}
