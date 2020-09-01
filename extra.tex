@@ -117,6 +117,10 @@
 	Thus, we can classify all the subsets of $\mathbb{C}$ into $2^4$ classes on the basis of what properties they have (and what they don't).\\
 	Give an example of each or a proof that some certain class cannot have anything.\\
 	You may assume that $\emptyset$ and $\mathbb{C}$ are the only subsets of $\mathbb{C}$ which are both open and closed.
+	%
+	\item Let $U \subset \mathbb{C}$ be open and nonempty. Show that $U$ is not countable.
+	%
+	\item Let $U \subset \mathbb{C}$ be open and $K$ be countably open. Give examples to show that $U\setminus K$ may or not be open.
 \end{enumerate}
 \newpage\section{Cauchy Riemann Equations}
 \begin{enumerate}
@@ -149,5 +153,97 @@
 	%
 	\item Let $\Omega$ be a domain and $f:\Omega \to \mathbb{C}$ be holomorphic.\\
 	Suppose that $|f|$ is constant. Show that $f$ is constant.
-\end{enumerate} 
+\end{enumerate}
+\newpage\section{Series}
+\begin{enumerate}
+	\item (Cauchy criterion for series.) ``Recall'' Cauchy criterion for convergence from MA 105. (Prove or assume that the analogous thing holds for complex sequences as well.)\\
+	Let $(a_n)$ be a sequence of complex numbers. Show that $\displaystyle\sum_{n=1}^{\infty}a_n$ converges iff for every $\epsilon > 0,$ there exists $N \in \mathbb{N}$ such that
+	\begin{equation*} 
+		\left|\sum_{k=n}^{m}a_n\right| < \epsilon, \quad \text{ for all } m \ge n \ge N.
+	\end{equation*}
+	%
+	\item Let $(a_n)$ be a sequence of complex numbers such that $\sum|a_n|$ converges. Use the above Cauchy criteria to show that $\sum a_n$ converges.
+	%
+	\item Let $(a_n)$ and $(b_n)$ be complex sequences such that $|a_n| \le |b_n|$ for all $n \in \mathbb{N}.$ Show that if $\sum |b_n|$ converges, then so does $\sum |a_n|$ and hence, so does $\sum a_n.$\\
+	Show that you can weaken the ``for all $n \in \mathbb{N}$'' condition to ``for all $n$ sufficiently large.'' (Formulating what we mean by ``sufficiently large'' is part of the exercise.)
+	%
+	\item Use the above to show that
+	\begin{equation*} 
+		\sum_{n=1}^{\infty}\dfrac{z^n}{n^2}
+	\end{equation*}
+	converges for all $z \in \mathbb{C}$ satisfying $|z| = 1.$
+	%
+	\item Show that
+	\begin{equation*} 
+		\sum_{n=1}^{\infty}\dfrac{1}{n}
+	\end{equation*}
+	diverges. \\
+	\hint{Compare it with the sequence $1, 1/2, 1/2, 1/4, 1/4, 1/4, 1/4,\ldots.$}
+	%
+	\item Let $(a_n)$ be a sequence of real numbers and $(b_n)$ a sequence of complex numbers satisfying
+	\begin{enumerate}
+		\item $(a_n)$ is monotonic,
+		\item $\displaystyle\lim_{n\to \infty}a_n = 0,$
+		\item there exists $M \ge 0$ such that
+		\begin{equation*} 
+			\left|\sum_{n=1}^{N}b_n\right| \le M
+		\end{equation*}
+		for every $N \in \mathbb{N}.$
+	\end{enumerate}
+	Show that $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ converges.\\~\\
+	Here's an outline of what you can do:
+	\begin{enumerate}
+		\item Define the partial sums $S_n = \displaystyle\sum_{k=1}^{n}a_kb_k$ and $B_n = \displaystyle\sum_{k=1}^{n}b_k.$\\
+		Show that
+		\begin{equation*} 
+			S_n = a_nB_n + \sum_{k=1}^{n-1}B_k(a_k - a_{k+1}).
+		\end{equation*}
+		(This is called summation by parts.)
+		\item Note that $B_n$ is bounded by $M$ and $a_n \to 0.$ Conclude that the first term $\to 0$ as $n \to \infty.$
+		\item Note that give any $k,$ we have $|B_k(a_k - a_{k+1})| \le M|a_k - a_{k+1}|.$
+		\item Using $(a_n)$ is monotonic, conclude that
+		\begin{equation*} 
+			\sum_{k=1}^{n-1}|a_k - a_{k+1}| = \sum_{k=1}^{n-1}|a_1 - a_n|.
+		\end{equation*}
+		\item Conclude that $\displaystyle\lim_{n\to \infty}S_n$ exists.
+	\end{enumerate}
+	The above is called \textbf{Dirichlet's test}.
+	%
+	\item Let $z \in \mathbb{C}$ be such that $|z| = 1$ and $z \neq 1.$ Define the sequences $(a_n)$ and $(b_n)$ as
+	\begin{equation*} 
+		a_n \vcentcolon= \dfrac{1}{n}, \quad b_n \vcentcolon= z^n.
+	\end{equation*}
+	Show that $(a_n)$ and $(b_n)$ satisfy the hypothesis of Dirichlet's test. Conclude that
+	\begin{equation*} 
+		\sum_{n=1}^{\infty}\dfrac{z^n}{n}
+	\end{equation*}
+	converges.
+	%
+	\item Compute the radius of convergence for the following power series:
+	\begin{equation*} 
+		\sum_{n=1}^{\infty}\dfrac{z^n}{n}, \quad \sum_{n=1}^{\infty}\dfrac{z^n}{n^2}.
+	\end{equation*}
+	These should come out to be $1.$ By the previous questions, conclude that the first converges everywhere on the boundary of the disc except at $1.$ However, the second one converges everywhere on the boundary.\\
+	Do the same for the power series
+	\begin{equation*} 
+		\sum_{n=1}^{\infty}z^n.
+	\end{equation*}
+	\hint{You should get that it converges nowhere on the boundary.}\\
+	(Note that these series are derivatives and anti-derivatives of each other on the \emph{open} disc. However, they show very different behaviour on the boundary of the disc.)
+\end{enumerate}
+\newpage\section{Properties of holomorphic functions}
+\begin{enumerate}
+	\item Let $\mathbb{H} = \{z \in \mathbb{C} : \Re z > 0\}$ be the open right plane.\\
+	Construct a non-constant holomorphic function $f:\mathbb{H} \to \mathbb{C}$ such that
+	\begin{equation*} 
+		f\left(\dfrac{1}{n}\right) = 0, \quad \text{ for all } n \in \mathbb{N}.
+	\end{equation*}
+	(Does this contradict what we saw in slides? Why not?)
+	%
+	\item Let $f:\mathbb{C} \to \mathbb{C}$ be a holomorphic function such that
+	\begin{equation*} 
+		f\left(\dfrac{1}{n}\right) = 0, \quad \text{ for all } n \in \mathbb{N}.
+	\end{equation*}
+	Show that $f$ is constant (and that the constant is $0$).
+\end{enumerate}
 \end{document}
