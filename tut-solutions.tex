@@ -4,7 +4,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[inline]{enumitem}
 \usepackage[colorlinks=true]{hyperref}
-\usepackage{tikz-cd}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta}
 \usepackage{witharrows}
 \usepackage{datetime2}
 
@@ -68,6 +70,20 @@
 \date{Autumn Semester 2020-21\\~\\Last update: \DTMnow}
 
 \begin{document}
+\tikzset{lab dis/.store in=\LabDis,
+  lab dis=0.4,
+  ->-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {\arrow{>}; \node at (0,\LabDis) {#2};}},postaction={decorate}},
+  -<-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {\arrow{<}; \node at (0,\LabDis)
+    {#2};}},postaction={decorate}},
+  -*-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {{\fill (0,0) circle (1.5pt);} \node at (0,\LabDis)
+    {#2};}},postaction={decorate}},
+  }
 \maketitle
 \tableofcontents
 \newpage
@@ -665,4 +681,220 @@
 				This is analytic and vanishes on $\mathbb{R}.$ Since $\mathbb{R}$ is not discrete, it must vanish everywhere.}
 	\end{soln}
 \end{enumerate}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+
+\newpage\section{Tutorial 3}
+
+\begin{enumerate}
+	\item Let $\gamma$ be the boundary of the triangle
+	\begin{equation*} 
+		\{0 < y < 1 - x; 0 \le x \le 1\}
+	\end{equation*}
+	taken with the anticlockwise orientation. 
+
+	\begin{center}
+		\begin{tikzpicture}
+			\def \len{3};
+			\def \del{0.3};
+			\draw[thick, -<-=at 0.5 with label {$\gamma_1$}](\len, 0) -- (0, 0);
+			\draw[thick, -<-=at 0.5 with label {$\gamma_2$}](0, \len) -- (\len, 0);
+			\draw[thick, -<-=at 0.5 with label {$\gamma_3$}](0, 0) -- (0, \len);
+			\node[] at (-\del, -\del) {$(0, 0)$};
+			\node[] at (\len + \del, -\del) {$(1, 0)$};
+			\node[] at (0, \len + \del) {$(0, 1)$};
+		\end{tikzpicture}
+	\end{center}
+
+	Evaluate:
+	\begin{enumerate}
+		\item $\displaystyle\int_\gamma\Re(z)dz$\\~\\
+		Note that we can compute the integrals along $\gamma_1, \ldots, \gamma_3$ and then add them.\\
+		Along $\gamma_3,$ the integral must be $0$ since $\Re(z) = 0$ along that curve.\\
+		Along $\gamma_1,$ we parameterise the curve as
+		\begin{equation*} 
+			\gamma_1(t) = t + 0\iota, \quad \text{for } t \in [0, 1].
+		\end{equation*}
+		Then, we get that $\gamma_1'(t) = 1 + 0\iota.$ Thus, the integral is calculated as
+		\begin{align*} 
+			\int_{\gamma_1}\Re(z){\mathrm{d}}z &= \int_{0}^{1} \Re(\gamma_1(t))\gamma_1'(t) {\mathrm{d}}t\\
+			&= \int_{0}^{1} t {\mathrm{d}}t\\
+			&= \dfrac{1}{2}.
+		\end{align*}
+
+		Similarly, we compute the integral along $\gamma_2.$ First, we parameterise it as
+		\begin{equation*} 
+			\gamma_2(t) = 1 - t + \iota t, \quad \text{for } t \in [0, 1].
+		\end{equation*}
+		We compute the derivative as $\gamma_2'(t) = -1 + \iota.$ Thus, the integral is calculated as
+		\begin{align*} 
+			\int_{\gamma_2}\Re(z){\mathrm{d}}z &= \int_{0}^{1} \Re(\gamma_2(t))\gamma_2'(t) {\mathrm{d}}t\\
+			&= \int_{0}^{1} (1 - t)(-1 + \iota) {\mathrm{d}}t\\
+			&= \dfrac{1}{2}(\iota - 1).
+		\end{align*}
+		Thus, we get the overall integral as
+		\begin{equation*} 
+			\int_{\gamma}^{} \Re(z) {\mathrm{d}}z = \boxed{\dfrac{\iota}{2}}.
+		\end{equation*}
+		\item $\displaystyle\int_{\gamma}^{} z^2 {\mathrm{d}}z.$\\~\\
+		Note that $\gamma$ is a closed curve and $z^2$ admits a primitive on $\mathbb{C}.$ Thus, we get that the integral is $\boxed{0}.$
+	\end{enumerate}
+	%	
+	\item Compute $\displaystyle\int_{|z - 1| = 1}^{} \dfrac{2z - 1}{z^2 - 1} {\mathrm{d}}z.$
+
+	Remark (my own): If nothing is specified, we assume that the integral is in the counterclockwise sense.
+
+	\begin{soln}
+		Note that the curve of integration does not enclose $-1.$ Keeping this in mind, we define
+		\begin{equation*} 
+			f:\mathbb{C}\setminus\{-1\} \to \mathbb{C}
+		\end{equation*}	
+		as 
+		\begin{equation*} 
+			f(z) = \dfrac{2z - 1}{z + 1}.
+		\end{equation*}
+		Note that this is holomorphic on $\Omega = \mathbb{C}\setminus\{-1\}.$ Moreover, $\gamma$ and its interior lie completely within $\Omega.$ Thus, using the Cauchy integral formula, we see that (assuming the circle is traverses counterclockwise)
+		\begin{equation*} 
+			2\pi\iota f(1) = \int_{|z - 1| = 1}^{} \dfrac{f(z)}{z - 1} {\mathrm{d}}z.
+		\end{equation*}
+		However, note that the integral on the right is precisely what we wish to calculate. Thus, we get the desired integral's value as
+		\begin{equation*} 
+			2\pi\iota f(1) = \boxed{\pi\iota}. \qedhere
+		\end{equation*}
+	\end{soln}
+	%
+	\item Show that if $\gamma$ is a simple closed curve traced counterclockwise, the integral $\displaystyle\int_{\gamma}^{} \bar{z} {\mathrm{d}}z$ equals $2\iota\operatorname{Area}(\gamma).$\\
+	Evaluate $\displaystyle\int_{\gamma}^{} \bar{z}^m {\mathrm{d}}z$ over a circle $\gamma$ centered at the origin.
+	\begin{soln}
+		Suppose that $\gamma(t) = x(t) + \iota y(t)$ for $t \in [a, b].$
+		\begin{align*} 
+			\displaystyle\int_{\gamma}^{} \bar{z} {\mathrm{d}}z &= \int_{a}^{b} \overline{\gamma(t)}\gamma'(t) {\mathrm{d}}t\\
+			&= \int_{a}^{b} (x(t) - \iota y(t))(x'(t) + \iota y'(t)) {\mathrm{d}}t\\
+			&= \int_{a}^{b} (x(t)x'(t) + y(t)y'(t)) {\mathrm{d}}t + \iota\int_{a}^{b} (x(t)y'(t) - x(t)y'(t)) {\mathrm{d}}t\\
+			&= \int_{\gamma}(x{\mathrm{d}}x + y{\mathrm{d}}y) + \iota\int_{\gamma}(x{\mathrm{d}}y - y{\mathrm{d}}x)\\
+			&= \iint_{\operatorname{Int}(\gamma)}(0 - 0){\mathrm{d}}(x, y) + \iota\iint_{\operatorname{Int}(\gamma)}(1 - (-1)){\mathrm{d}}(x, y)\\
+			&= 2\iota\iint_{\operatorname{Int}(\gamma)}{\mathrm{d}}(x, y)\\
+			&= 2\iota\operatorname{Area}(\gamma).
+		\end{align*}
+		In going from the single integral to the double integral, we used Green's theorem which said that
+		\begin{equation*} 
+			\int_{\gamma}(M{\mathrm{d}}x + N{\mathrm{d}}y) = \iint_{\operatorname{Int}(\gamma)} \left(\dfrac{\partial N}{\partial x} - \dfrac{\partial M}{\partial y}\right) {\mathrm{d}}(x, y)
+		\end{equation*}
+		if $\gamma$ is a (nice-enough) closed curve oriented counterclockwise. (Here is where we have used orientation.)
+
+		For the second part, we simply parameterise the curve as
+		\begin{equation*} 
+			\gamma(t) = r(\cos t + \iota \sin t), \quad \text{for } t \in [0, 2\pi],
+		\end{equation*}
+		where $r > 0$ is arbitrary.
+
+		We see that $\gamma'(t) = r(-\sin t + \iota\cos t) = \iota\gamma(t).$ \\
+		Thus, we get
+
+		\begin{align*} 
+			\int_{\gamma}^{} \bar{z}^m {\mathrm{d}}z &= \int_{0}^{2\pi} \overline{(\gamma(t))}^m \gamma'(t) {\mathrm{d}}t\\
+			&= \int_{0}^{2\pi} \overline{(\gamma(t))}^{m-1} \cdot \overline{\gamma(t)} \gamma'(t) {\mathrm{d}}t\\
+			&= \int_{0}^{2\pi} \overline{(\gamma(t))}^{m-1} \cdot \overline{\gamma(t)} \iota\gamma(t) {\mathrm{d}}t\\
+			&= \iota\int_{0}^{2\pi} \overline{(\gamma(t))}^{m-1} \cdot \left|\gamma(t)\right|^2 {\mathrm{d}}t\\
+			&= \iota r^2\int_{0}^{2\pi} r^{m-1}(\cos((m-1)t) - \iota\sin((m-1)t)) {\mathrm{d}}t
+		\end{align*}
+		Note that the $\sin$ integral is $0$ regardless of $m.$ However, the $\cos$ integral is $0$ iff $m \neq 1.$ If $m = 1,$ then we get that
+		\begin{equation*} 
+			\int_{0}^{2\pi} \cos(0t) {\mathrm{d}}t = 2\pi.
+		\end{equation*}
+		Thus, we get
+		\begin{equation*} 
+			\int_{\gamma}^{} \bar{z}^m {\mathrm{d}}z = \begin{cases}
+				2\pi\iota r^2 & m = 1,\\
+				0 & m \neq 1.
+			\end{cases}
+		\end{equation*}
+	\end{soln}
+	%
+	%
+	\item Let $\mathbb{H} = \{z \in \mathbb{C} \mid \Re(z) > 0\}$ be the (strict) open right half plane. Construct a {\color{myupdatecolor}non-constant} function $f$ which is holomorphic on $\mathbb{H}$ such that $f\left(\frac{1}{n}\right) = 0$ for all $n \in \mathbb{N}.$\\
+	Note that the {\color{myupdatecolor}coloured} part is my addition.
+	\begin{soln}
+		Define 
+		\begin{equation*} 
+			f(z) \vcentcolon= \sin\left(\dfrac{\pi}{z}\right).
+		\end{equation*}
+		Since $0 \notin \mathbb{H},$ we see that $f$ is a composition of holomorphic functions and hence, is holomorphic. Moreover, one see that for any $n \in \mathbb{N},$ we have
+		\begin{equation*} 
+			f\left(\dfrac{1}{n}\right) = \sin(n\pi) = 0,
+		\end{equation*}
+		as desired. Lastly, $f$ is non-constant since
+		\begin{equation*} 
+			f(2) = \sin\left(\dfrac{\pi}{2}\right) = 1 \neq 0. \qedhere
+		\end{equation*}
+	\end{soln}
+	%
+	\item Let $f$ be a holomorphic function on $\mathbb{C}$ such that $f\left(\frac{1}{n}\right) = 0$ for all $n \in \mathbb{N}.$ Show that $f$ is constant.
+	\begin{soln}\phantom{hi}\\
+		\begin{blockquote}
+		Motivation: We would like to appeal to the theorem about analytic (and hence, holomorphic) functions which said that if the set of zeroes of $f$ is not discrete, then $f$ is identically zero. However, we cannot directly use that result since $\{n^{-1} : n \in \mathbb{N}\}$ is in fact, a discrete set.\\
+		However, the difference here is that $0$ is in the domain and $0$ is a ``limit point'' of the above set. We shall use this to our advantage.
+
+		It may be useful to ``recall'' the definition:
+
+		\begin{defn}[Discrete Set]
+			A set $S \subset \Omega$ is said to be \emph{discrete} if for every $s \in S,$ there exists some $\delta > 0$ such that
+			\begin{equation*} 
+				B_\delta(s) \cap S = \{s\}.
+			\end{equation*}
+			In other words, for every $s \in S,$ there exists some $\delta > 0$ such that the $\delta$ neighbourhood of $s$ contains no other point of $S.$
+		\end{defn}
+		\end{blockquote}
+
+		Note that $f$ is holomorphic. In particular, $f$ is continuous. Using this we see that
+		\begin{align*} 
+			f(0) &= f\left(\lim_{n\to \infty}\dfrac{1}{n}\right)\\
+			&=\lim_{n\to \infty}f\left(\dfrac{1}{n}\right)\\
+			&= \lim_{n\to \infty}0\\
+			&= 0.
+		\end{align*}
+		(Note that here we know that $f$ is indeed defined at $0$ and thus, the above computations are valid.)
+
+		\emph{Now}, we see that $f$ is zero on
+		\begin{equation*} 
+			S = \{0\}\cup\left\{\dfrac{1}{n} : n \in \mathbb{N}\right\}.
+		\end{equation*}
+		(It may be zero outside $S$ as well.)
+
+		However, we see that $S$ is \emph{not} discrete. To see this, note that $0 \in S$ and given any $\delta > 0,$ there exists $n \in \mathbb{N}$ such that $1/n < \delta.$ Thus, for any $\delta > 0,$ we have that $B_\delta \cap S$ contains a point apart from $0.$ This shows that $S$ is not discrete.
+
+		From this, we conclude that $f$ is identically zero. In particular, it is constant.
+	\end{soln}
+	%
+	\item Expand $\displaystyle\dfrac{1 + z}{1 + 2z^2}$ into a power series around $0.$ Find the radius of convergence.
+	\begin{soln}
+		First, we note that
+		\begin{equation*} 
+			\dfrac{1 + z}{1 + 2z^2} = \dfrac{1}{2}\cdot \dfrac{2 + 2z^2}{1 + 2z^2} = \dfrac{1}{2}\left(1 + \dfrac{1}{1 + 2z^2}\right).
+		\end{equation*}
+		Thus, it suffices to solve the question for
+		\begin{equation*} 
+			f(z) = \dfrac{1}{1 + 2z^2}
+		\end{equation*}
+		instead of the given function. \hfill (Why?)
+
+		Now, one may compute the power series by computing $f^{(n)}(0).$ However, if one already knows a power series by some other means, we may directly use that. Recall in our derivations that the coefficients of the power series were independent of the radius. Thus, if we know \emph{some} power series expansion with \emph{some} radius of convergence, that must be \emph{the} power series expansion with \emph{that} radius of convergence.
+
+		In this case, we have
+		\begin{equation*} 
+			\dfrac{1}{1 + 2z^2} = 1 - 2z^2 + (2z^2)^2 - (2z^2)^3 + \cdots
+		\end{equation*}
+		for $|2z^2| < 1$ or $|z| < \dfrac{1}{\sqrt{2}}.$
+
+		Thus, we get the power series expansion of $f$ around $0$ to be
+		\begin{equation*} 
+			f(z) = 1 - 2z^2 + 4z^4 - 8z^6 + \cdots, \quad \text{for } |z| < \dfrac{1}{\sqrt{2}}.
+		\end{equation*}
+
+		Note that we do know that the series diverges for $|z| > 1/\sqrt{2}$ and thus, we may conclude that the radius of convergence is $\boxed{\dfrac{1}{\sqrt{2}}}.$
+	\end{soln}
+\end{enumerate}	
 \end{document}
