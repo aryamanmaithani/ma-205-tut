@@ -53,15 +53,15 @@
 \fancyhf{}
 \fancyhead[L]{\sffamily{\S\textbf{\nouppercase{\leftmark}}}}
 \fancyhead[R]{\sffamily{\thepage}}
-\definecolor{myupdatecolor}{RGB}{0, 0, 255}
+% \definecolor{myupdatecolor}{RGB}{0, 0, 255}
 
-% \usepackage{xcolor}
-% \definecolor{mybgcolor}{RGB}{50, 50, 50} %46, 51, 63
-% \usepackage{pagecolor}
-% \pagecolor{mybgcolor}
-% \color{white}
-% \mdfsetup{backgroundcolor=mybgcolor, fontcolor=white}
-% \definecolor{myupdatecolor}{RGB}{0, 255, 0}
+\usepackage{xcolor}
+\definecolor{mybgcolor}{RGB}{50, 50, 50} %46, 51, 63
+\usepackage{pagecolor}
+\pagecolor{mybgcolor}
+\color{white}
+\mdfsetup{backgroundcolor=mybgcolor, fontcolor=white}
+\definecolor{myupdatecolor}{RGB}{0, 255, 0}
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -871,17 +871,12 @@
 	%
 	\item Expand $\displaystyle\dfrac{1 + z}{1 + 2z^2}$ into a power series around $0.$ Find the radius of convergence.
 	\begin{soln}
-		First, we note that
-		\begin{equation*} 
-			\dfrac{1 + z}{1 + 2z^2} = \dfrac{1}{2}\cdot \dfrac{2 + 2z^2}{1 + 2z^2} = \dfrac{1}{2}\left(1 + \dfrac{1}{1 + 2z^2}\right).
-		\end{equation*}
-		Thus, it suffices to solve the question for
-		\begin{equation*} 
-			f(z) = \dfrac{1}{1 + 2z^2}
-		\end{equation*}
-		instead of the given function. \hfill (Why?)
+		{\color{myupdatecolor} Note that I've changed the solution completely as since the first upload since I solved that with $1 + z^2$ in the numerator.}
 
-		Now, one may compute the power series by computing $f^{(n)}(0).$ However, if one already knows a power series by some other means, we may directly use that. Recall in our derivations that the coefficients of the power series were independent of the radius. Thus, if we know \emph{some} power series expansion with \emph{some} radius of convergence, that must be \emph{the} power series expansion with \emph{that} radius of convergence.
+		Let $f(z)$ denote the expression in the question.
+
+		One may compute the power series by computing $f^{(n)}(0).$ However, if we already know a power series by some other means, we may directly use that. \\
+		Recall in our derivations that the coefficients of the power series were independent of the radius. Thus, if we know \emph{some} power series expansion with \emph{some} radius of convergence, that must be \emph{the} power series expansion with \emph{that} radius of convergence.
 
 		In this case, we have
 		\begin{equation*} 
@@ -889,12 +884,22 @@
 		\end{equation*}
 		for $|2z^2| < 1$ or $|z| < \dfrac{1}{\sqrt{2}}.$
 
-		Thus, we get the power series expansion of $f$ around $0$ to be
-		\begin{equation*} 
-			f(z) = 1 - 2z^2 + 4z^4 - 8z^6 + \cdots, \quad \text{for } |z| < \dfrac{1}{\sqrt{2}}.
-		\end{equation*}
+		Moreover, we do know that the series on the right diverges for $|z| > 1/\sqrt{2}.$ Thus, we get the power series of $f$ as
 
-		Note that we do know that the series diverges for $|z| > 1/\sqrt{2}$ and thus, we may conclude that the radius of convergence is $\boxed{\dfrac{1}{\sqrt{2}}}.$
+		\begin{align*} 
+			f(z) &= (1 + z)(1 - 2z^2 + (2z^2)^2 - (2z^2)^3 + \cdots)\\
+			&= (1 - 2z^2 + (2z^2)^2 - (2z^2)^3 + \cdots) + z(1 - 2z^2 + (2z^2)^2 - (2z^2)^3 + \cdots)\\
+			&= 1 + z - 2z^2 - 2z^3 + 4z^4 + 4z^5 - 8z^6 - 8z^7 - \cdots,
+		\end{align*}
+		for $|z| < 1/\sqrt{2}.$ \\
+		Moreover, multiplying with a non-zero finite power series will not change the radius of convergence. Thus, the radius of convergence is still $\boxed{\dfrac{1}{\sqrt{2}}}.$
+
+		More concisely, we have
+		\begin{equation*} 
+			f(z) = \sum_{n=0}^{\infty}a_nz^n
+		\end{equation*}
+		where $a_n$ is given as $a_n = (-2)^{\lfloor n/2\rfloor}.$
 	\end{soln}
+	(As a double check, you may try to use the ratio test and compute the radius of convergence using that.)
 \end{enumerate}	
 \end{document}
