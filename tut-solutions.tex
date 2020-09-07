@@ -53,15 +53,15 @@
 \fancyhf{}
 \fancyhead[L]{\sffamily{\S\textbf{\nouppercase{\leftmark}}}}
 \fancyhead[R]{\sffamily{\thepage}}
-% \definecolor{myupdatecolor}{RGB}{0, 0, 255}
+\definecolor{myupdatecolor}{RGB}{0, 0, 255}
 
-\usepackage{xcolor}
-\definecolor{mybgcolor}{RGB}{50, 50, 50} %46, 51, 63
-\usepackage{pagecolor}
-\pagecolor{mybgcolor}
-\color{white}
-\mdfsetup{backgroundcolor=mybgcolor, fontcolor=white}
-\definecolor{myupdatecolor}{RGB}{0, 255, 0}
+% \usepackage{xcolor}
+% \definecolor{mybgcolor}{RGB}{50, 50, 50} %46, 51, 63
+% \usepackage{pagecolor}
+% \pagecolor{mybgcolor}
+% \color{white}
+% \mdfsetup{backgroundcolor=mybgcolor, fontcolor=white}
+% \definecolor{myupdatecolor}{RGB}{0, 255, 0}
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -773,7 +773,7 @@
 		\begin{align*} 
 			\displaystyle\int_{\gamma}^{} \bar{z} {\mathrm{d}}z &= \int_{a}^{b} \overline{\gamma(t)}\gamma'(t) {\mathrm{d}}t\\
 			&= \int_{a}^{b} (x(t) - \iota y(t))(x'(t) + \iota y'(t)) {\mathrm{d}}t\\
-			&= \int_{a}^{b} (x(t)x'(t) + y(t)y'(t)) {\mathrm{d}}t + \iota\int_{a}^{b} (x(t)y'(t) - x(t)y'(t)) {\mathrm{d}}t\\
+			&= \int_{a}^{b} (x(t)x'(t) + y(t)y'(t)) {\mathrm{d}}t + \iota\int_{a}^{b} (x(t)y'(t) - y(t)x'(t)) {\mathrm{d}}t\\
 			&= \int_{\gamma}(x{\mathrm{d}}x + y{\mathrm{d}}y) + \iota\int_{\gamma}(x{\mathrm{d}}y - y{\mathrm{d}}x)\\
 			&= \iint_{\operatorname{Int}(\gamma)}(0 - 0){\mathrm{d}}(x, y) + \iota\iint_{\operatorname{Int}(\gamma)}(1 - (-1)){\mathrm{d}}(x, y)\\
 			&= 2\iota\iint_{\operatorname{Int}(\gamma)}{\mathrm{d}}(x, y)\\
@@ -783,7 +783,8 @@
 		\begin{equation*} 
 			\int_{\gamma}(M{\mathrm{d}}x + N{\mathrm{d}}y) = \iint_{\operatorname{Int}(\gamma)} \left(\dfrac{\partial N}{\partial x} - \dfrac{\partial M}{\partial y}\right) {\mathrm{d}}(x, y)
 		\end{equation*}
-		if $\gamma$ is a (nice-enough) closed curve oriented counterclockwise. (Here is where we have used orientation.)
+		if $\gamma$ is a (nice-enough) closed curve oriented counterclockwise. (Here is where we have used orientation.)\\
+		{\color{myupdatecolor}As usual, $\operatorname{Int}(\gamma)$ denotes the ``interior'' of $\gamma.$ (Recall Jordan's curve theorem which says that every simple closed curve divides the plane (minus the curve) into two path-connected components, one bounded and one unbounded. The ``interior'' is the bounded component.)}
 
 		For the second part, we simply parameterise the curve as
 		\begin{equation*} 
@@ -876,7 +877,8 @@
 		Let $f(z)$ denote the expression in the question.
 
 		One may compute the power series by computing $f^{(n)}(0).$ However, if we already know a power series by some other means, we may directly use that. \\
-		Recall in our derivations that the coefficients of the power series were independent of the radius. Thus, if we know \emph{some} power series expansion with \emph{some} radius of convergence, that must be \emph{the} power series expansion with \emph{that} radius of convergence.
+		{\color{myupdatecolor}Recall that the power series expansion is unique.} Thus, if we know \emph{some} power series expansion with \emph{some} radius of convergence, that must be \emph{the} power series expansion with \emph{that} radius of convergence.\\
+		{\color{myupdatecolor}Basically, if two different people compute two different sequence of coefficients with whatever methods, the coefficients and the radius of convergence will be equal.}\footnote{Maybe I am emphasising too much on something that isn't so crucial.}
 
 		In this case, we have
 		\begin{equation*} 
