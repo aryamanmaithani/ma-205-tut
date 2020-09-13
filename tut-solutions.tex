@@ -13,14 +13,35 @@
 \setlength\parindent{0pt}
 \usepackage{parskip}
 
+\usepackage[framemethod=tikz]{mdframed}
+\mdfdefinestyle{theoremstyle}{%
+	% linecolor=gray,linewidth=1pt,%
+	% frametitlerule=true,%
+	% frametitlebackgroundcolor=blue!20,
+	% backgroundcolor=  gray!20,	
+	bottomline=false, topline=false, rightline=false, leftline=true,
+	innerlinewidth=0.7pt, outerlinewidth=0.7pt, middlelinewidth=2pt, middlelinecolor=white, %
+	innerleftmargin=6pt,
+	innertopmargin=-1pt,
+	% innerbottommargin=-0.5pt,
+}
+\mdtheorem[style=theoremstyle]{defn}[thm]{Definition}
+\mdtheorem[style=theoremstyle]{thm}{Theorem}
+
+\usepackage{xpatch}
+\newcommand{\thmautorefname}{Theorem}
+\makeatletter
+\xpatchcmd{\thm}{\refstepcounter}{\NR@gettitle{#1}\refstepcounter}{}{}
+\makeatother
+
 \theoremstyle{definition}
-\newtheorem{thm}{Theorem}
-\numberwithin{thm}{section}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{defn}[thm]{Definition}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{ex}{Example}
+% \newtheorem{thm}{Theorem}
+% \numberwithin{thm}{section}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{defn}[thm]{Definition}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{ex}{Example}
 
 
 \let\emptyset\varnothing
@@ -926,6 +947,62 @@
 	\end{equation*}
 
 	\begin{soln}
+		{\color{myupdatecolor}Here's another solution.}
+
+		First, we look at the stronger ML inequality.
+		\begin{thm}[The Stronger ML Inequality] \label{thm:stronkML}
+			Let $f:\Omega\to\mathbb{C}$ be a continuous function and $\gamma:[a, b]\to\mathbb{C}$ be a curve.\\
+			Let $M > 0$ be such that
+			\begin{equation*} 
+				M \ge f(\gamma(t)), \quad \text{for all } t \in [a, b].
+			\end{equation*}
+			Also, suppose that $|f(t)| < M$ for some $t \in [a, b].$ \\
+			Then,
+			\begin{equation*} 
+				\int_{\gamma}^{} |f(z)| {\mathrm{d}}z < ML,
+			\end{equation*}
+			where $L$ is the length of the curve, as usual.
+		\end{thm}
+		That is, if $|f| < M$ holds for even one point, the $ML$ inequality becomes strict.
+		\begin{proof} 
+		The proof is not tough. Note that
+		\begin{equation*} 
+			\int_{\gamma}^{} (M - |f(z)|) {\mathrm{d}}z \ge 0
+		\end{equation*}
+		since the integrand is nonnegative. Moreover, recall from MA105 that the integral will be zero \textbf{iff} the integrand is identically zero. (We use continuity here.)
+
+		Since we know that the integrand is \emph{not} identically zero, it follows that
+		\begin{equation*} 
+			\int_{\gamma}^{} (M - |f(z)|) {\mathrm{d}}z > 0.
+		\end{equation*}
+		Since
+		\begin{equation*} 
+			\int_{\gamma}^{} M {\mathrm{d}}z = ML,
+		\end{equation*}
+		the theorem follows.
+		\end{proof}
+
+		Now, consider the function
+		\begin{equation*} 
+			f(z) = \dfrac{z^n}{z^m - 1}
+		\end{equation*}
+		defined on $\Omega = \{z \in \mathbb{C} : |z| > 1\}.$
+
+		Now, we calculate $M.$ For a point satisfying $|z| = R,$ we note that
+		\begin{align*} 
+			\left|\dfrac{z^n}{z^m - 1}\right| &= \dfrac{R^n}{|z^m - 1|}\\
+			&\le \dfrac{R^n}{||z|^m - 1|}\\
+			&= \dfrac{R^n}{R^m - 1}.
+		\end{align*}
+		Thus, we may take $M = \dfrac{R^n}{R^m - 1}.$ Also, considering $z = R\exp\left(\frac{\iota\pi}{m}\right)$ shows that this inequality is indeed strict at one point. Thus, we may appeal to \nameref{thm:stronkML} to conclude that
+		\begin{align*} 
+			\left|\int_{|z| = R}^{} \dfrac{z^n}{z^m - 1} {\mathrm{d}}z\right| &\le \int_{|z| = R}^{} \left|\dfrac{z^n}{z^m - 1}\right| {\mathrm{d}}z\\
+			&\le M(2\pi R)\\
+			&= \dfrac{2\pi R^{n + 1}}{R^{m} - 1}. \qedhere
+		\end{align*}
+	\end{soln}
+
+	\begin{proof}[Alternate solution]
 		The quantity given on the right is strictly positive. (Why?)\\
 		Thus, it suffices to show that the integral on the left is $0.$ This is what we shall do.
 
@@ -971,7 +1048,7 @@
 			&= \dfrac{2\pi\iota}{m}\cdot\dfrac{1 - (\zeta^{n-m+1})^m}{1 - \zeta^{n-m+1}}\\
 			&= 0. \qedhere
 		\end{align*}
-	\end{soln}
+	\end{proof}
 	%
 	%
 	%\\
