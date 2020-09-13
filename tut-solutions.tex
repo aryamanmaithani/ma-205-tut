@@ -11,6 +11,7 @@
 \usepackage{datetime2}
 
 \setlength\parindent{0pt}
+\usepackage{parskip}
 
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}
@@ -907,4 +908,321 @@
 	\end{soln}
 	(As a double check, you may try to use the ratio test and compute the radius of convergence using that.)
 \end{enumerate}	
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+
+\newpage\section{Tutorial 4}
+\begin{center}
+	15th September, 2020
+\end{center}
+
+\begin{enumerate}
+	\item Show that there is a strict inequality
+	\begin{equation*} 
+		\left|\int_{|z| = R}^{} \dfrac{z^n}{z^m - 1} {\mathrm{d}}z\right| < \dfrac{2\pi R^{n + 1}}{R^{m} - 1}; \quad R > 1,\; m \ge 1,\; n \ge 0.
+	\end{equation*}
+
+	\begin{soln}
+		The quantity given on the right is strictly positive. (Why?)\\
+		Thus, it suffices to show that the integral on the left is $0.$ This is what we shall do.
+
+		Note that the integrand has exactly $m$ distinct (simple) poles. All of these are located on the unit circle. That is, they are all in the interior of the given curve.
+
+		In fact, these poles exactly given by $1, \zeta, \ldots, \zeta^{m-1}$ for $\zeta\vcentcolon=\exp\left(\dfrac{2\pi\iota}{m}\right).$
+
+		Also, note that the denominator can be factorised as
+		\begin{equation*} 
+			z^m - 1 = (z - 1)(z - \zeta)\cdot\cdots\cdot(z - \zeta^{m-1}).
+		\end{equation*}
+
+		For each $0 \le k \le m - 1,$ let $p_k(z)$ denote the product of all the factors on the right excluding $(z - \zeta^k).$ In other words,
+		\begin{equation*} 
+			p_k(z) \vcentcolon= \prod_{\substack{j = 0\\j\neq k}}^{m-1}(z - \zeta^j).
+		\end{equation*}
+
+		With this, we have that
+		\begin{equation*} 
+			z^m - 1 = (z - \zeta^k)p_k(z)
+		\end{equation*}
+		for all $0 \le k \le m-1.$ More importantly, the function
+		\begin{equation*} 
+			\dfrac{z^n}{p_k(z)}
+		\end{equation*}
+		is well-defined and holomorphic on a small enough neighbourhood of $\zeta^k.$
+
+		Let us now compute $p_k(\zeta^k).$ Note that it must equal
+		\begin{equation*} 
+			\lim_{z\to \zeta^k}\dfrac{z^m - 1}{z - \zeta^k} = \lim_{z\to \zeta^k}\dfrac{z^m - (\zeta^k)^m}{z - \zeta^k}.
+		\end{equation*}
+		Interpreting the above as the derivative limit, we get
+		\begin{equation*} 
+			p_k(\zeta^k) = m\left(\zeta^k\right)^{m-1}.
+		\end{equation*}	
+
+		Armed with the above information, we can break up the desired integral as the sum of integrals around each pole and apply Cauchy residue theorem as follows
+		\begin{align*} 
+			\int_{|z| = R}^{} \dfrac{z^n}{z^m - 1} {\mathrm{d}}z &= \sum_{k=0}^{m-1}\int_{|z-\zeta^k| = \epsilon}^{}\dfrac{z^n}{z^m - 1} {\mathrm{d}}z\\
+			&= \sum_{k=0}^{m-1}\int_{|z-\zeta^k| = \epsilon}^{}\dfrac{z^n/p_k(z)}{z - \zeta^k} {\mathrm{d}}z\\
+			&= \sum_{k=0}^{m-1}{\color{red}2\pi\iota}\dfrac{\zeta^{nk}}{p_k(\zeta^k)}\\
+			&= \dfrac{2\pi\iota}{m}\sum_{k=0}^{m-1}\zeta^{(n-m+1)k}\\
+			&= \dfrac{2\pi\iota}{m}\cdot\dfrac{1 - (\zeta^{n-m+1})^m}{1 - \zeta^{n-m+1}}\\
+			&= 0. \qedhere
+		\end{align*}
+	\end{soln}
+	%
+	%
+	%\\
+	%
+	%
+	\item A power series with center at the origin and positive radius of convergence, has a sum $f(z).$ If it is known that $f(\bar{z}) = \overline{f(z)}$ for all values of $z$ within the disc of convergence, what conclusions can you draw about the power series?
+	\begin{soln}
+		Conclusion: all the coefficients of the power series are real. Let us now justify it.
+
+		Our aim will be to show that $f^{(k)}(0)$ is real for all $k \in \mathbb{N}\cup\{0\}.$ The conclusion will then follow since we know that the coefficients are given by $f^{(k)}(0)/k!.$
+
+		In the following, it will be assumed that $x$ and $x_0$ are real and within the (open) disc of convergence.
+
+		First, we make the conclusion for real $x$ that
+		\begin{equation*} 
+			f(x) = f(\bar{x}) = \overline{f(x)}.
+		\end{equation*}
+
+		That is, $f(x)$ is real whenever $x$ is real. We now wish to show that this is true for all higher derivatives as well. That is, $f^{(k)}(x)$ is real for real $x$ for all $k \ge 1.$ It suffices to show that it is true for $f'.$ \hfill (Why? Induct!)
+
+		Since we know that $f'$ exists within the disc, we may compute the limit along the real axis. Fix a real $x_0$ within the disc and note that
+		\begin{equation*} 
+			f'(x_0) = \lim_{\substack{x\to x_0\\x\in\mathbb{R}}}\dfrac{f(x) - f(x_0)}{x - x_0}.
+		\end{equation*}
+		Since the expression within the limit is the quotient of two purely real expressions, we see that the limit $f'(x_0)$ is real.
+
+		Thus, we are done.
+	\end{soln}
+	\emph{Remark.} Note that we knew that all the higher derivatives of $f$ do exist. Thus, we can reply the inductive process by just computing the limit along the real axis.
+	%
+	%
+	%
+	%
+	\item This is called Taylor series with remainder:
+	\begin{equation*} 
+		f(z) = f(0) + zf'(0) + \cdots + \dfrac{z^N}{N!}f^{(N)}(z)(0) + \dfrac{z^{N+1}}{(N + 1)!}\int_{0}^{1} (1 - t)^Nf^{(N+1)}(tz){\mathrm{d}}t
+	\end{equation*}
+	Use this to prove the following inequalities:
+	\begin{enumerate}
+		\item $\left|e^z - \displaystyle\sum_{n=0}^{N}\dfrac{z^n}{n!}\right| \le \dfrac{|z|^{N+1}}{(N + 1)!};$ $\Re z \le 0.$
+		\item $\left|\cos(z) - \displaystyle\sum_{n=0}^{N}(-1)^n\dfrac{z^{2n}}{(2n)!}\right| \le \dfrac{|z|^{2N+2}\cosh R}{(2N + 2)!};$ $\Im z \le R.$
+	\end{enumerate}
+	%
+	\begin{soln}
+		\begin{enumerate}
+			\item Note that the sum subtracted is simply the first $N + 1$ terms of the Taylor expansion given. Thus, the quantity given within the modulus is simply
+			\begin{equation*} 
+				\dfrac{z^{N+1}}{(N + 1)!}\int_{0}^{1} (1 - t)^N\exp(tz){\mathrm{d}}t.
+			\end{equation*}
+			(We have used that $\exp^{(N+1)} = \exp.$)\\
+			Also, note that $\left|\exp(z)\right| = \exp(\Re z).$ \hfill (How?)
+
+			Thus, we get
+			\[\begin{WithArrows}[displaystyle]
+				\left|\int_{0}^{1} (1 - t)^N\exp(tz){\mathrm{d}}t\right| &\le \int_{0}^{1} \left|(1 - t)^N\exp(tz)\right|{\mathrm{d}}t\\
+				&= \int_{0}^{1} (1 - t)^N\exp(t\Re z) {\mathrm{d}}t \Arrow{$\because t\Re z \le 0$}\\
+				&\le \int_{0}^{1} (1 - t)^N {\mathrm{d}}t\\
+				&= \dfrac{1}{N + 1}
+			\end{WithArrows}\]
+
+			Thus, we get the desired result as
+			\begin{align*} 
+				\left|e^z - \displaystyle\sum_{n=0}^{N}\dfrac{z^n}{n!}\right| &= \left|\dfrac{z^{N+1}}{(N + 1)!}\int_{0}^{1} (1 - t)^N\exp(tz){\mathrm{d}}t\right|\\
+				&\le \dfrac{|z|^{N+1}}{(N + 1)!}\dfrac{1}{N + 1}\\
+				&\le \dfrac{|z|^{N+1}}{(N + 1)!}.
+			\end{align*}
+		%
+		\item Note that the summation given can be seen as the first $2N + 2$ terms.\\
+		(All the coefficients from $z^0$ till $z^{2n+1}$ since we know that the latter is $0.$)
+
+		Thus, the quantity given within the modulus is simply
+		\begin{equation*} 
+			\dfrac{z^{2N+2}}{(2N + 2)!}\int_{0}^{1} (1 - t)^{2N + 2}\cos^{(2N+2)}(tz){\mathrm{d}}t.
+		\end{equation*}
+
+		Note that
+		\begin{align*} 
+			|\cos(z)| &= \dfrac{1}{2}\left|e^{\iota z} + e^{-\iota z}\right|\\
+			&\le\dfrac{1}{2}\left(\left|e^{\iota z}\right| + \left|e^{-\iota z}\right|\right)\\
+			&=\dfrac{1}{2}(e^y + e^{-y})\\
+			&=\cosh y.
+		\end{align*}
+
+		Now, note that $\cos^{(2N+2)}$ is either $\cos$ or $-\cos.$ In either case, we have
+		\begin{equation*} 
+			\left|\cos^{(2N+2)}(tz)\right| \le \left|\cosh ty\right|.
+		\end{equation*}
+
+		Note that $\cosh y$ is an increasing function of $|y|.$ (For real $y$.) Thus, we see that
+		\begin{equation*} 
+			\left|\cosh ty\right| \le \left|\cosh y\right|
+		\end{equation*}
+		for all $t \in [0, 1].$
+
+		Moreover, if $|y| \le R,$ we get that
+		\begin{equation*} 
+			\left|\cosh ty\right| \le \cosh R
+		\end{equation*}
+		for all $t \in [0, 1].$
+
+		Thus, we get
+		\begin{align*} 
+			\left|\int_{0}^{1} (1 - t)^{2N + 2}\cos^{(2N+2)}(tz){\mathrm{d}}t\right| &\le \int_{0}^{1} (1 - t)^N\left|\cos^{(2N+2)}(tz)\right|{\mathrm{d}}t\\
+			&\le \int_{0}^{1} (1 - t)^{2N + 2} \cosh R {\mathrm{d}}t\\
+			&= \dfrac{\cosh R}{2N + 3}.
+		\end{align*}
+		As earlier, the desired result follows. \qedhere
+		\end{enumerate}
+	\end{soln}
+	%
+	%\\
+	%
+	%
+	\item By computing
+	\begin{equation*} 
+		\int_{|z| = 1}^{} \left(z + \dfrac{1}{z}\right)^{2n}\dfrac{1}{z} {\mathrm{d}}z,
+	\end{equation*}
+	show that
+	\begin{equation*} 
+		\int_{0}^{2\pi} \cos^{2n}\theta {\mathrm{d}}\theta = \dfrac{2\pi}{4^n}\cdot\dfrac{(2n)!}{(n!)^2}.
+	\end{equation*}
+	%
+	\begin{soln}
+		Recall the ``generalised'' Cauchy integral formula\footnote{My nickname, not standard} which tells us that
+		\begin{equation*} 
+			\int_{|w - z_0| = r}^{} \dfrac{f(w)}{(w - z_0)^{n+1}} {\mathrm{d}}w = \dfrac{2\pi\iota}{n!}f^{(n)}(z_0)
+		\end{equation*}
+		where $f$ is a function which is holomorphic on an open disc $D(z_0, R)$ and $r < R.$
+
+		In this question, we take $z_0 = 0,$ $r = 1$ and
+		\begin{equation*} 
+			f(z) = (z^2 + 1)^{2n}
+		\end{equation*}
+		which is defined and holomorphic on all of $\mathbb{C}.$
+
+		Using the formula gives us
+
+		\begin{align*} 
+			\int_{|z| = 1}^{} \left(z + \dfrac{1}{z}\right)^{2n}\dfrac{1}{z} {\mathrm{d}}z &= \int_{|z| = 1}^{} \dfrac{(z^2 + 1)^{2n}}{z^{2n + 1}} {\mathrm{d}}z\\
+			&= \dfrac{2\pi\iota}{(2n)!}f^{(2n)}(0)
+		\end{align*}
+
+		Thus, the task is now to compute $f^{(2n)}(0).$ Note that $f^{(2n)}(0)/(2n)!$ is precisely the coefficient of $z^{2n}$ in the expansion of 
+		\begin{equation*} 
+			(z^2 + 1)^{2n}.
+		\end{equation*}
+
+		Use binomial expansion, we see that
+		\begin{align*} 
+			(z^2 + 1)^{2n} &= \sum_{k=0}^{2n}\dbinom{2n}{k}(z^2)^{k}.
+		\end{align*}
+		Thus, the desired coefficient is $\dbinom{2n}{n}$ and the integral is
+		\begin{equation*} 
+			\int_{|z| = 1}^{} \left(z + \dfrac{1}{z}\right)^{2n}\dfrac{1}{z} {\mathrm{d}}z = 2\pi\iota\dbinom{2n}{n}.
+		\end{equation*}
+
+		Now, we may compute the integral the menial way, i.e., by \emph{parameterising and solving.}
+
+		Using the standard parameterisation of $z(t) = e^{\iota t}$ for $t \in [0, 2\pi],$ the integral becomes
+
+		\begin{align*} 
+			\int_{|z| = 1}^{} \left(z + \dfrac{1}{z}\right)^{2n}\dfrac{1}{z} {\mathrm{d}}z &= \int_{0}^{2\pi} (2\cos t)^{2n}\dfrac{1}{e^{\iota t}}(\iota e^{\iota t}) {\mathrm{d}}t\\
+			&= 4^n\iota\int_{0}^{2\pi} \cos^{2n}(t) {\mathrm{d}}t.
+		\end{align*}
+
+		Equating it with the previous result gives us the desired answer.
+	\end{soln}
+	%
+	%
+	%
+	%
+	\item Locate and classify the singularities of the following:
+	\begin{enumerate}
+		\item $\dfrac{z^5\sin(1/z)}{1 + z^4},$
+		\item $\dfrac{1}{\sin(1/z)},$
+		\item $\dfrac{z^2 + z + 1}{z^3 - 11z + 13}.$
+	\end{enumerate}
+	%
+	\begin{soln}
+		In each part, $f(z)$ will denote the function given for that part.
+		\begin{enumerate}
+			\item To see where the function is not defined, we must see where the argument of some function goes outside the domain.\\
+			Fractions are undefined precisely when the denominator is $0.$ Thus, we only need to look at solutions of $z = 0$ and $z^4 + 1 = 0.$
+
+			This gives us $5$ singularities, the complete set being $S = \left\{0, \dfrac{1}{\sqrt{2}}(\pm1\pm\iota)\right\}.$
+
+			All of these are isolated since we have only finitely many singularities. Thus, we may categorise them into one of the following three: removable, pole, or essential singularity.
+
+			Now, if $z_0 \in S\setminus\{0\},$ it is easy to see the following things:
+			\begin{enumerate}
+				\item $\displaystyle\lim_{z\to z_0}\dfrac{1}{f(z)} = 0,$
+				\item $\displaystyle\lim_{z\to z_0}(z - z_0)f(z)$ exists (as a finite number) and is nonzero.
+			\end{enumerate}
+			Either of these is enough to conclude that $z_0$ is then a pole. Thus, we see that each of the four singularities satisfying $z^4 + 1 = 0$ are poles.
+
+			Finally, we show that $z = 0$ is an \emph{essential} singularity. In other words, we show that it is neither a removable singularity nor a pole. To show that, it suffices to show that $\displaystyle\lim_{z\to 0}f(z)$ does not exist, neither as a finite complex number, nor as $\infty.$
+
+			As we approach $0$ along the positive imaginary axis, we see that
+			\begin{align*} 
+				\lim_{y\to 0^+}f(z) &= \lim_{y\to 0^+}\dfrac{(\iota y)^5\sin(1/\iota y)}{1 + (\iota y)^5}\\
+				&= \dfrac{1}{2}\lim_{y\to 0^+}y^5(e^{1/y} - e^{-1/y})
+			\end{align*}
+			Since the limit $y^5e^{-1/y}$ exists and $y^5e^{1/y}\to \infty,$ we see that the above limit is $\infty.$ (This shows that $0$ is not a removable singularity.)
+
+			Now, if we approach $0$ along real axis, we know that $\sin$ is bounded and we get the limit as $0$ using the typical sandwich theorem trick from MA 105. Thus, we see that $0$ is not a pole either.
+			%
+			%
+			\item Here, we have a problem if $z = 0$ or $\sin(1/z) = 0.$ This gives us the set of singularities as 
+			\begin{equation*} 
+				S = \{0\}\cup\left\{\dfrac{1}{n\pi} : n \in \mathbb{Z}\setminus\{0\}\right\}.
+			\end{equation*}
+			$0$ is not isolated. This is because, every neighbourhood of $0$ contains some point of the form $1/(n\pi).$ In other words, every punctured neighbourhood of $0$ contains a singularity. Thus, $0$ is not an isolated singularity.
+
+			All the other points of $S$ are. To see this, let $z_0 \in S\setminus\{0\}.$ Then, 
+			\begin{equation*} 
+				z_0 = \dfrac{1}{n\pi}
+			\end{equation*}
+			for some $n \in \mathbb{Z}\setminus\{0\}.$
+
+			Choose 
+			\begin{equation*} 
+				\delta \vcentcolon= \min\left\{\left|\dfrac{1}{n\pi} - \dfrac{1}{(n + 1)\pi}\right|, \left|\dfrac{1}{n\pi} - \dfrac{1}{(n - 1)\pi}\right|\right\}.
+			\end{equation*}
+			(If $n \in \{\pm1\}$, then just choose the other value.)
+
+			Verify that with the above choice of $\delta,$ the punctured neighbourhood $B_\delta(z_0)\setminus\{z_0\}$ contains no other point of $S.$
+
+			Now, we show that all of these isolated singularities are poles. To see this, we simply compute
+			\begin{equation*} 
+				\lim_{z\to z_0}\dfrac{z - z_0}{\sin(1/z)}
+			\end{equation*}
+			and see that this limit exists (as a finite number) and is nonzero for any $z_0 \in S\setminus\{0\}.$ (How? Express the above limit as the limit seen in a derivative and compute the derivative using chain rule.) \\
+			Thus, they all are poles.
+
+			(Note that we do not try to categorise $0$ since it is not isolated.)
+			%
+			\item The singularities are precisely the roots of the denominator. These are (at most) $3$ and thus, all are isolated.
+
+			To see that none of these is removable, note that the limit will not exist because none of the roots of the numerator are that of the denominator. (Check that the roots of the numerator are $\omega$ and $\omega^2$ which aren't roots of the denominator).
+
+			We show that these are all poles. Let $z_0$ be a root of the denominator and let $m$ be its multiplicity. Then, note that
+			\begin{equation*} 
+				\lim_{z\to z_0}(z - z_0)^mf(z)
+			\end{equation*}
+			exists and is nonzero. (Again, use that $z_0$ is not a root of the numerator.)
+
+			Thus, all the singularities are poles.
+
+			In fact, we can actually check that all the roots are real and distinct. (How? Compute the denominator at $-100,$ $0,$ $2,$ and $100.$) \\
+			Thus, $m = 1$ works above for all. \qedhere
+		\end{enumerate}
+	\end{soln}
+\end{enumerate}
 \end{document}
