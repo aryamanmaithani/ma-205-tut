@@ -1089,7 +1089,7 @@
 	Use this to prove the following inequalities:
 	\begin{enumerate}
 		\item $\left|e^z - \displaystyle\sum_{n=0}^{N}\dfrac{z^n}{n!}\right| \le \dfrac{|z|^{N+1}}{(N + 1)!};$ $\Re z \le 0.$
-		\item $\left|\cos(z) - \displaystyle\sum_{n=0}^{N}(-1)^n\dfrac{z^{2n}}{(2n)!}\right| \le \dfrac{|z|^{2N+2}\cosh R}{(2N + 2)!};$ $\Im z \le R.$
+		\item $\left|\cos(z) - \displaystyle\sum_{n=0}^{N}(-1)^n\dfrac{z^{2n}}{(2n)!}\right| \le \dfrac{|z|^{2N+2}\cosh R}{(2N + 2)!};$ $\left|\Im z\right| \le R.$
 	\end{enumerate}
 	%
 	\begin{soln}
@@ -1121,7 +1121,7 @@
 
 		Thus, the quantity given within the modulus is simply
 		\begin{equation*} 
-			\dfrac{z^{2N+2}}{(2N + 2)!}\int_{0}^{1} (1 - t)^{2N + 2}\cos^{(2N+2)}(tz){\mathrm{d}}t.
+			\dfrac{z^{2N+2}}{(2N + 2)!}\int_{0}^{1} (1 - t)^{{\color{myupdatecolor}2N + 1}}\cos^{(2N+2)}(tz){\mathrm{d}}t.
 		\end{equation*}
 
 		Note that
@@ -1145,15 +1145,15 @@
 
 		Moreover, if $|y| \le R,$ we get that
 		\begin{equation*} 
-			\left|\cosh ty\right| \le \cosh R
+			\left|\cosh ty\right| \le \left|\cosh y\right| \le \cosh R
 		\end{equation*}
 		for all $t \in [0, 1].$
 
 		Thus, we get
 		\begin{align*} 
-			\left|\int_{0}^{1} (1 - t)^{2N + 2}\cos^{(2N+2)}(tz){\mathrm{d}}t\right| &\le \int_{0}^{1} (1 - t)^N\left|\cos^{(2N+2)}(tz)\right|{\mathrm{d}}t\\
-			&\le \int_{0}^{1} (1 - t)^{2N + 2} \cosh R {\mathrm{d}}t\\
-			&= \dfrac{\cosh R}{2N + 3}.
+			\left|\int_{0}^{1} (1 - t)^{2N + 1}\cos^{(2N+2)}(tz){\mathrm{d}}t\right| &\le \int_{0}^{1} (1 - t)^{2N + 1}\left|\cos^{(2N + 1)}(tz)\right|{\mathrm{d}}t\\
+			&\le \int_{0}^{1} (1 - t)^{2N + 1} \cosh R {\mathrm{d}}t\\
+			&= \dfrac{\cosh R}{2N + 2}.
 		\end{align*}
 		As earlier, the desired result follows. \qedhere
 		\end{enumerate}
@@ -1182,7 +1182,7 @@
 		\begin{equation*} 
 			f(z) = (z^2 + 1)^{2n}
 		\end{equation*}
-		which is defined and holomorphic on all of $\mathbb{C}.$
+		which is defined and holomorphic on all of $\mathbb{C}.$ (So we can take $R = 2,$ for example.)
 
 		Using the formula gives us
 
