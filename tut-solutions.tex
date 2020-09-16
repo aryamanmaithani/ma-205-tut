@@ -959,7 +959,7 @@
 			Also, suppose that $|f(t)| < M$ for some $t \in [a, b].$ \\
 			Then,
 			\begin{equation*} 
-				\int_{\gamma}^{} |f(z)| {\mathrm{d}}z < ML,
+				{\color{myupdatecolor}\left|\int_{\gamma}^{} f(z) {\mathrm{d}}z\right|} < ML,
 			\end{equation*}
 			where $L$ is the length of the curve, as usual.
 		\end{thm}
@@ -967,20 +967,22 @@
 		\begin{proof} 
 		The proof is not tough. Note that
 		\begin{equation*} 
-			\int_{\gamma}^{} (M - |f(z)|) {\mathrm{d}}z \ge 0
+			{\color{myupdatecolor}\int_{a}^{b} \big[M - |f(\gamma(t))|\big]|\gamma'(t)| {\mathrm{d}}t} \ge 0
 		\end{equation*}
 		since the integrand is nonnegative. Moreover, recall from MA105 that the integral will be zero \textbf{iff} the integrand is identically zero. (We use continuity here.)
 
-		Since we know that the integrand is \emph{not} identically zero, it follows that
+		Since we know that the integrand is \emph{not} identically zero, {\color{myupdatecolor}(we also use the fact that $\gamma'$ is $0$ at only finitely many points, if any)} it follows that
 		\begin{equation*} 
-			\int_{\gamma}^{} (M - |f(z)|) {\mathrm{d}}z > 0.
+			{\color{myupdatecolor}\int_{a}^{b} \big[M - |f(\gamma(t))|\big]|\gamma'(t)| {\mathrm{d}}t} > 0.
 		\end{equation*}
 		Since
 		\begin{equation*} 
-			\int_{\gamma}^{} M {\mathrm{d}}z = ML,
+			{\color{myupdatecolor}\int_{a}^{b} M|\gamma'(t)| {\mathrm{d}}t} = ML,
 		\end{equation*}
 		the theorem follows.
 		\end{proof}
+
+		{\color{myupdatecolor}\emph{Remark.} I was careless in my first presentation. The coloured parts are now updated so that they are correct. Earlier, I had put a mod and still kept a complex integral. That is not correct.}
 
 		Now, consider the function
 		\begin{equation*} 
