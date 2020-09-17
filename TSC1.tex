@@ -529,18 +529,15 @@
         An isolated singularity $z_0$ is said to be a pole if \uncover<2->{$|f(z)| \to \infty$ as }\uncover<3->{$z \to z_0.$ }
     \end{defn}
     \uncover<4->{\begin{thm}[]
-        An isolated singularity $z_0$ is a pole of $f$ iff
-        \begin{equation*} 
-            \lim_{z\to z_0}\frac{1}{f(z)} = 0.
-        \end{equation*}
+        An isolated singularity $z_0$ is a pole of $f$ iff $\displaystyle\lim_{z\to z_0}\frac{1}{f(z)} = 0.$
     \end{thm}}
     \uncover<5->{\begin{thm}[Order of a pole]
         If $z_0$ is a pole of $f,$ then there exists an integer $m > 0$ such that\uncover<5->{
         \begin{equation*} 
             f(z) = (z - z_0)^{-m}f_1(z)
-        \end{equation*} }\uncover<6->{on a punctured neighbourhood of $z_0,$ for some function $f_1$ which is holomorphic on the complete neighbourhood. }
+        \end{equation*} }\uncover<6->{on a punctured neighbourhood of $z_0,$ for some function $f_1$ which is holomorphic on the complete neighbourhood. }\uncover<7->{The {\color{red}smallest} such integer $m$ is called the \emph{order} of the pole. }\\
+        \uncover<8->{If the order is $1,$ then $z_0$ is said to be \emph{simple} pole. }
     \end{thm} }
-    \uncover<7  ->{If $m = 1,$ then $z_0$ is said to be \emph{simple} pole. }
 \end{frame}
 \begin{frame}{Lecture 8: Singularities}
     \begin{defn}[Essential singularity]
