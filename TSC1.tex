@@ -1,4 +1,4 @@
-\documentclass[handout, dvipsnames]{beamer}
+\documentclass[dvipsnames]{beamer}
 \mode<presentation>{}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools, mathrsfs}
@@ -349,6 +349,19 @@
             \int_{\gamma}^{} f(z) {\mathrm{d}}z \vcentcolon= \uncover<6->{\int_{a}^{b} f(\gamma(t))\gamma'(t) {\mathrm{d}}t}.   
         \end{equation*} 
     \end{defn} }
+\end{frame}
+\begin{frame}{Lecture 5: Integration}
+    We have a useful inequality called the {\color{Purple}M}{\color{Magenta}L} inequality.
+    \begin{thm}[{\color{Purple}M}{\color{Magenta}L} Inequality]
+        \uncover<2->{Let $\gamma$ be a contour of length {\color{Magenta}$L$}} \uncover<3->{and $f$ be a continuous function defined on the image of $\gamma.$ }\\
+        \uncover<4->{Suppose that
+        \begin{equation*} 
+            \left|f(\gamma(t))\right| \le {\color{Purple}M}, \qquad \text{ for all } t \in [a, b].
+        \end{equation*} }\uncover<5->{Then, we have
+        \begin{equation*} 
+            \left|\int_{\gamma}^{} f(z) {\mathrm{d}}z\right| \le {\color{Purple}M}{\color{Magenta}L}.
+        \end{equation*} }
+    \end{thm}
 \end{frame}
 \begin{frame}{Lecture 5: Integration}
     \begin{thm}[Primitives and integrals]
