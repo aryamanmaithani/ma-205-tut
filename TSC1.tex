@@ -1,4 +1,4 @@
-\documentclass[dvipsnames]{beamer}
+\documentclass[handout, dvipsnames]{beamer}
 \mode<presentation>{}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools, mathrsfs}
@@ -37,7 +37,7 @@
         \uncover<6->{\item Unmute your mic at any time and ask your doubt. }
         \uncover<7->{\item I will not be checking chat often (or maybe at all), so posting it there might not be helpful. }
     \end{enumerate}
-    \uncover<8->{You can find a link to this document on \url{bit.ly/ma-205}. Both with and without pauses. You may keep it open alongside for quick reference. }
+    \uncover<8->{You can find a link to this document on \url{bit.ly/ca-205}. Both with and without pauses. You may keep it open alongside for quick reference. }
 \end{frame}
 \begin{frame}{Warning}
     This is primarily going to be a quick recap of the facts important.\\
@@ -124,13 +124,18 @@
         \uncover<3->{Moreover, we have
         \begin{equation*} 
             f'(z_0) = u_x(x_0, y_0) + \iota v_x(x_0, y_0). 
-        \end{equation*} }
+        \end{equation*}
+        \uncover<4->{Existence of $u_x, u_y, v_x, v_y$ is part of the theorem. } }
     \end{thm} }
-    \uncover<4->{Note the subscript is $x$ for both in the above. }\\
-    \uncover<5->{Also note that all the equalities are only at {\color{red}the point $z_0.$} }\uncover<6->{In particular, we are only assuming differentiability at $z_0.$ }
+    \uncover<5->{Note the subscript is $x$ for both in the above. }\\
+    \uncover<6->{Also note that all the equalities are only at {\color{red}the point $z_0.$} }\uncover<7->{In particular, we are only assuming differentiability at $z_0.$ }
 \end{frame}
 \begin{frame}{Lecture 2: CR Equations}
-    Converse? What is the converse? \uncover<2->{{\color{red}No.} The converse is {\color{red}not} true. }\uncover<3->{An example for you to check is
+    Converse? What is the converse? Is it true? 
+
+    \uncover<2->{{\color{red}No.} The converse is {\color{red}not} true. }
+
+    \uncover<3->{An example for you to check is
     \begin{equation*} 
         f(z) \vcentcolon= \begin{cases}
             \dfrac{\bar{z}^2}{z} & z \neq 0,\\
@@ -161,11 +166,12 @@
     \end{thm}
     \uncover<2->{Once again, this is only talking about differentiability at a point. }\\
     \uncover<3->{The converse is again {\color{red}not} true. }\\
-    \uncover<4->{Thus, we have seen two sufficient conditions for complex differentiability so far. Neither is individually sufficient. }\uncover<5->{However, together, they are. }
+    \uncover<4->{Take the example $f(z) = \bar{z}.$ }
+    \uncover<5->{Thus, we have seen two sufficient conditions for complex differentiability so far. Neither is individually sufficient. }\uncover<6->{However, together, they are. }
 \end{frame}
 \begin{frame}{Lecture 2: CR Equations}
     \begin{thm}[]
-        Let $f:\Omega\to\mathbb{C}$ be a function and let $z_0 \in \mathbb{C}.$ If \\
+        Let $f:\Omega\to\mathbb{C}$ be a function and let $z_0 = x_0 + \iota y_0 \in \Omega.$ If \\
         \uncover<2->{the CR equations hold {\color{red}at the point} $(x_0, y_0)$ and \\ }
         \uncover<3->{if $f$ is real differentiable {\color{red}at the point} $(x_0, y_0),$ then \\ }
         \uncover<4->{$f$ is complex differentiable {\color{red}at the point} $z_0.$ }
@@ -219,7 +225,8 @@
     \end{defn}
     \uncover<4->{\begin{rem}
         Each $y_n$ might be $\infty.$ That is allowed.\\
-        \uncover<5->{The limsup might be $\infty.$ This is also allowed. }
+        \uncover<5->{The limsup might be $\pm\infty.$ This is also allowed. }\\
+        \uncover<6->{If $\displaystyle\lim_{n\to \infty}x_n$ itself exists, then it equals the $\limsup$ as well. }
     \end{rem} }
 \end{frame}
 \begin{frame}{Lecture 3: Power Series}
@@ -245,7 +252,7 @@
     \begin{thm}[Root test]
         \uncover<2->{Let {\color{ForestGreen}{$(*)$}} be as earlier. Define
         \begin{equation*} 
-            \alpha = \limsup_{n \to \infty}\sqrt[n]{a_n}.
+            \alpha = \limsup_{n \to \infty}\sqrt[n]{\left|a_n\right|}.
         \end{equation*} }
         \uncover<3->{Then, $R = \alpha{\color{red}^{-1}}$ is the radius of convergence. }
     \end{thm}
@@ -261,7 +268,7 @@
         \begin{equation*} 
             R = \lim_{n\to \infty} \left|\dfrac{a_{\color{red}n}}{a_{{\color{red}n+1}}}\right|
         \end{equation*} 
-        exists.}\\
+        exists. (Possibly as $\infty.$)}\\
         \uncover<3->{Then, $R$ is the radius of convergence. }
     \end{thm}
     \uncover<4->{Note that here we assume that the limit does exist. This may not always be true. }\\
@@ -296,7 +303,7 @@
     \begin{thm}[Facts]
         \begin{enumerate}
             \uncover<2->{\item $\exp'(z) = \exp(z),$ }
-            \uncover<3->{\item $\exp(bz) = b\exp(bz),$ for $b \in \mathbb{C},$ }
+            \uncover<3->{\item $\exp'(bz) = b\exp(bz),$ for $b \in \mathbb{C},$ }
             \uncover<4->{\item $\exp(z)\cdot\exp(-z) = 1$ for all $z \in \mathbb{C},$ }
             \uncover<5->{\item $\exp(z)$ is always nonzero. }
         \end{enumerate}
@@ -324,7 +331,7 @@
     \uncover<2->{More discussion - informal-tut. }\\
     \uncover<3->{We had one very nice result on the zeroes of a analytic functions. }
     \uncover<4->{\begin{thm}[Zeroes are isolated]
-        Let $\Omega$ be a {\color{red}domain} and $f:\Omega\to\mathbb{C}$ be a {\color{red}non-constant} holomorphic function. \uncover<5->{Let $z_0 \in \Omega$ be such that $f(z_0) = 0.$ }\uncover<6->{Then, there exists $\delta > 0$ such that $f$ has no other zero in $B_\delta(z_0).$ }
+        Let $\Omega$ be a {\color{red}domain} and $f:\Omega\to\mathbb{C}$ be a {\color{red}non-constant} analytic function. \uncover<5->{Let $z_0 \in \Omega$ be such that $f(z_0) = 0.$ }\uncover<6->{Then, there exists $\delta > 0$ such that $f$ has no other zero in $B_\delta(z_0).$ }
     \end{thm} }
     \uncover<7->{The above is saying that around every zero of $f,$ we can draw a (sufficiently small) circle such that $f$ has no other zero in that disc. }\uncover<8->{This is the same as saying that the set of zeroes is \emph{discrete.} }
 \end{frame}
@@ -416,7 +423,7 @@
         \uncover<3->{(The case $R = \infty$ is allowed. That just means $\Omega = \mathbb{C}.$) }\\
         \uncover<4->{Then, on the disc $B_R(z_0),$ we may write $f(z)$ as }\uncover<5->{
         \begin{equation*} 
-            f(z) = \sum_{n = 0}^{\infty}a_nz^n,
+            f(z) = \sum_{n = 0}^{\infty}a_n(z - z_0)^n,
         \end{equation*} }\uncover<6->{where each $a_n$ is given by }\uncover<7->{
         \begin{equation*} 
             a_n = \dfrac{1}{2\pi\iota}\int_{|w - z_0| = r}^{} \dfrac{f(w)}{(w - z_0)^{n + 1}} {\mathrm{d}}w.
@@ -475,7 +482,7 @@
             \uncover<6->{\item $F(1) = 0,$ }
             \uncover<7->{\item $F'(z) = 1/z,$ }
             \uncover<8->{\item $\exp(F(z)) = z$ for all $z \in \Omega,$ }
-            \uncover<9->{\item $F(r) = \log(r)$ for all $r \in \Omega\cap\mathbb{R}.$ }
+            \uncover<9->{\item $F(r) = \log(r)$ for all $r \in \Omega\cap\mathbb{R}^+.$ }
         \end{enumerate}
     \end{thm}
     \uncover<10->{The $\log$ in the last point is the usual $\log$ for real numbers as seen in 105. }\uncover<11->{The above $F$ is then denoted by $\log$. }
