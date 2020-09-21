@@ -34,6 +34,8 @@
 \xpatchcmd{\thm}{\refstepcounter}{\NR@gettitle{#1}\refstepcounter}{}{}
 \makeatother
 
+\newcommand{\Res}{\operatorname{Res}}
+
 \theoremstyle{definition}
 % \newtheorem{thm}{Theorem}
 % \numberwithin{thm}{section}
@@ -93,7 +95,7 @@
 
 \begin{document}
 \tikzset{lab dis/.store in=\LabDis,
-  lab dis=0.4,
+  lab dis=-0.4,
   ->-/.style args={at #1 with label #2}{decoration={
     markings,
     mark=at position #1 with {\arrow{>}; \node at (0,\LabDis) {#2};}},postaction={decorate}},
@@ -126,7 +128,7 @@
 	25th August, 2020
 \end{center}
 \textbf{Notation:} The set $\mathbb{C}[x]$ is the set of all polynomials (with indeterminate $x$) with complex coefficients. Similarly, $\mathbb{R}[x]$ is defined.
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 	\item  Show that complex polynomial of degree $n$ has exactly $n$ roots. (Assuming fundamental theorem of algebra.)\\
 	Remark (my own): The above is counting the roots \emph{with} multiplicity. That is, if $f(z) = (z - \iota)^2(z - 2),$ then $\iota$ is counted twice and $2$ once.
 	\begin{soln}
@@ -397,7 +399,7 @@
 		Of course, a similar argument goes through for the $v$ term as well.\\
 		Thus, we get that $(**)$ transforms to
 		\begin{equation*} 
-			f'(z_0) = \dfrac{e^{-\iota\theta_0}}{r_0}\left(\iota u_\theta(r_0, \theta_0) + v_\theta(r_0, \theta_0)\right).
+			f'(z_0) = \dfrac{e^{-\iota\theta_0}}{r_0}\left({\color{myupdatecolor}-}\iota u_\theta(r_0, \theta_0) + v_\theta(r_0, \theta_0)\right).
 		\end{equation*}
 		\end{enumerate}
 		Equating the above with $(*),$ cancelling $e^{-\iota\theta_0},$ and comparing the real and imaginary parts, we get
@@ -417,7 +419,7 @@
 \begin{center}
 	1st September, 2020
 \end{center}
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 	\item  If $u(X,Y)$ and $v(X,Y)$ are harmonic conjugates of each other, show that they are constant functions.\\
 	Remark (my own): This is true iff $u$ and $v$ are defined on domains, that is, open and path-connected sets.
 	\begin{soln}
@@ -714,7 +716,7 @@
 	8th September, 2020
 \end{center}
 
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 	\item Let $\gamma$ be the boundary of the triangle
 	\begin{equation*} 
 		\{0 < y < 1 - x; 0 \le x \le 1\}
@@ -725,9 +727,9 @@
 		\begin{tikzpicture}
 			\def \len{3};
 			\def \del{0.3};
-			\draw[thick, -<-=at 0.5 with label {$\gamma_1$}](\len, 0) -- (0, 0);
-			\draw[thick, -<-=at 0.5 with label {$\gamma_2$}](0, \len) -- (\len, 0);
-			\draw[thick, -<-=at 0.5 with label {$\gamma_3$}](0, 0) -- (0, \len);
+			\draw[thick, ->-=at 0.5 with label {$\gamma_1$}](0, 0) -- (\len, 0);
+			\draw[thick, ->-=at 0.5 with label {$\gamma_2$}](\len, 0) -- (0, \len);
+			\draw[thick, ->-=at 0.5 with label {$\gamma_3$}](0, \len) -- (0, 0);
 			\node[] at (-\del, -\del) {$(0, 0)$};
 			\node[] at (\len + \del, -\del) {$(1, 0)$};
 			\node[] at (0, \len + \del) {$(0, 1)$};
@@ -940,7 +942,7 @@
 	15th September, 2020
 \end{center}
 
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 	\item Show that there is a strict inequality
 	\begin{equation*} 
 		\left|\int_{|z| = R}^{} \dfrac{z^n}{z^m - 1} {\mathrm{d}}z\right| < \dfrac{2\pi R^{n + 1}}{R^{m} - 1}; \quad R > 1,\; m \ge 1,\; n \ge 0.
@@ -1303,5 +1305,285 @@
 			Thus, $m = 1$ works above for all. \qedhere
 		\end{enumerate}
 	\end{soln}
+\end{enumerate}
+%
+%
+%
+%
+\newpage\section{Tutorial 5}
+\begin{center}
+	22nd September, 2020
+\end{center}
+
+\begin{enumerate}[leftmargin=*]
+	\item Find Laurent expansions for the function $f(z) = \dfrac{2(z - 1)}{z^2 - 2z + 3}$ valid on the annuli
+	\begin{enumerate}
+		\item $0 \le \left|z\right| < 1,$
+		\item $1 < |z| < 3,$
+		\item $|z| > 3.$
+	\end{enumerate}
+	%
+	\begin{soln}
+	The idea in all is to write the denominator as $kz^n(1 - p(z))$ such that $|p(z)| < 1$ the annulus so that we can expand $(1 - p(z))^{-1}$ as $1 + p(z) + (p(z))^2 + \cdots.$
+	\begin{enumerate}
+		\item Write
+		\begin{equation*} 
+			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2(z - 1)}{3\left(1 - \frac{2z}{3} + \frac{z^2}{3}\right)}.
+		\end{equation*}
+		On the given annulus, we have
+		\begin{equation*} 
+			\left|\frac{2z}{3} - \frac{z^2}{3}\right| < 1.
+		\end{equation*}
+		(Check! Use triangle inequality.)
+
+		Thus, we can write
+		\begin{equation*} 
+			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2}{3}(z - 1)\left(1 + \left(\dfrac{2z}{3} - \dfrac{z^2}{3}\right) + \left(\dfrac{2z}{3} - \dfrac{z^2}{3}\right)^2 + \cdots\right).
+		\end{equation*}
+		Expanding and multiplying gives the answer.
+		%
+		\item Write
+		\begin{equation*} 
+			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2(z - 1)}{-2z\left(1 - \frac{3}{2z} - \dfrac{z}{2}\right)}.
+		\end{equation*}
+		On the given annulus, we have
+		\begin{equation*} 
+			\left|\frac{3}{2z} + \dfrac{z}{2}\right| < 1.
+		\end{equation*}
+		(Check! Use triangle inequality.)
+
+		Thus, we can write
+		\begin{equation*} 
+			\dfrac{2(z - 1)}{z^2 - 2z + 3} = -\left(1 - \dfrac{1}{z}\right)\left(1 + \left(\frac{3}{2z} + \dfrac{z}{2}\right) + \left(\frac{3}{2z} + \dfrac{z}{2}\right)^2 + \cdots\right).
+		\end{equation*}
+		Expanding and multiplying gives the answer.
+		%
+		\item Write
+		\begin{equation*} 
+			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2(z - 1)}{z^2\left(1 - \frac{2}{z} + \frac{3}{z^2}\right)}.
+		\end{equation*}
+		On the given annulus, we have
+		\begin{equation*} 
+			\left|\frac{2}{z} - \frac{3}{z^2}\right| < 1.
+		\end{equation*}
+		(Check! Use triangle inequality.)
+
+		Thus, we can write
+		\begin{equation*} 
+			\dfrac{2(z - 1)}{z^2 - 2z + 3} = 2\left(\dfrac{1}{z} - \dfrac{1}{z^2}\right)\left(1 + \left(\frac{2}{z} - \frac{3}{z^2}\right) + \left(\frac{2}{z} - \frac{3}{z^2}\right)^2 + \cdots\right).
+		\end{equation*}
+		Expanding and multiplying gives the answer.
+	\end{enumerate}
+	\end{soln}
+	\item By integrating $e^{-z^2}$ around a sector of radius $R,$ one arm of which is along the real axis and the other making an angle $\pi/4$ with the real axis, show that:
+        \begin{equation*}
+            \int_{0}^{\infty}\sin(x^2){\mathrm{d}}x = \dfrac{\sqrt{\pi}}{2\sqrt{2}} = \int_{0}^{\infty}\cos(x^2){\mathrm{d}}x.
+        \end{equation*}
+        (Here, use the well-known integral $\int_{-\infty}^{\infty}\exp(-x^2){\mathrm{d}}x = \sqrt{\pi}.$)
+    \begin{soln}
+    
+    We first state an inequality which will be helpful later.
+
+    	\begin{thm}[]\label{thm:jordanineq}
+    		If $x \in \left[0, \dfrac{\pi}{2}\right],$ then 
+    		\begin{equation*} 
+    			\sin x \ge \dfrac{2}{\pi}x.
+    		\end{equation*}
+    	\end{thm}
+    	\begin{proof}
+    		Use the concavity of $\sin$ on $\left[0, \dfrac{\pi}{2}\right].$
+    	\end{proof}
+
+    	Define $f(z) = e^{-z^2}$ and consider the contour as shown in the diagram.
+
+    	\begin{center}
+    		\begin{tikzpicture}
+    			\def\xLen{6.5}
+    			\def\yLen{5}
+    			\def\len{1}
+    			\def\R{5}
+    			\def\r{1}
+    			\draw[thick, ->] (0, 0) -- (\xLen, 0);
+    			\draw[thick, ->] (0, 0) -- (0, \yLen);
+    			\draw[thick, ->] (0, 0) -- (-\len, 0);
+    			\draw[thick, ->] (0, 0) -- (0, -\len);
+    			\draw[thick, red, ->-=at 0.25 with label {$\gamma_1$}, ->-=at 0.5 with label {$\gamma_2$}, ->-=at 0.75 with label {$\gamma_3$}] (0, 0) -- (\R, 0) arc (0:45:\R) -- (0, 0);
+    			\draw (\R,1pt) -- (\R,-1pt) node[anchor=north] {$R$};
+    			\draw[->](\r, 0) arc (0:45:\r);
+    			\node[] at (1.25*\r, \r/2) {\footnotesize $\pi/4$};
+    		\end{tikzpicture}
+    	\end{center}
+
+    	Since $f$ is holomorphic everywhere, the integral along the three contours must be $0.$ (Cauchy's theorem.) That is,
+    	
+    	\begin{equation*}
+    	    \int_{\gamma_1}f(z){\mathrm{d}}z + \int_{\gamma_2}f(z){\mathrm{d}}z + \int_{\gamma_3}f(z){\mathrm{d}}z = 0.
+    	\end{equation*}
+    	We now compute them individually.
+
+    	Along $\gamma_1:$ The integral becomes
+    	\begin{equation*} 
+    		\int_{0}^{R} e^{-x^2} {\mathrm{d}}x =\vcentcolon I_1(R).
+    	\end{equation*}
+    	We know the value of the above integral in the limit $R \to \infty.$
+
+    	Along $\gamma_2:$ The integral becomes
+    	\begin{equation*} 
+    		\int_{0}^{\pi/4} e^{-(Re^{\iota t})^2}(\iota Re^{\iota t}) {\mathrm{d}}t =\vcentcolon I_2(R).
+    	\end{equation*}
+    	Note that
+    	\begin{align*} 
+    		|I_2(R)| & \le \int_{0}^{\pi/4} \left|e^{-(Re^{\iota t})^2}(\iota Re^{\iota t})\right| {\mathrm{d}}t\\
+    		&\le R \int_{0}^{\pi/4} \left|e^{-R^2e^{2\iota t}}\right| {\mathrm{d}}t\\
+    		&= R \int_{0}^{\pi/4} e^{-R^2\cos(2t)} {\mathrm{d}}t & (\because \left|\exp(z)\right| = \exp(\Re z))\\
+    		&= R \int_{0}^{\pi/4} e^{-R^2\sin(2t)} {\mathrm{d}}t & \left(t \mapsto \frac{\pi}{4} - t\right)\\
+    		&= \dfrac{R}{2}\int_{0}^{\pi/2} e^{-R^2\sin t} {\mathrm{d}}t & \left(t \mapsto \dfrac{t}{2}\right)\\
+    		&\le \dfrac{R}{2}\int_{0}^{\pi/2} \exp\left(-\dfrac{2tR^2}{\pi}\right) {\mathrm{d}}t & \text{(\cref{thm:jordanineq})}\\
+    		&= \dfrac{R}{2}\dfrac{\pi}{2R^2}(1 - e^{-R^2}).	
+    	\end{align*}
+    	Thus, we see that
+    	\begin{equation*} 
+    		\lim_{R\to \infty}I_2(R) = 0.
+    	\end{equation*}
+
+    	Let $\zeta = \exp\left(\dfrac{\iota\pi}{4}\right) = \dfrac{1}{\sqrt{2}}(1 + \iota).$ \\
+    	Along $\gamma_3,$ we see the integral to be
+    	\begin{equation*} 
+    		\int_{R}^{0} e^{-(\zeta t)^2}\zeta {\mathrm{d}}t =\vcentcolon I_3(R).
+    	\end{equation*}
+
+    	Noting that $\zeta^2 = \iota,$ we see that
+    	\begin{align*} 
+    		I_3(R) &= -\zeta\int_{0}^{R} e^{-\iota t^2} {\mathrm{d}}t\\
+    		&= -\zeta\int_{0}^{R} (\cos t^2 - \iota\sin t^2) {\mathrm{d}}t.
+    	\end{align*}
+
+    	As observed earlier, we have
+    	\begin{equation*} 
+    		I_1(R) + I_2(R) + I_3(R) = 0
+    	\end{equation*}
+    	for all $R > 0.$ Letting $R \to \infty,$ we see that $I_2(R) \to 0$ and $I_1(R) \to \dfrac{\sqrt{\pi}}{2}.$ Thus, we get
+
+    	\begin{equation*} 
+    		\zeta\int_{0}^{\infty} (\cos t^2 - \iota\sin t^2) {\mathrm{d}}t = \dfrac{\sqrt{\pi}}{2}.
+    	\end{equation*}
+    	Letting $C \vcentcolon= \displaystyle\int_{0}^{\infty}\cos t^2{\mathrm{d}}t$ and $S$ the analogous one for $\sin,$ we note
+    	\begin{align*} 
+    		\zeta(C - \iota S) &= \dfrac{\sqrt{\pi}}{2}\\
+    		\implies \dfrac{1}{\sqrt{2}}\left((C + S) + \iota(C - S)\right) &= \dfrac{\sqrt{\pi}}{2}.
+    	\end{align*}
+    	Since $C$ and $S$ are both real, we compare the real imaginary parts of the two sides above to finally get
+
+    	\begin{equation*} 
+    		C = S = \dfrac{\pi}{2\sqrt{2}},
+    	\end{equation*}
+    	as desired.
+    \end{soln}
+    %
+    \item Compute using residue theory $\int_{-\infty}^{\infty} \dfrac{\cos(x)}{(1 + x^2)^2} {\mathrm{d}}x.$
+    %
+    \begin{soln}
+    	Consider the function $f(z) = \dfrac{e^{\iota z}}{(1 + z^2)^2}.$
+
+    	Note that I did \textbf{not} consider $\cos(z)/(1 + z^2)^2.$ Now, let $R > 1$ and consider the the contour as shown.
+
+    	\begin{center}
+    		\begin{tikzpicture}
+    			\def\Len{6.5}
+    			\def\len{1}
+    			\def\R{5}
+    			\def\r{1}
+    			\draw[thick, ->] (0, 0) -- (\Len, 0);
+    			\draw[thick, ->] (0, 0) -- (0, \Len);
+    			\draw[thick, ->] (0, 0) -- (-\Len, 0);
+    			\draw[thick, ->] (0, 0) -- (0, -\len);
+    			\draw[thick, red, ->-=at 0.05 with label {$\gamma_1$}, ->-=at 0.49 with label {$\gamma_2$}] (0, 0) -- (\R, 0) arc (0:180:\R) -- (0, 0);
+    		\end{tikzpicture}
+    	\end{center}
+    	Note that the contour encloses exactly one singularity: $\iota.$ This is obviously isolated. Thus, we get
+    	\begin{equation*} 
+    		\int_{\gamma_1}^{} f(z) {\mathrm{d}}z + \int_{\gamma_2}^{} f(z) {\mathrm{d}}z = 2\pi\iota\Res(f; \iota).
+    	\end{equation*}
+
+    	As in the previous question, argue that the second integral goes to $0$ in the limit $R \to 0.$ Also, note that the first integral is exactly what we want, in the limit $R \to \infty.$ (The imaginary part will be zero because odd function.)
+
+    	Thus, only the residue of $f$ at $\iota$ has to be calculated. For this, note that
+    	\begin{equation*} 
+    		\lim_{z\to \iota}(z - \iota)^2f(z)
+    	\end{equation*}
+    	exists and is nonzero. Thus, $\iota$ is a pole of order $2.$ Define $g(z) = (z - \iota)^2f(z)$ and compute $\dfrac{1}{2!}g'(\iota).$ This will be the residue.
+
+    	The final answer should come out to be $\boxed{\dfrac{2\pi}{e}}.$
+    \end{soln}
+    %
+    %
+    %
+    \item Show by transforming into an integral over the unit circle, that
+    \begin{equation*} 
+    	\int_{0}^{2\pi} \dfrac{1}{a^2 - 2a\cos\theta + 1} {\mathrm{d}}\theta = \dfrac{2\pi}{a^2 - 1},
+    \end{equation*}
+    where $a > 1.$ Also compute the value when $a < 1.$
+    %
+    \begin{soln}
+    	Assume that $0 < a \neq 1.$ Observe the following
+    	\begin{align*} 
+    		\int_{0}^{2\pi} \dfrac{1}{a^2 - 2a\cos\theta + 1} {\mathrm{d}}\theta &= \int_{0}^{2\pi} \dfrac{1}{(a - \cos\theta)^2 + (\sin \theta)^2} {\mathrm{d}}\theta\\
+    		&= \int_{0}^{2\pi} \dfrac{1}{(a - e^{\iota\theta})(a - e^{-\iota\theta})} {\mathrm{d}}\theta\\
+    		&= \int_{0}^{2\pi} \dfrac{e^{\iota\theta}}{(a - e^{\iota\theta})(ae^{\iota\theta} - 1)} {\mathrm{d}}\theta\\
+    		&= \dfrac{1}{\iota}\int_{0}^{2\pi} \dfrac{\iota	e^{\iota\theta}}{(a - e^{\iota\theta})(ae^{\iota\theta} - 1)} {\mathrm{d}}\theta\\
+    		&= \dfrac{1}{\iota}\int_{|z| = 1}^{} \dfrac{1}{(a - z)(az - 1)} {\mathrm{d}}z\\
+    		&= \dfrac{1}{a\iota}\int_{|z| = 1}^{} \dfrac{1}{(a - z)(z - 1/a)} {\mathrm{d}}z.
+    	\end{align*}
+    	Now, compute the last integral by either using CIF or by using residue theorem. Note that the integrand has exactly one pole within the circle of integration. Take the cases $a > 1$ and $a < 1$ separately and get the answer.
+    \end{soln}
+    %
+    %
+    \item Show that if $a_1, \ldots, a_n$ are the distinct roots of a monic polynomial $P(z)$ of degree $n,$ for each $1 \le k \le n$  we have the formula:
+    \begin{equation*} 
+    	\prod_{j \neq k}^{}(a_k - a_j) = P'(a_k).
+    \end{equation*}
+    %
+    \begin{soln}
+    	Since $P(z)$ is monic and we know all of its factors, we may write
+    	\begin{equation*} 
+    		P(z) = (z - a_1)\cdots(z - a_n).
+    	\end{equation*}
+    	Fix $k \in \{1, \ldots, n\}.$ Note that $P(a_k) = 0.$ Thus, the above can be written as:
+    	\begin{equation*} 
+    		P(z) - P(a_k) = (z - a_1)\cdots(z - a_n).
+    	\end{equation*}
+    	If $z \neq a_k,$ then we may divide by $z - a_k$ to get
+    	\begin{equation*} 
+    		\dfrac{P(z) - P(a_k)}{z - a_k} = \prod_{j \neq k}^{}(z - a_j).
+    	\end{equation*}
+    	Letting $z \to a_k$ gives the answer.
+    \end{soln}
+    %
+    %
+    %
+    \item Show that an entire function $f(z)$ has a pole at $\infty$ if and only if $|f(z)| \to \infty$ as $|z| \to \infty.$ Also show that such entire functions are necessarily non-constant polynomials.
+    %
+    \begin{soln}
+    	Let $g(z) \vcentcolon= f\left(\frac{1}{z}\right)$ for $z \in \mathbb{C}^\times.$
+
+    	By our definition of pole at $\infty,$ we know that $f$ has a pole at $\infty$ iff $g$ has a pole at $0.$ Thus, we see that
+    	\begin{align*} 
+    		f \text{ has a pole at }\infty &\iff g \text{ has a pole at }0\\
+    		&\iff \lim_{z\to 0}\left|g(z)\right| = \infty\\
+    		&\iff \text{for every } M > 0, \text{ there exists } \epsilon > 0 \text{ such that } |z| < \epsilon \implies |g(z)| > M\\
+    		& \iff \text{for every } M > 0, \text{ there exists } R > 0 \text{ such that } |z| > R \implies |f(z)| > M\\
+    		& \iff \lim_{|z|\to \infty}|f(z)| = \infty
+    	\end{align*}
+
+    	To show the second part: since $f$ is entire, it has a power series expansion centered at $0$ which is valid everywhere on $\mathbb{C}.$ Let 
+    	\begin{equation*} 
+    		f(z) = \sum_{n = 0}^{\infty}a_nz^n
+    	\end{equation*}
+    	be this power series. Then, $g(z)$ has its Laurent series on the annulus $\mathbb{C}^\times$ given as
+    	\begin{equation*} 
+    		g(z) = \sum_{n = 0}^{\infty}\dfrac{a_n}{z^n}.
+    	\end{equation*}
+    	Since $0$ is a pole of $g,$ only finitely many $a_n$ can be nonzero. This gives us that there exists $N \in \mathbb{N}$ such that $a_n = 0$ for all $n \ge N.$ Moreover, since $0$ is not a removable singularity, we see that $a_n \neq 0$ for at least one $n \ge 1.$ This gives us that the original $f$ was a non-constant polynomial.
+    \end{soln}
 \end{enumerate}
 \end{document}
