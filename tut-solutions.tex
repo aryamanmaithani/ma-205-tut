@@ -1324,56 +1324,43 @@
 	\end{enumerate}
 	%
 	\begin{soln}
-	The idea in all is to write the denominator as $kz^n(1 - p(z))$ such that $|p(z)| < 1$ the annulus so that we can expand $(1 - p(z))^{-1}$ as $1 + p(z) + (p(z))^2 + \cdots.$
+	Note that
+	\begin{equation*} 
+		\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{1}{z - 3} + \dfrac{1}{z + 1}.
+	\end{equation*}
+	In each part, we expand each fraction as a Laurent series such that the series converges on that disc.
 	\begin{enumerate}
-		\item Write
+		\item Here, we can write
 		\begin{equation*} 
-			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2(z - 1)}{3\left(1 - \frac{2z}{3} + \frac{z^2}{3}\right)}.
+			\dfrac{1}{z - 3} = -\dfrac{1}{3}\dfrac{1}{1 - \frac{z}{3}} = -\dfrac{1}{3}\sum_{n = 0}^{\infty}\left(\dfrac{z}{3}\right)^n
 		\end{equation*}
-		On the given annulus, we have
+		and
 		\begin{equation*} 
-			\left|\frac{2z}{3} - \frac{z^2}{3}\right| < 1.
+			\dfrac{1}{1 + z} = \sum_{n = 0}^{\infty}(-z)^n.
 		\end{equation*}
-		(Check! Use triangle inequality.)
-
-		Thus, we can write
-		\begin{equation*} 
-			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2}{3}(z - 1)\left(1 + \left(\dfrac{2z}{3} - \dfrac{z^2}{3}\right) + \left(\dfrac{2z}{3} - \dfrac{z^2}{3}\right)^2 + \cdots\right).
-		\end{equation*}
-		Expanding and multiplying gives the answer.
+		Put them together to get the complete Laurent series. 
 		%
-		\item Write
+		\item Here, we can write
 		\begin{equation*} 
-			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2(z - 1)}{-2z\left(1 - \frac{3}{2z} - \dfrac{z}{2}\right)}.
+			\dfrac{1}{z - 3} = -\dfrac{1}{3}\dfrac{1}{1 - \frac{z}{3}} = -\dfrac{1}{3}\sum_{n = 0}^{\infty}\left(\dfrac{z}{3}\right)^n
 		\end{equation*}
-		On the given annulus, we have
+		and
 		\begin{equation*} 
-			\left|\frac{3}{2z} + \dfrac{z}{2}\right| < 1.
+			\dfrac{1}{1 + z} = \dfrac{1}{z\left(1 + \frac{1}{z}\right)} = \sum_{n = 0}^{\infty}(-z)^{-n - 1}.
 		\end{equation*}
-		(Check! Use triangle inequality.)
-
-		Thus, we can write
-		\begin{equation*} 
-			\dfrac{2(z - 1)}{z^2 - 2z + 3} = -\left(1 - \dfrac{1}{z}\right)\left(1 + \left(\frac{3}{2z} + \dfrac{z}{2}\right) + \left(\frac{3}{2z} + \dfrac{z}{2}\right)^2 + \cdots\right).
-		\end{equation*}
-		Expanding and multiplying gives the answer.
+		Put them together to get the complete Laurent series. 
 		%
-		\item Write
+		\item Here, we can write
 		\begin{equation*} 
-			\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{2(z - 1)}{z^2\left(1 - \frac{2}{z} + \frac{3}{z^2}\right)}.
+			\dfrac{1}{z - 3} = \dfrac{1}{z}\dfrac{1}{1 - \frac{3}{z}} = \dfrac{1}{z}\sum_{n = 0}^{\infty}\left(\dfrac{z}{3}\right)^{-n}
 		\end{equation*}
-		On the given annulus, we have
+		and
 		\begin{equation*} 
-			\left|\frac{2}{z} - \frac{3}{z^2}\right| < 1.
+			\dfrac{1}{1 + z} = \dfrac{1}{z\left(1 + \frac{1}{z}\right)} = \sum_{n = 0}^{\infty}(-z)^{-n - 1}.
 		\end{equation*}
-		(Check! Use triangle inequality.)
-
-		Thus, we can write
-		\begin{equation*} 
-			\dfrac{2(z - 1)}{z^2 - 2z + 3} = 2\left(\dfrac{1}{z} - \dfrac{1}{z^2}\right)\left(1 + \left(\frac{2}{z} - \frac{3}{z^2}\right) + \left(\frac{2}{z} - \frac{3}{z^2}\right)^2 + \cdots\right).
-		\end{equation*}
-		Expanding and multiplying gives the answer.
+		Put them together to get the complete Laurent series. 
 	\end{enumerate}
+	Note that it has to be justified that each series we wrote did converge its annulus.
 	\end{soln}
 	\item By integrating $e^{-z^2}$ around a sector of radius $R,$ one arm of which is along the real axis and the other making an angle $\pi/4$ with the real axis, show that:
         \begin{equation*}
@@ -1511,7 +1498,7 @@
     	\begin{equation*} 
     		\lim_{z\to \iota}(z - \iota)^2f(z)
     	\end{equation*}
-    	exists and is nonzero. Thus, $\iota$ is a pole of order $2.$ Define $g(z) = (z - \iota)^2f(z)$ and compute $\dfrac{1}{2!}g'(\iota).$ This will be the residue.
+    	exists and is nonzero. Thus, $\iota$ is a pole of order $2.$ Define $g(z) = (z - \iota)^2f(z)$ and compute $\dfrac{1}{{\color{myupdatecolor}1}!}g'(\iota).$ This will be the residue.
 
     	The final answer should come out to be $\boxed{\dfrac{2\pi}{e}}.$
     \end{soln}
