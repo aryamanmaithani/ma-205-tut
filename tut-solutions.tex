@@ -17,12 +17,14 @@
 \mdfdefinestyle{theoremstyle}{%
 	% linecolor=gray,linewidth=1pt,%
 	% frametitlerule=true,%
-	% frametitlebackgroundcolor=blue!20,
+	frametitlebackgroundcolor=white,
 	% backgroundcolor=  gray!20,	
 	bottomline=false, topline=false, rightline=false, leftline=true,
 	innerlinewidth=0.7pt, outerlinewidth=0.7pt, middlelinewidth=2pt, middlelinecolor=white, %
 	innerleftmargin=6pt,
-	innertopmargin=-1pt,
+	% innertopmargin=-1pt,
+	skipabove=10pt,
+	% fontcolor=blue,
 	% innerbottommargin=-0.5pt,
 }
 \mdtheorem[style=theoremstyle]{defn}[thm]{Definition}
@@ -1360,7 +1362,7 @@
 		\end{equation*}
 		Put them together to get the complete Laurent series. 
 	\end{enumerate}
-	Note that it has to be justified that each series we wrote did converge its annulus.
+	Note that it has to be justified that each series that we wrote did converge on the given annulus.
 	\end{soln}
 	\item By integrating $e^{-z^2}$ around a sector of radius $R,$ one arm of which is along the real axis and the other making an angle $\pi/4$ with the real axis, show that:
         \begin{equation*}
@@ -1467,7 +1469,7 @@
     	as desired.
     \end{soln}
     %
-    \item Compute using residue theory $\int_{-\infty}^{\infty} \dfrac{\cos(x)}{(1 + x^2)^2} {\mathrm{d}}x.$
+    \item Compute using residue theory $\displaystyle\int_{-\infty}^{\infty} \dfrac{\cos(x)}{(1 + x^2)^2} {\mathrm{d}}x.$
     %
     \begin{soln}
     	Consider the function $f(z) = \dfrac{e^{\iota z}}{(1 + z^2)^2}.$
@@ -1550,6 +1552,66 @@
     %
     \item Show that an entire function $f(z)$ has a pole at $\infty$ if and only if $|f(z)| \to \infty$ as $|z| \to \infty.$ Also show that such entire functions are necessarily non-constant polynomials.
     %
+
+    {\color{myupdatecolor}Before the solution, it may be useful to recall some definitions.}
+
+    \begin{defn}[Limit is infinity]
+    	Let $a \in \mathbb{C}$ and $f$ be a complex valued function defined on some deleted neighbourhood of $a.$ We say 
+    	\begin{equation*} 
+    		\lim_{z\to a}f(z) = \infty
+    	\end{equation*}
+    	if for every $M > 0,$ there exists $\delta > 0$ such that
+    	\begin{equation*} 
+    		0 < |z - a| < \delta \implies |f(z)| > M.
+    	\end{equation*}
+    \end{defn}
+
+    When we say that ``defined on some deleted neighbourhood of $a$,'' we also allow it to be defined on a \emph{bigger} set. For example, $f$ may also be defined at $a.$ All we care is that some deleted neighbourhood of $a$ is in the domain. Similar remark is applicable for the next definitions as well.
+
+    \begin{defn}[Limit at infinity]
+    	Let $a \in \mathbb{C}$ and $f$ be a complex valued function defined on some set of the form $\{z \in \mathbb{C} : |z| > R_0\}$ for some $R_0 > 0.$ We say 
+    	\begin{equation*} 
+    		\lim_{z\to \infty}f(z) = a \quad\text{or}\quad \lim_{|z|\to \infty}f(z) = a
+    	\end{equation*}
+    	if for every $\epsilon > 0,$ there exists $R > R_0$ such that
+    	\begin{equation*} 
+    		|z| > R \implies |f(z) - a| < \epsilon.
+    	\end{equation*}
+    \end{defn}
+    
+    {\color{red}Note that in both the above cases, $a$ was a (finite) complex number.}
+
+    \begin{defn}[Limit at infinity is infinity]
+    	Let $f$ be a complex valued function defined on some set of the form $\{z \in \mathbb{C} : |z| > R_0\}$ for some $R_0 > 0.$ We say 
+    	\begin{equation*} 
+    		\lim_{z\to \infty}f(z) = \infty \quad\text{or}\quad \lim_{|z|\to \infty}f(z) = \infty
+    	\end{equation*}
+    	if for every $M > 0,$ there exists $R > R_0$ such that
+    	\begin{equation*} 
+    		|z| > R \implies |f(z)| > M.
+    	\end{equation*}
+    \end{defn}
+    It should be clear from the above definitions that $|f(z)| \to \infty$ iff $f(z) \to \infty.$
+
+    From these definition, we get the following theorem.
+
+    \begin{thm}[]
+    	Let $f$ be a function defined on a neighbourhood of infinity, that is, on a set of the form $\{z \in \mathbb{C} : |z| > R_0\}$ for some $R_0 > 0.$ Then, 
+    	\begin{equation*} 
+    		\lim_{|z|\to \infty}f(z) = \infty \iff \lim_{z\to 0}f\left(\dfrac{1}{z}\right) = \infty.
+    	\end{equation*}
+    \end{thm}
+
+    \begin{proof} 
+    	From the hypothesis of $f$ being defined on a neighbourhood of infinity, it follows that $z\mapsto f\left(\frac{1}{z}\right)$ is defined on a deleted neighbourhood of $0$ and thus, both the limits make sense.
+
+    	Note that if $|z| > R,$ then $\left|\dfrac{1}{z}\right| < \dfrac{1}{R}.$
+
+    	Thus, if $|f(z)| > M$ for $|z| > R,$ then $|f(z^{-1})| > M$ for $|z| < R^{-1}.$
+
+    	By choosing $R$ arbitrarily large, we can make $\dfrac{1}{R}$ arbitrarily small and vice-versa. Using this, conclude the theorem.
+    \end{proof}
+
     \begin{soln}
     	Let $g(z) \vcentcolon= f\left(\frac{1}{z}\right)$ for $z \in \mathbb{C}^\times.$
 
@@ -1557,9 +1619,7 @@
     	\begin{align*} 
     		f \text{ has a pole at }\infty &\iff g \text{ has a pole at }0\\
     		&\iff \lim_{z\to 0}\left|g(z)\right| = \infty\\
-    		&\iff \text{for every } M > 0, \text{ there exists } \epsilon > 0 \text{ such that } |z| < \epsilon \implies |g(z)| > M\\
-    		& \iff \text{for every } M > 0, \text{ there exists } R > 0 \text{ such that } |z| > R \implies |f(z)| > M\\
-    		& \iff \lim_{|z|\to \infty}|f(z)| = \infty
+    		& \iff \lim_{|z|\to \infty}|f(z)| = \infty & \text{{\color{myupdatecolor}(by the above theorem)}}
     	\end{align*}
 
     	To show the second part: since $f$ is entire, it has a power series expansion centered at $0$ which is valid everywhere on $\mathbb{C}.$ Let 
