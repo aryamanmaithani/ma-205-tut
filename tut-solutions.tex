@@ -1487,6 +1487,8 @@
     			\draw[thick, ->] (0, 0) -- (-\Len, 0);
     			\draw[thick, ->] (0, 0) -- (0, -\len);
     			\draw[thick, red, ->-=at 0.05 with label {$\gamma_1$}, ->-=at 0.49 with label {$\gamma_2$}] (0, 0) -- (\R, 0) arc (0:180:\R) -- (0, 0);
+    			\draw (\R,1pt) -- (\R,-1pt) node[anchor=north] {$R$};
+    			\draw (-\R,1pt) -- (-\R,-1pt) node[anchor=north] {$R$};
     		\end{tikzpicture}
     	\end{center}
     	Note that the contour encloses exactly one singularity: $\iota.$ This is obviously isolated. Thus, we get
@@ -1546,6 +1548,27 @@
     		\dfrac{P(z) - P(a_k)}{z - a_k} = \prod_{j \neq k}^{}(z - a_j).
     	\end{equation*}
     	Letting $z \to a_k$ gives the answer.
+    \end{soln}
+    \begin{soln}
+    	{\color{myupdatecolor}Here's an alternate solution.}
+
+    	As above, we can write
+    	\begin{equation*} 
+    		P(z) = \prod_{j = 1}^{n}(z - a_j).
+    	\end{equation*}
+    	Fix some $k \in \{1, \ldots, n\}.$ Then, the above can be written as
+    	\begin{equation*} 
+    		P(z) = (z - a_k)P_k(z),	
+    	\end{equation*}
+    	where $P_k$ is defined as
+    	\begin{equation*} 
+    		P_k(z) \vcentcolon= \prod_{j \neq k}(z - a_j).
+    	\end{equation*}
+    	Note that $P_k(a_k)$ is precisely the LHS of the equation given in the question. On the other hand, using product rule, we have
+    	\begin{equation*} 
+    		P'(z) = (z - a_k)P_k'(z) + P_k(z).
+    	\end{equation*}
+    	Substituting $z = a_k$ above gives the answer.
     \end{soln}
     %
     %
