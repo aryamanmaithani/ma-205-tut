@@ -1318,7 +1318,7 @@
 \end{center}
 
 \begin{enumerate}[leftmargin=*]
-	\item Find Laurent expansions for the function $f(z) = \dfrac{2(z - 1)}{z^2 - 2z + 3}$ valid on the annuli
+	\item Find Laurent expansions for the function $f(z) = \dfrac{2(z - 1)}{z^2 - 2z {\color{myupdatecolor}-} 3}$ valid on the annuli
 	\begin{enumerate}
 		\item $0 \le \left|z\right| < 1,$
 		\item $1 < |z| < 3,$
@@ -1328,7 +1328,7 @@
 	\begin{soln}
 	Note that
 	\begin{equation*} 
-		\dfrac{2(z - 1)}{z^2 - 2z + 3} = \dfrac{1}{z - 3} + \dfrac{1}{z + 1}.
+		\dfrac{2(z - 1)}{z^2 - 2z {\color{myupdatecolor}-} 3} = \dfrac{1}{z - 3} + \dfrac{1}{z + 1}.
 	\end{equation*}
 	In each part, we expand each fraction as a Laurent series such that the series converges on that disc.
 	\begin{enumerate}
@@ -1459,9 +1459,10 @@
     	Letting $C \vcentcolon= \displaystyle\int_{0}^{\infty}\cos t^2{\mathrm{d}}t$ and $S$ the analogous one for $\sin,$ we note
     	\begin{align*} 
     		\zeta(C - \iota S) &= \dfrac{\sqrt{\pi}}{2}\\
-    		\implies \dfrac{1}{\sqrt{2}}\left((C + S) + \iota(C - S)\right) &= \dfrac{\sqrt{\pi}}{2}.
+    		{\color{myupdatecolor}\implies C - \iota S} &= {\color{myupdatecolor}\dfrac{\sqrt{\pi}}{2}\zeta^{-1}}\\
+    		{\color{myupdatecolor}\implies C - \iota S} &= {\color{myupdatecolor}\dfrac{\sqrt{\pi}}{2\sqrt{2}}(1 - \iota).}
     	\end{align*}
-    	Since $C$ and $S$ are both real, we compare the real imaginary parts of the two sides above to finally get
+    	Since $C$ and $S$ are both real, we compare the real imaginary parts of the two sides above to get
 
     	\begin{equation*} 
     		C = S = \dfrac{\pi}{2\sqrt{2}},
@@ -1469,7 +1470,7 @@
     	as desired.
     \end{soln}
     %
-    \item Compute using residue theory $\displaystyle\int_{-\infty}^{\infty} \dfrac{\cos(x)}{(1 + x^2)^2} {\mathrm{d}}x.$
+    \item Compute using residue theor{\color{myupdatecolor}em} $\displaystyle\int_{-\infty}^{\infty} \dfrac{\cos(x)}{(1 + x^2)^2} {\mathrm{d}}x.$
     %
     \begin{soln}
     	Consider the function $f(z) = \dfrac{e^{\iota z}}{(1 + z^2)^2}.$
@@ -1488,7 +1489,7 @@
     			\draw[thick, ->] (0, 0) -- (0, -\len);
     			\draw[thick, red, ->-=at 0.05 with label {$\gamma_1$}, ->-=at 0.49 with label {$\gamma_2$}] (0, 0) -- (\R, 0) arc (0:180:\R) -- (0, 0);
     			\draw (\R,1pt) -- (\R,-1pt) node[anchor=north] {$R$};
-    			\draw (-\R,1pt) -- (-\R,-1pt) node[anchor=north] {$R$};
+    			\draw (-\R,1pt) -- (-\R,-1pt) node[anchor=north] {$-R$};
     		\end{tikzpicture}
     	\end{center}
     	Note that the contour encloses exactly one singularity: $\iota.$ This is obviously isolated. Thus, we get
