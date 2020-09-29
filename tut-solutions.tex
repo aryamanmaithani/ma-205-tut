@@ -1695,7 +1695,7 @@ Towards the end, we saw the power of CRT in computing real integrals. Wasn't tha
 			\int_{0}^{2\pi} \dfrac{\cos^2(3\theta)}{5 - 4\cos(2\theta)} {\mathrm{d}}\theta &= \dfrac{1}{4}\int_{0}^{2\pi} \dfrac{(2\cos(3\theta))^2}{5 - 2(2\cos(2\theta))} {\mathrm{d}}\theta\\
 			&= \dfrac{1}{4}\int_{0}^{2\pi} \dfrac{(e^{3\iota\theta} + e^{-3\iota\theta})^2}{5 - 2(e^{2\iota\theta} + e^{-2\iota\theta})} {\mathrm{d}}\theta\\
 			&= \dfrac{1}{4}\int_{0}^{2\pi} \dfrac{(e^{3\iota\theta} + e^{-3\iota\theta})^2}{5 - 2(e^{2\iota\theta} + e^{-2\iota\theta})}\dfrac{\iota e^{\iota\theta}}{\iota e^{\iota\theta}} {\mathrm{d}}\theta\\
-			&= \dfrac{1}{4}\int_{|z| = 1}^{} \dfrac{(z^3 + z^{-3})^2}{5 - 2(z^2 - z^{-2})}\dfrac{1}{\iota z} {\mathrm{d}}z\\
+			&= \dfrac{1}{4}\int_{|z| = 1}^{} \dfrac{(z^3 + z^{-3})^2}{5 - 2(z^2 {\color{myupdatecolor}+} z^{-2})}\dfrac{1}{\iota z} {\mathrm{d}}z\\
 			&= -\dfrac{1}{8\iota}\int_{|z| = 1}^{} \dfrac{(z^6 + 1)^2}{z^5(z^4 - 5z^2/2 + 1)} {\mathrm{d}}z
 		\end{align*}
 		Note that $z^4 - 5z^2/2 + 1 = 0$ can be solved easily since it is a quadratic in $z^2.$ We get the solutions to be $\pm\sqrt{2}, \pm\dfrac{1}{\sqrt{2}}.$ Thus, we get all the poles as:
@@ -1709,7 +1709,7 @@ Towards the end, we saw the power of CRT in computing real integrals. Wasn't tha
 		\textbf{Residue at $0$:} This is a pole of order $5.$ What a nightmare. Computing the fourth derivative is not something I would want to do. Let us compute the Laurent series directly.
 		\begin{align*} 
 			\dfrac{(z^6 + 1)^2}{z^5(z^4 - 5z^2/2 + 1)} &= \dfrac{1}{z^5}\dfrac{(z^6 + 1)^2}{1 - (5z^2/2 - z^4)}\\
-			&= \dfrac{1}{z^5}(z^6 + 1)^2\left\{1 + \left(\dfrac{5z^2}{2} - z^4\right) + \left(\dfrac{5z^2}{2} - z^4\right)^2 + \cdots\right\}\\
+			&= \dfrac{1}{z^5}(z^6 + 1)^2\left[1 + \left(\dfrac{5z^2}{2} - z^4\right) + \left(\dfrac{5z^2}{2} - z^4\right)^2 + \cdots\right]\\
 			&= \dfrac{1}{z^5}\left\{[z^{12} + 2z^6 + 1]\left[1 + \left(\dfrac{5z^2}{2} - z^4\right) + \left(\dfrac{5z^2}{2} - z^4\right)^2 + \cdots\right]\right\}
 		\end{align*}
 		The desired residue is the coefficient of $1/z$ in the above, which is the coefficient of $z^4$ in $\{\cdots\}.$ The latter is seen to be
@@ -1755,7 +1755,7 @@ Towards the end, we saw the power of CRT in computing real integrals. Wasn't tha
 			f(z) \vcentcolon= \dfrac{2z^3 + z^2 + 4}{z^4 + 4z^2}.
 		\end{equation*}
 
-		The singularities of $f$ are $0, \pm 2\iota.$ Being only finitely, they are all isolated. Moreover, all of them are poles. (Since none of them is a root of the numerator, they are not removable.) All of these lie within the given circle. Thus, the given integral is just 
+		The singularities of $f$ are $0, \pm 2\iota.$ Being only finitely many, they are all isolated. Moreover, all of them are poles. (Since none of them is a root of the numerator, they are not removable.) All of these lie within the given circle. Thus, the given integral is just 
 		\begin{equation*} 
 			2\pi\iota\sum_{z \in \{0, \pm2\iota\}}^{}\Res(f; z).
 		\end{equation*}
@@ -1861,7 +1861,7 @@ Towards the end, we saw the power of CRT in computing real integrals. Wasn't tha
 		\begin{equation*} 
 			f(z) \vcentcolon= \dfrac{z}{(z^2 + 2z + 2)(z^2 + 4)}.
 		\end{equation*}
-		Its poles are $-1 \pm \iota, \pm 2\iota.$ Thus, if we take $R > 43,$ then all the poles \textbf{in the upper half plane} are enclosed in the following contour.
+		Its poles are $-1 \pm \iota, \pm 2\iota.$ Thus, if we take $R > 2,$ then all the poles \textbf{in the upper half plane} are enclosed in the following contour.
 
 		\begin{center}
     		\begin{tikzpicture}
@@ -1893,7 +1893,7 @@ Towards the end, we saw the power of CRT in computing real integrals. Wasn't tha
 
 	\emph{Remark.} In the above calculation, we implicitly assumed that the desired integral \emph{did} exist and then we calculated it using a limit of the form $\displaystyle\lim_{R\to \infty}\int_{-R}^{R}.$\\
 	However, this method did not actually show the existence of the improper integral. (There, the lower and upper limits tend to $\pm\infty$ independently.) However, it can be shown that if the integral is a rational function of the form $\dfrac{p(x)}{q(x)}$ such that $q$ has no real zeroes and $\deg q - \deg p \ge 2,$ then the integral does exist.\\
-	(Showing this is not too tough, you may ask me if you are interested and don't get it on your own.)
+	({\color{myupdatecolor}This part does not require complex analysis. Just some real analysis.} Showing this is not too tough, you may ask me if you are interested and don't get it on your own.)
 	%
 	%
 	\item Show that any injective entire function is of the form $az + b$ for some $a \neq 0.$
@@ -1918,7 +1918,7 @@ Towards the end, we saw the power of CRT in computing real integrals. Wasn't tha
 		
 		Now, assume that $a_n \neq 0$ for infinitely many $n.$ Then, $0$ is an essential singularity of $z\mapsto f\left(\dfrac{1}{z}\right).$ 
 
-		Consider the complex number $a_0 \in \mathbb{C}.$ By Cassorati-Weierstrass, there exists a sequence $z_n \to 0$ such that
+		Consider the complex number $a_0 \in \mathbb{C}.$ By Casorati-Weierstrass, there exists a sequence $z_n \to 0$ such that
 		\begin{equation*} 
 			f\left(\dfrac{1}{z_n}\right) \to a_0.
 		\end{equation*}
