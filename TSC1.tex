@@ -3,9 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools, mathrsfs}
 \setbeamertemplate{theorems}[numbered]
-\title{\texorpdfstring{$\mathbb{C}$}{C}omplex Analysis TSC - 1}
+\title{\texorpdfstring{$\mathbb{C}$}{C}omplex Analysis TSC}
 \author[Aryaman Maithani]{\texorpdfstring{Aryaman Maithani\\\url{https://aryamanmaithani.github.io/tuts/ma-205}}{Aryaman Maithani}}
-\date[18-09-2020]{18th September, {\color{red}2020}}
+\date{Autumn Semester {\color{red}2020}-21}
 \institute[IITB]{IIT Bombay}
 \usetheme{Warsaw}
 % \usecolortheme{beetle}
@@ -14,7 +14,12 @@
 \usepackage{parskip}
 \usepackage{tcolorbox}
 
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta}
+
 \newcommand{\id}{\operatorname{id}}
+\newcommand{\Res}{\operatorname{Res}}
 % \renewcommand{\exp}{\operatorname{exp}}
 
 \theoremstyle{definition}
@@ -24,6 +29,20 @@
 \newtheorem{rem}{Remark}
 
 \begin{document}
+\tikzset{lab dis/.store in=\LabDis,
+  lab dis=-0.4,
+  ->-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {\arrow{>}; \node at (0,\LabDis) {#2};}},postaction={decorate}},
+  -<-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {\arrow{<}; \node at (0,\LabDis)
+    {#2};}},postaction={decorate}},
+  -*-/.style args={at #1 with label #2}{decoration={
+    markings,
+    mark=at position #1 with {{\fill (0,0) circle (1.5pt);} \node at (0,\LabDis)
+    {#2};}},postaction={decorate}},
+  }
 \begin{frame}
     \titlepage
 \end{frame}
@@ -566,7 +585,7 @@
     Suppose that $z_0$ is an isolated singularity of $f.$ \uncover<2->{Consider an annulus of the form
     \begin{equation*} 
         A = \{z : r < |z - z_0| < R\},
-    \end{equation*} where $0 < r < R \le \infty.$ }\uncover<3->{Assume that $f$ is holomorphic on this open annulus $A.$ }\uncover<4->{Then, CIF takes the form }\uncover<5->{
+    \end{equation*} where $0 \le r < R \le \infty.$ }\uncover<3->{Assume that $f$ is holomorphic on this open annulus $A.$ }\uncover<4->{Then, CIF takes the form }\uncover<5->{
     \begin{equation*} 
         f(z) = \uncover<6->{\dfrac{1}{2\pi\iota}\int_{|w - z_0| = R'}^{} \dfrac{f(w)}{z - w} {\mathrm{d}}w} \uncover<7->{- \dfrac{1}{2\pi\iota}\int_{|w - z_0| = r'}^{} \dfrac{f(w)}{z - w} {\mathrm{d}}w},
     \end{equation*} } 
@@ -587,7 +606,18 @@
     \uncover<6->{Note that the above is valid for $n < 0$ as well. }
 \end{frame}
 \begin{frame}{Lecture 9: Laurent Series}
-    The most interesting coefficient is the $-1^{\text{st}}$ one. \uncover<2->{When we integrate a Laurent series along a circle centered at $z_0,$ only $a_{-1}$ remains (with a factor of $2\pi\iota$). }\uncover<3->{This is given by
+   \begin{defn}[Laurent series expansion at $z_0$]
+        If $z_0$ is an isolated singularity of $f,$ then $f$ is holomorphic in an annulus $\{z : 0 < |z - z_0| < r\}$ for some $r > 0.$ The Laurent series expansion on this annulus is called the Laurent series expansion \textbf{at} $z_0.$ 
+   \end{defn}
+   \begin{defn}[Principal part]
+       Let $\displaystyle\sum_{n = -\infty}^{\infty}a_n(z - z_0)^n$ be the Laurent series expansion \emph{at} $z_0.$ Its principal part is 
+       \begin{equation*} 
+           \displaystyle\sum_{n = -\infty}^{-1}a_n(z - z_0)^n.
+       \end{equation*}
+   \end{defn}
+\end{frame}
+\begin{frame}{Lecture 9: Laurent Series}
+    The most interesting coefficient of the principal part is the $-1^{\text{st}}$ one. \uncover<2->{When we integrate a Laurent series along a circle centered at $z_0$ (which contains no other singularity), only $a_{-1}$ remains (with a factor of $2\pi\iota$). }\uncover<3->{This is given by
     \begin{equation*} 
         a_{-1} = \dfrac{1}{2\pi\iota}\int_{|z - z_0| = r_0}^{} f(w) {\mathrm{d}}w.
     \end{equation*} }\uncover<4->{This is what is usually called the \emph{residue} and written as }\uncover<5->{
@@ -606,12 +636,7 @@
     \uncover<3->{Note that the above is implicitly implying that $f$ is holomorphic at all other points within $\gamma.$ }
 \end{frame}
 \begin{frame}{Lecture 9: Laurent Series}
-    \begin{defn}[Principal part of a Laurent Series]
-        Given a Laurent series as earlier, its principal part is\uncover<2->{
-        \begin{equation*} 
-            \sum_{n = -\infty}^{-1}a_n(z - z_0)^n.
-        \end{equation*} }
-    \end{defn}
+    Recall that given an isolated singularity, we can expand the function as a Laurent series \emph{around} that point on a punctured neighbourhood. \uncover<2->{We had defined the principal part of this series to be the part containing the negative powers of $z - z_0.$ We now see how they are related to the nature of the isolated singularity. }
     \begin{thm}[Isolated singularities and their principal parts]
         \uncover<3->{The isolated singularity $z_0$ is }
         \begin{enumerate}
@@ -631,10 +656,179 @@
     \uncover<5->{Thus,
     \begin{equation*} 
         g(z) = (z - z_0)^mf(z)
-    \end{equation*} is holomorphic at $z_0$ and }\uncover<6->{ 
+    \end{equation*} is holomorphic at $z_0$ (after redefining; note that $z_0$ is a removable singularity for $g$) and }\uncover<6->{ 
     \begin{equation*} 
         a_{-1} = \dfrac{1}{(m - 1)!}g^{(m - 1)}(z_0).
     \end{equation*}}
+\end{frame}
+\begin{frame}{Lecture 10}
+    \begin{defn}[Neighbourhood of $\infty$]
+        A neighbourhood of $\infty$ is a set of the form
+        \uncover<2->{
+        \begin{equation*} 
+            A(0, R, \infty) \vcentcolon= \{z \in \mathbb{C} : |z| > R\}
+        \end{equation*} }
+        \uncover<3->{for some $R > 0.$ }
+    \end{defn}
+    \begin{defn}[Isolated singularity at $\infty$]
+        \uncover<4->{$f$ is said to have an isolated singularity at $\infty$ if }\uncover<5->{$f$ is (defined and) holomorphic on some neighbourhood of $\infty.$ }\uncover<6->{Equivalently, $z\mapsto f\left(\dfrac{1}{z}\right)$ has an isolated singularity at $0.$ }  
+    \end{defn}
+\end{frame}
+\begin{frame}{Lecture 10}
+    \begin{defn}[Nature of isolated singularity at $\infty$]
+        The nature of the singularity of $f$ at $\infty$ is defined to be \uncover<2->{the nature of the singularity of $z \mapsto f\left(\dfrac{1}{z}\right)$ at $0.$ }
+    \end{defn}
+    \uncover<3->{\textbf{Examples.} }
+    \begin{enumerate}
+        \uncover<4->{\item $f(z) = 0$ has a removable singularity at $\infty.$ }
+        \uncover<5->{\item $f(z) = \dfrac{1}{z}$ has a removable singularity at $\infty.$ }
+        \uncover<6->{\item $f(z) = z^n$ has a pole of order $n$ at $\infty.$ ($n \in \mathbb{N}.$) }
+        \uncover<7->{\item $\exp$ has an essential singularity at $\infty.$ }
+    \end{enumerate}
+    \uncover<8->{We didn't define the residue at $\infty.$ Check Wikipedia for what the definition is, if interested. It is not the same as the residue of $f(1/z)$ at $0.$ }
+\end{frame}
+\begin{frame}{Lecture 11}  
+    \begin{thm}[Maximum Modulus Theorem]
+        \uncover<2->{Let $\Omega$ be a {\color{red}domain}. }\uncover<3->{Let $f:\Omega\to\mathbb{C}$ be holomorphic }\uncover<4->{and non-constant. }\uncover<5->{Then, $|f|$ does not attain a maximum. }
+    \end{thm}
+    \uncover<6->{Said differently: If $f:\Omega\to\mathbb{C}$ is holomorphic and $|f|$ attains a maximum, then $f$ is constant. }\\
+    \uncover<7->{An ``application:'' Suppose that $f$ is defined on the closed unit disc such that it is continuous on the closed disc and holomorphic on the open disc. }\uncover<8->{Since the closed disc is closed and bounded and $f$ is continuous, $|f|$ must attain a maximum on the closed disc. }\uncover<9->{By MMT, this maximum must be on the boundary. }
+\end{frame}
+\begin{frame}{End of Lectures 10 and 11}
+    \begin{tcolorbox}
+        Any questions?
+    \end{tcolorbox}
+\end{frame}
+\begin{frame}{Lecture 12}
+    \begin{thm}[Schwarz Lemma]
+        \uncover<2->{Let $\mathbb{D} = \{z \in \mathbb{C} : |z| < 1\}$ be the open unit disc. }\\
+        \uncover<3->{Let $f:\mathbb{D} \to \mathbb{C}$ be holomorphic such that }\uncover<4->{
+        \begin{equation*} 
+            f(0) = 0 \quad\text{and}\quad |f(z)| \le 1,
+        \end{equation*} for $z \in \mathbb{D}.$ }\\~\\
+        %
+        \uncover<5->{Then, $|f(z)| \le |z|$ for all $z \in \mathbb{D}$ }\uncover<6->{and $|f'(0)| \le 1.$ }\\~\\
+        %
+        \uncover<7->{Moreover, if $|f(z)| = |z|$ for some $z \in \mathbb{D}$ }\uncover<8->{\emph{or} if $|f'(0)| = 1,$ then }\uncover<9->{$f(z) = \lambda z$ for some $\lambda \in \mathbb{C}$ such that $|\lambda| = 1.$ }
+    \end{thm}
+\end{frame}
+\begin{frame}{Lecture 12}
+    \begin{defn}[Open maps]
+        \uncover<2->{A function $f:\Omega \to \mathbb{C}$ is said to be an open map if }\uncover<3->{$f(U)$ is open for any open subset $U \subset \Omega.$ }
+    \end{defn}
+    \begin{thm}[Open Mapping Theorem]
+        \uncover<4->{Let $\Omega$ be open and $f:\Omega\to\mathbb{C}$ be {\color{red}non-constant} and holomorphic. }\uncover<5->{Then, $f$ is an open map. }
+    \end{thm}
+    \uncover<6->{In particular, $f(\Omega)$ is open. }\uncover<7->{As a corollary, if $f:\Omega\to\mathbb{C}$ is holomorphic such that $f(\Omega)$ is not open, }\uncover<8->{then $f$ is constant. }
+\end{frame}
+\begin{frame}{Lecture 13}
+    \begin{thm}[Argument principle]
+        \uncover<2->{Let $f$ be a meromorphic on $\Omega.$ }\uncover<3->{That is, the only singularities of $f$ in $\Omega$ are poles.}
+
+        \uncover<4->{Let $\gamma$ be a simple closed curve in $\Omega,$ }\uncover<5->{oriented positively. }\uncover<6->{Moreover, assume that $f$ has no zero or pole along $\gamma.$ Then, }\uncover<7->{
+        \begin{equation*} 
+            \dfrac{1}{2\pi\iota}\int_{\gamma}^{} \dfrac{f'(z)}{f(z)} {\mathrm{d}}z = N_\gamma(f) - P_\gamma(f),
+        \end{equation*} }\uncover<8->{where $N_\gamma(f)$ \uncover<9->{{\color{blue}(resp., $P_\gamma(f)$)}} denotes the number of zeroes \uncover<9->{{\color{blue}(resp., poles)}} of $f$ within $\gamma$ counted with multiplicity \uncover<9->{{\color{blue}(resp., order)}}.  }
+    \end{thm}
+\end{frame}
+\begin{frame}{Lecture 13}
+    \begin{thm}[Rouch\'{e}'s Theorem]
+        \uncover<2->{Let $f, g:\Omega\to\mathbb{C}$ be holomorphic. }\uncover<3->{Let $\gamma$ be closed curve in $\Omega.$ }\uncover<4->{Suppose that
+        \begin{equation*} 
+            |f(z) - g(z)| < |f(z)|,
+        \end{equation*} }\uncover<5->{for all $z$ on the image of $\gamma.$ }\\~\\
+        %
+        \uncover<6->{Then,
+        \begin{equation*} 
+            N_\gamma(f) = N_\gamma(g).
+        \end{equation*} }
+    \end{thm}
+    \uncover<7->{As before, note that the zeroes are counted with multiplicity. For example, $z^{43}$ has $43$ zeroes within the curve $|z| = 1.$ }
+\end{frame}
+\begin{frame}{Lecture 13}
+    \begin{thm}[Existence of harmonic conjugates]
+        \uncover<2->{Let $\Omega \subset \mathbb{R}^2$ be a simply connected domain. }\uncover<3->{Let $u:\Omega\to\mathbb{R}$ be harmonic. }\uncover<4->{Then, $u$ admits a harmonic conjugate on $\Omega.$ }\uncover<5->{Moreover, this conjugate is unique, up to an additive constant. }
+    \end{thm}
+    \uncover<6->{As a corollary, we had gotten that harmonic functions are infinitely differentiable since open discs are simply connected. }
+\end{frame}
+\begin{frame}{Lecture 13}
+    \begin{thm}[Mean Value Property]
+        \uncover<2->{Let $w \in \mathbb{R}^2$ and $u$ be a function harmonic on $B_R(w)$ for some $R > 0.$ }\uncover<3->{Let $0 < r < R.$ Then, we have }\uncover<4->{
+        \begin{equation*} 
+            u(w) = \dfrac{1}{2\pi}\int_{0}^{2\pi} u(w + re^{\iota\theta}) {\mathrm{d}}\theta.
+        \end{equation*} }
+    \end{thm}
+    \uncover<5->{Note that in CIF, we had a $z$ in the denominator. No such thing here. Moreover, we have $2\pi$ instead of $2\pi\iota.$ }\uncover<6->{The latter is of course expected since everything is $\mathbb{R}$eal. }
+\end{frame}
+\begin{frame}{Lecture 13}
+    \uncover<1->{As a corollary, we obtain MMT for harmonic functions which says that $u$ cannot obtain a maximum at any interior point unless it is constant. }
+
+    \uncover<2->{Note that here, we are talking about $u$ directly. }\uncover<3->{\emph{Not} $|u|.$ }\uncover<4->{Applying MMT to $-u$ also gives us that $u$ cannot attain a minimum at any interior point unless it is constant. }
+
+    \uncover<4->{\begin{thm}[Identity Principle for harmonic functions]
+        \uncover<5->{Let $u$ be a harmonic function on a domain $\Omega \subset \mathbb{C}.$ }\uncover<6->{If $u = 0$ on a non-empty open subset $U \subset \Omega,$ }\uncover<7->{then $u = 0$ throughout $\Omega.$ }
+    \end{thm} }
+\end{frame}
+\begin{frame}{End of Lectures 12 and 13}
+    \begin{tcolorbox}
+        Any questions?
+    \end{tcolorbox}
+\end{frame}
+\begin{frame}{Integration theorems}
+    \begin{thm}[Jordan's Lemma]
+        \uncover<2->{Let $f, g$ be continuous complex valued functions defined on the upper semicircular contour $C_R = \{Re^{\iota\theta} : \theta \in [0, \pi]\}$ for some $R > 0.$ }\uncover<3->{Assume that there exists $a > 0$ such that }\uncover<4->{
+        \begin{equation*} 
+            f(z) = e^{\iota az}g(z),
+        \end{equation*} }\uncover<5->{for all $z \in C_R.$ }\uncover<6->{Then, 
+        \begin{equation*} 
+            \left|\int_{C_R}^{} f(z) {\mathrm{d}}z\right| \le \dfrac{\pi}{a}\max_{\theta\in[0, \pi]}\left|g(Re^{\iota\theta})\right|.
+        \end{equation*}}
+    \end{thm}
+    \uncover<7->{This is useful in the cases that the quantity on the right goes to $0$ in the limit $R \to \infty.$ }
+\end{frame}
+\begin{frame}{Integration theorems}
+    \begin{thm}[Fractional residue theorem]
+        \uncover<2->{Let $f$ have a simple pole at $z_0.$ }\uncover<3->{Fix $\alpha \in (0, 2\pi]$ and $\alpha_0 \in [0, 2\pi).$ }\\~\\
+        %
+        \uncover<4->{For $r > 0,$ define $\gamma_r(\theta) \vcentcolon= z_0 + re^{\iota(\theta + \alpha_0)}$ for $\theta \in [0, \alpha].$ }\uncover<5->{Then, 
+        \begin{equation*} 
+            \lim_{r\to 0^+}\int_{\gamma_r}^{} f(z) {\mathrm{d}}z = \alpha\iota\Res(f; z_0).
+        \end{equation*}}
+    \end{thm}
+    \uncover<4->{\begin{center}
+            \begin{tikzpicture}
+                \def\r{3}
+                \def\del{1}
+                \def\thet{30}
+                \def\alph{100}                
+                \draw[red, thick, domain=\thet:\thet+\alph, ->-=at 0.5 with label {\tiny $\gamma_r$}] plot ({\r*cos(\x)}, {\r*sin(\x)});
+    
+                \draw[thin, domain=\thet:\thet+\alph, ->-=at 0.5 with label {\tiny $\alpha$}] plot ({\del*cos(\x)}, {\del*sin(\x)});
+    
+                \draw[thin, domain=\thet:\thet+\alph, ->-=at 0.5 with label {\tiny $\alpha$}] plot ({\del*cos(\x)}, {\del*sin(\x)});
+    
+                \draw[blue, thin, domain=0:\thet, ->-=at 0.5 with label {\tiny $\alpha_0$}] plot ({\del*cos(\x)}, {\del*sin(\x)});
+    
+                \draw[->] (0, 0) -- (0:1.1*\r);
+                \draw[dashed] (0, 0) -- (\thet:\r);
+                \draw[dashed] (0, 0) -- ({\thet+\alph}:\r);
+                \node[] at (-\r/10, 0) {\footnotesize $z_0$};
+            \end{tikzpicture}
+        \end{center} }
+\end{frame}
+\begin{frame}{Integration Theorems}
+    Not exactly an integration theorem but something we saw in lectures that is helpful in computing integrals of rational functions.
+
+    \begin{thm}   
+        \uncover<2->{Let $P(z)/Q(z)$ be a rational function such that }\uncover<3->{$\deg Q(x) \ge \deg P(x) + 2.$ }\uncover<4->{Then, there exist constants $R_0$ and $C$ such that }\uncover<5->{
+        \begin{equation*} 
+            \left|\dfrac{P(z)}{Q(z)}\right| \le \dfrac{C}{|z|^2},
+        \end{equation*} }\uncover<6->{whenever $|z| > R_0.$ }
+
+        \uncover<7->{Thus, if $R > R_0,$ then $\left|\dfrac{P(z)}{Q(z)}\right| \le \dfrac{C}{R^2}$ on a circle of radius $R.$ }
+    \end{thm}
+
+    \uncover<8->{Usually, we will be interested in the upper half semi-circle. }\uncover<9->{ML inequality will tell us that the integral over the semicircle goes to $0$ in the limit $R \to 0.$ }
 \end{frame}
 \begin{frame}{The End}
     \begin{tcolorbox}
