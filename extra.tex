@@ -18,6 +18,7 @@
 
 \let\emptyset\varnothing
 \newcommand{\id}{\operatorname{id}}
+\newcommand{\Res}{\operatorname{Res}}
 \newcommand{\hint}[1]{\textbf{HIDDEN:} {\color[rgb]{0.95, 0.95, 0.95}#1}}
 
 \pagestyle{plain}
@@ -269,7 +270,111 @@
 	\begin{equation*} 
 		\left(\dfrac{f'}{f}\right)\left(\dfrac{1}{n}\right) = \left(\dfrac{g'}{g}\right)\left(\dfrac{1}{n}\right), \quad \text{ for all } n \in \mathbb{N}.
 	\end{equation*}
-	(The LHS means that the function $f'/f$ is evaluated at $1/n$ and similarly for the RHS.)\\
+	(The LHS is the function $f'/f$ is evaluated at $1/n$ and similarly for the RHS.)\\
 	Find a simpler relation between $f$ and $g.$ (Yes, ``simpler'' is subjective.)
+	\item Consider the principal branch $\log:\mathbb{C}\setminus(-\infty, 0] \to \mathbb{C}.$ Choose the point $z_0 = -3 + 4\iota$ in the domain and expand $\log$ as a power series around this point.\\
+	Show that the radius of convergence of this power series is $5$ and not $4.$
+\end{enumerate}
+%
+\newpage\section{Picard, Rouch\'{e}, Cauchy's estimates, Liouville, MMT}
+\begin{enumerate}
+	\item Show that $\exp(z) = z$ has a solution in $\mathbb{C}.$
+	%
+	\item Let $f, g$ be entire functions such that $\exp f + \exp g = 1.$ Show that $f$ and $g$ are constant.
+	%
+	\item Let $f$ be a non-vanishing entire function. (That is, $f$ is never zero.) Show that there exists an entire function $g$ such that $f = \exp\circ g.$
+	%
+	\item Let $f$ be a non-vanishing entire function. (That is, $f$ is never zero.) Show that there exists an entire function $g$ such that $f = g^2.$ (That is, $f(z) = (g(z))^2$ for all $z \in \mathbb{C}.$)
+	%
+	\item \textbf{Minimum Modulus Theorem.} \\
+	Let $\Omega$ be open and connected and $f:\Omega\to\mathbb{C}$ be non-constant and non-vanishing. Show that $|f|$ attains no minimum.
+	%
+	\item Without using Little Picard, show that there is no entire non-constant function such that the image is contained in the upper half plane.\\
+	\hint{Consider $z \mapsto \dfrac{z - \iota}{z + \iota}.$}
+	\item Let $P(z)$ and $Q(z)$ be polynomials with real coefficients such that $\deg Q(z) \ge \deg P(z) + 2.$ \\
+	Moreover, assume that $Q$ has no real root.
+	\begin{enumerate}
+		\item Show that there exist constants $C, R > 0$ such that
+		\begin{equation*} 
+			\left|\dfrac{P(z)}{Q(z)}\right| \le \dfrac{C}{|z|^2}
+		\end{equation*}
+		for all $z \in \mathbb{C}$ with $|z| > R.$
+		\item Conclude the improper integrals
+		\begin{equation*} 
+			\int_{-\infty}^{-R} \dfrac{P(x)}{Q(x)} {\mathrm{d}}x \quad\text{and}\quad \int_{R}^{\infty} \dfrac{P(x)}{Q(x)} {\mathrm{d}}x
+		\end{equation*}
+		exist.
+		\item Argue that the integral
+		\begin{equation*} 
+			\int_{-R}^{R} \dfrac{P(x)}{Q(x)} {\mathrm{d}}x
+		\end{equation*}
+		also exists.
+		\item Conclude that the integral
+		\begin{equation*} 
+			\int_{-\infty}^{\infty} \dfrac{P(x)}{Q(x)} {\mathrm{d}}x
+		\end{equation*}
+		exists.
+		\item Let $\gamma_r$ denote the semicircle (without the diameter) in the upper half plane with ends $-r$ and $r.$ Show that 
+		\begin{equation*} 
+			\lim_{r\to \infty}\int_{\gamma_r}^{} \dfrac{P(z)}{Q(z)} {\mathrm{d}}z = 0.
+		\end{equation*}
+		\item Use Cauchy residue theorem to conclude that $\displaystyle\dfrac{1}{2\pi\iota}\int_{-\infty}^{\infty} \dfrac{P(x)}{Q(x)} {\mathrm{d}}x$ is equal to the sum of the residues of $p(x)/q(x)$ at the poles in the upper half plane.
+	\end{enumerate}
+	\item Let $f:\mathbb{C}^\times\to\mathbb{C}$ be a holomorphic function such that 
+	\begin{equation*} 
+		|f(z)| \le \sqrt{|z|} + \dfrac{1}{\sqrt{|z|}}
+	\end{equation*}
+	for all $z \in \mathbb{C}^\times.$ 
+	\begin{enumerate}
+		\item Show that $0$ is a removable singularity of $f.$ Conclude that $f$ can be made entire.
+		\item Show that $\infty$ is a removable singularity of $f.$ Conclude that $f$ is bounded.
+		\item Conclude that $f$ is constant.
+	\end{enumerate}
+	%
+	\item Let $U = \{z \in \mathbb{C} : |z| < 1\}.$ For $\alpha \in U,$ define
+	\begin{equation*} 
+		\varphi_\alpha(U) = \dfrac{z - \alpha}{1 - \bar{\alpha}z}.
+	\end{equation*}
+	This function is defined and holomorphic on $\mathbb{C}\setminus\{\bar{\alpha}^{-1}\}.$ In particular, it is holomorphic on $U.$
+	\begin{enumerate}
+		\item If $\alpha \in U,$ show that $-\alpha \in U.$ Show that $\varphi_{-\alpha}(\varphi_\alpha(z)) = z$ for all $z$ in the domain. Conclude that $\varphi_\alpha$ is one-one.
+		\item Show that if $|z| = 1,$ then $\left|\varphi_\alpha(z)\right| = 1.$
+		\item Show that $\varphi_\alpha$ is nonconstant. Conclude that if $z \in U,$ then $\varphi_\alpha(z) \in U.$\\
+		\hint{Use MMT.}
+		\item The above shows that $\varphi_\alpha(U) \subset U.$ By considering $\varphi_{-\alpha},$ show that the equality $\varphi_\alpha(U) = U$ is true. Conclude that $\varphi_\alpha|_U$ is a bijection from $U$ onto itself.
+	\end{enumerate}
+	%
+	\item Suppose $f, g$ are entire functions and $|f(z)| \le |g(z)|$ for every $z \in \mathbb{C}.$ What conclusion can you draw about $f$ and $g$? \\
+	\hint{If $g$ is not identically zero, then its zeroes are isolated. Show that all zeroes of $g$ are actually removable singularities of $f/g.$ Thus, conclude that $f/g$ is entire. Finish it from that. }
+	%
+	\item Suppose $f$ is an entire function and there exist constants $A, B > 0$ and $k \in \mathbb{N}$ such that 
+	\begin{equation*} 
+		|f(z)| \le A + B|z|^k
+	\end{equation*}
+	for all $z \in \mathbb{C}.$ Show that $f$ is a polynomial of degree at most $k.$
+	%
+	\item \textbf{Fractional Residue Theorem.} \\
+	Let $f$ have a simple pole at $z_0.$ Let $\delta > 0$ be such that $f$ is holomorphic on the punctured neighbourhood $B_\delta(z_0)\setminus\{z_0\}.$\\
+	Fix $\alpha \in (0, 2\pi]$ and $\alpha_0 \in [0, 2\pi).$ \\
+	For $0 < r < \delta,$ define $\gamma_r(\theta) \vcentcolon= z_0 + re^{\iota(\theta + \alpha_0)}$ for $\theta \in [0, \alpha].$ (Draw a picture to see that this is an arc centered at $z_0$ subtending angle $\alpha$ and having radius $r.$)
+
+	Let $l \vcentcolon= \Res(f; z_0).$ \begin{enumerate}
+		\item Show that $g(z) \vcentcolon= f(z) - \dfrac{l}{z - z_0}$ is holomorphic on $B_\delta(z_0).$\\
+		(More correctly: show that $z_0$ is a removable singularity of $g.$)
+		\item Conclude that there exists $M$ such that $|g(z)| \le M$ for $z \in B_\delta(z_0).$
+		\item Conclude that
+		\begin{equation*} 
+			\lim_{r\to 0}\int_{\gamma_r}^{} g(z) {\mathrm{d}}z = 0.
+		\end{equation*}
+		\item Conclude that
+		\begin{equation*} 
+			\lim_{r\to 0}\int_{\gamma_r}^{} f(z) {\mathrm{d}}z = \lim_{r\to 0}\int_{\gamma_r}^{} \dfrac{l}{z - z_0} {\mathrm{d}}z.
+		\end{equation*}
+		\item Show that the RHS is $\alpha\iota\Res(f; z_0)$ and conclude the fractional residue theorem.
+	\end{enumerate} 
+
+	\item Let $f:\Omega\to\mathbb{C}$ be holomorphic. Recall that a fixed point of $f$ is a point $z_0 \in \Omega$ such that $f(z_0) = z_0.$ Suppose that $\Omega$ contains the closed unit disc. Moreover, assume that $|f(z)| < 1$ for $|z| = 1.$ Show that $f$ has no fixed points in the open unit disc.
+	\item Suppose $f:\Omega\to\mathbb{C}$ is holomorphic and $\Omega$ contains the closed unit disc. Suppose that $f(0) = 1$ and $|f(z)| > 2$ if $|z| = 1.$ Then, show that $f$ has at least one zero in the open unit disc.\\
+	\hint{Minimum modulus theorem.}
 \end{enumerate}
 \end{document}
