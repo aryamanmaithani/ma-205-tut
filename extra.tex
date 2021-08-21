@@ -20,6 +20,7 @@
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\Res}{\operatorname{Res}}
 \newcommand{\hint}[1]{\textbf{HIDDEN:} {\color[rgb]{0.95, 0.95, 0.95}#1}}
+\newcommand{\md}[1]{{\left\lvert #1 \right\lvert}}
 
 \pagestyle{plain}
 
@@ -30,7 +31,7 @@
 
 \usepackage[a4paper]{geometry}
 \usepackage{lipsum}
-
+\usepackage{parskip}
 \usepackage{cleveref}
 \crefname{thm}{Theorem}{Theorems}
 \crefname{lem}{Lemma}{Lemmas}
@@ -66,6 +67,7 @@
 	\item $\mathbb{Z}$ is the set of integers.
 	\item $\mathbb{Q}$ is the set of rational numbers.
 	\item $\mathbb{R}$ is the set of real numbers.
+	\item $\mathbb{D} = \{z \in \mathbb{C} : \md{z} < 1\}$.
 	% \item Whenever I refer to $\mathbb{R}$ or $\mathbb{R}^n$ or any of its subsets as a metric space, I shall always assume the standard metric unless I explicitly state so otherwise.
 	% \item $S^1 = \{\mathbf{x} \in \mathbb{R}^2 \mid \|x\| = 1\} \subset \mathbb{R}^2.$ 
 	% \item $\mathbb{S}_{\ge 0} = \{s \in \mathbb{S} \mid s \ge 0\}.$ (So, that defines $\mathbb{Z}_{\ge 0}, \mathbb{Q}_{\ge 0}, \mathbb{R}_{\ge 0}.$)
@@ -331,17 +333,98 @@
 		\item Conclude that $f$ is constant.
 	\end{enumerate}
 	%
-	\item Let $U = \{z \in \mathbb{C} : |z| < 1\}.$ For $\alpha \in U,$ define
-	\begin{equation*} 
-		\varphi_\alpha(U) = \dfrac{z - \alpha}{1 - \bar{\alpha}z}.
-	\end{equation*}
-	This function is defined and holomorphic on $\mathbb{C}\setminus\{\bar{\alpha}^{-1}\}.$ In particular, it is holomorphic on $U.$
+	\item \begin{lem}[Schwarz Lemma]
+	Let $f : \mathbb{D} \to \mathbb{C}$ be a holomorphic function. (Recall $\mathbb{D}$ from \Cref{sec:notations}.) \\
+	Assume that $\md{f(z)} \le 1$ for all $z \in \mathbb{D}$ and $f(0) = 0$. 
+
+	Then,
+	\begin{align} 
+		\md{f(z)} &\le \md{z} \quad (z \in \mathbb{D}), \label{eq:01}\\
+		\md{f'(0)} &\le 1. \label{eq:02}
+	\end{align}
+	Moreover, if equality holds in \Cref{eq:01} for some $z \in \mathbb{D} \setminus \{0\}$, or if equality holds in \Cref{eq:02}, then $f(z) = \lambda z$ for some $\lambda \in \mathbb{C}$ with $\md{\lambda} = 1$.
+	\end{lem}
+
+	This was there in the slides but here's an outline you can follow to prove it:
 	\begin{enumerate}
-		\item If $\alpha \in U,$ show that $-\alpha \in U.$ Show that $\varphi_{-\alpha}(\varphi_\alpha(z)) = z$ for all $z$ in the domain. Conclude that $\varphi_\alpha$ is one-one.
+		\item Show that $g(z) \vcentcolon= f(z)/z$ has a removable singularity at $0$.
+		\item For $0 < r < 1$, define $\mathbb{D}_{r} \vcentcolon= \{z \in \mathbb{C} : \md{z} \le r\}$. By MMT, conclude that there exists $z_{r} \in \mathbb{D}_{r}$ such that $\md{g(z)} \le g(z_{r})$ for all $z \in \mathbb{D}_{r}$. 
+		\item Given any $z \in \mathbb{D}$, note that there exists $r$ such that $z \in \mathbb{D}_{r}$. Thus, for any $z \in \mathbb{D}$, conclude that
+		\begin{equation*} 
+			\md{g(z)} \le \md{g(z_{r})} \le \frac{1}{r}.
+		\end{equation*}
+		\item Let $r \to 1$ to conclude \Cref{eq:01} and \Cref{eq:02}. (Hint for \Cref{eq:02}: What is $g(0)$?)
+		\item Now, if either of the appropriate equalities hold, then $\md{g(z)} = 1$ at some point of $\mathbb{D}$. Use MMT to conclude that $g$ must be a constant with modulus $1$. Conclude the last statement of the lemma.
+	\end{enumerate}
+	%
+	\item  For $\alpha \in \mathbb{D},$ define the function $\varphi_\alpha$ by
+	\begin{equation*} 
+		\varphi_\alpha(z) \vcentcolon= \dfrac{z - \alpha}{1 - \bar{\alpha}z}.
+	\end{equation*}
+	This function is defined and holomorphic on $\mathbb{C}\setminus\{\bar{\alpha}^{-1}\}.$ In particular, it is holomorphic on $\mathbb{D}.$
+	\begin{enumerate}
+		\item If $\alpha \in \mathbb{D},$ show that $-\alpha \in \mathbb{D}.$ Show that $\varphi_{-\alpha}(\varphi_\alpha(z)) = z$ for all $z$ in the domain. Conclude that $\varphi_\alpha$ is one-one.
 		\item Show that if $|z| = 1,$ then $\left|\varphi_\alpha(z)\right| = 1.$
-		\item Show that $\varphi_\alpha$ is nonconstant. Conclude that if $z \in U,$ then $\varphi_\alpha(z) \in U.$\\
+		\item Show that $\varphi_\alpha$ is nonconstant. (You have actually already done the work for this. Do you see how?) \\
+		Conclude that if $z \in \mathbb{D},$ then $\varphi_\alpha(z) \in \mathbb{D}.$\\
 		\hint{Use MMT.}
-		\item The above shows that $\varphi_\alpha(U) \subset U.$ By considering $\varphi_{-\alpha},$ show that the equality $\varphi_\alpha(U) = U$ is true. Conclude that $\varphi_\alpha|_U$ is a bijection from $U$ onto itself.
+		\item The above shows that $\varphi_\alpha(\mathbb{D}) \subset \mathbb{D}.$ By considering $\varphi_{-\alpha},$ show that the equality $\varphi_\alpha(U) = \mathbb{D}$ is true. Conclude that $\varphi_\alpha|_\mathbb{D}$ is a bijection from $\mathbb{D}$ onto itself.
+		\item Show that
+		\begin{equation*} 
+			\varphi_{\alpha}'(0) = 1 - \md{\alpha}^2, \quad \varphi_{\alpha}'(\alpha) = \frac{1}{1 - \md{\alpha}^2}.
+		\end{equation*}
+	\end{enumerate}
+	%
+	\item Continue the same notations from the previous question. We see there that $\varphi_{\alpha}$ are biholomorphisms\footnote{A biholomorphism is a bijective holomorphic function whose inverse is also holomorphic.} from $\mathbb{D}$ onto itself. Let us now answer the following extremal question. \\
+	
+	\begin{blockquote}
+		Suppose $\alpha$ and $\beta$ are complex numbers, $\md{\alpha} < 1$, and $\md{\beta} < 1$. Suppose that $f : \mathbb{D} \to \mathbb{C}$ is a holomorphic function bounded by $1$. How large can $\md{f'(\alpha)}$ if $f(\alpha) = \beta$?
+	\end{blockquote}
+
+	To answer this, do the following:
+	\begin{enumerate}
+		\item Put $g = \varphi_{\beta} \circ f \circ \varphi_{-\alpha}$.
+		\item Since $\varphi_{-\alpha}$ and $\varphi_{\beta}$ map $\mathbb{D}$ onto $\mathbb{D}$, we see that $g$ is a holomorphic function on $\mathbb{D}$ bounded by $1$.
+		\item Use Schwarz lemma to conclude that $\md{g'(0)} \le 1$. Use chain rule and the previous question to conclude
+		\begin{equation} \label{eq:03}
+			\md{f'(\alpha)} \le \frac{1 - \md{\beta}^2}{1 - \md{\alpha}^2}.
+		\end{equation}
+		(Along the way, you'll also use that $f(\alpha) = \beta$.)
+		\item Observe that this solves our problem by showing that equality can actually be achieved in \Cref{eq:03}. \\
+		Also show that in that case, we have
+		\begin{equation*} 
+			f(z) = \varphi_{-\beta}(\lambda \varphi_{\alpha}(z)) \quad (z \in \mathbb{D})
+		\end{equation*}
+		for some constant $\lambda$ with $\md{\lambda} = 1$.
+	\end{enumerate}
+	%
+	\item We still continue with the earlier notation. Here, we finish off the discussion by finding \emph{all} biholomorphisms from $\mathbb{D}$ to itself. We had already seen that $\varphi_{\alpha}$s are some of these. We now show that these are essentially all.
+
+	\begin{thm}
+		Suppose that $f : \mathbb{D} \to \mathbb{D}$ is a biholomorphism. Let $\alpha \in \mathbb{D}$ be such that $f(\alpha) = 0$. Then, there is a constant $\lambda$ with $\md{\lambda} = 1$ such that
+		\begin{equation*} 
+			f(z) = \lambda \varphi_{\alpha}(z),
+		\end{equation*}
+		for all $z \in \mathbb{D}$.
+	\end{thm}
+
+	In other words, $f$ is simply obtained by composing $\varphi_{\alpha}$ with a rotation. 
+
+	\textbf{Remark.} In the above, we have assumed that $f$ is a biholomorphism but one can actually only assume that $f$ is bijective and holomorphic, the holomorphicity of its inverse comes for free.
+
+	Prove this via the following steps:
+	\begin{enumerate}
+		\item Let $g$ be the inverse of $f$. In particular, $g(f(z)) = z$ for all $z \in \mathbb{D}$.
+		\item Use chain rule to conclude that 
+		\begin{equation} \label{eq:04}
+			g'(0) f'(\alpha) = 1.
+		\end{equation}
+		\item Note that $f(\alpha) = 0$ and $g(0) = \alpha$. Now, use the conclusion of the previous extremal problem to conclude that
+		\begin{equation*} 
+			\md{f'(\alpha)} \le \frac{1}{1 - \md{\alpha}^2}, \quad \md{g'(0)} \le 1 - \md{\alpha}^2.
+		\end{equation*}
+		Use \Cref{eq:04} to conclude that equalities hold above. \\
+		In turn, use the final conclusion of the extremal problem solution to conclude the theorem.
 	\end{enumerate}
 	%
 	\item Suppose $f, g$ are entire functions and $|f(z)| \le |g(z)|$ for every $z \in \mathbb{C}.$ What conclusion can you draw about $f$ and $g$? \\
