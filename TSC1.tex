@@ -587,11 +587,22 @@
         A = \{z : r < |z - z_0| < R\},
     \end{equation*} where $0 \le r < R \le \infty.$ }\uncover<3->{Assume that $f$ is holomorphic on this open annulus $A.$ }\uncover<4->{Then, CIF takes the form }\uncover<5->{
     \begin{equation*} 
-        f(z) = \uncover<6->{\dfrac{1}{2\pi\iota}\int_{|w - z_0| = R'}^{} \dfrac{f(w)}{z - w} {\mathrm{d}}w} \uncover<7->{- \dfrac{1}{2\pi\iota}\int_{|w - z_0| = r'}^{} \dfrac{f(w)}{z - w} {\mathrm{d}}w},
+        f(z) = \uncover<6->{\dfrac{1}{2\pi\iota}\int_{|w - z_0| = R'}^{} \dfrac{f(w)}{w - z} {\mathrm{d}}w} \uncover<7->{- \dfrac{1}{2\pi\iota}\int_{|w - z_0| = r'}^{} \dfrac{f(w)}{w - z} {\mathrm{d}}w},
     \end{equation*} } 
     \uncover<8->{where $r < r' < |z| <  R' < R.$ }
     \end{thm}
     \uncover<9->{Just like how the usual CIF gave us the power series, this CIF gives us the Laurent series. }
+\end{frame}
+\begin{frame}{Lecture 9: Laurent Series}
+    Allowing deformations and assuming $0 < r < R < \infty$, here's the general picture to keep in mind:
+
+    \begin{center}
+        \includegraphics[width=6cm]{CIF-annulus.jpg}
+    \end{center}
+    \vspace{-2mm}
+    \begin{equation*} 
+        f(z) = \frac{1}{2 \pi \iota}\left(\int_{\gamma_{2}} - \int_{\gamma_{1}}\right)\frac{f(w)}{w - z} {\mathrm{d}}w.
+    \end{equation*}
 \end{frame}
 \begin{frame}{Lecture 9: Laurent Series}
     \begin{thm}[Laurent Series]
