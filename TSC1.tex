@@ -1,4 +1,4 @@
-\documentclass[handout, dvipsnames]{beamer}
+\documentclass[dvipsnames]{beamer}
 \mode<presentation>{}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools, mathrsfs}
@@ -589,7 +589,7 @@
     \begin{equation*} 
         f(z) = \uncover<6->{\dfrac{1}{2\pi\iota}\int_{|w - z_0| = R'}^{} \dfrac{f(w)}{z - w} {\mathrm{d}}w} \uncover<7->{- \dfrac{1}{2\pi\iota}\int_{|w - z_0| = r'}^{} \dfrac{f(w)}{z - w} {\mathrm{d}}w},
     \end{equation*} } 
-    \uncover<8->{where $r < r' < R' < R.$ }
+    \uncover<8->{where $r < r' < |z| <  R' < R.$ }
     \end{thm}
     \uncover<9->{Just like how the usual CIF gave us the power series, this CIF gives us the Laurent series. }
 \end{frame}
@@ -600,7 +600,7 @@
             f(z) = \sum_{n = -\infty}^{\infty}a_n(z - z_0)^n,
         \end{equation*} }\uncover<3->{where each $a_n$ is given, as before, by }\uncover<4->{
         \begin{equation*} 
-            a_n = \dfrac{1}{2\pi\iota}\int_{|z - w| = r_0}^{} \dfrac{f(w)}{(z - w)^{n + 1}} {\mathrm{d}}w,
+            a_n = \dfrac{1}{2\pi\iota}\int_{|w - z_0| = r_0}^{} \dfrac{f(w)}{(w - z_0)^{n + 1}} {\mathrm{d}}w,
         \end{equation*} }\uncover<5->{where $r < r_0 < R.$ } 
     \end{thm}
     \uncover<6->{Note that the above is valid for $n < 0$ as well. }
